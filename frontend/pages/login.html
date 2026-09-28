@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login - HostelVision</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+    <link rel="stylesheet"
+          href="../css/auth.css">
+
+</head>
+
+<body class="auth-page">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="auth-header">
+
+    <a href="../index.html"
+       class="logo">
+
+        Hostel<span>Vision</span>
+
+    </a>
+
+    <div class="auth-header-right">
+
+        <span>
+            Don't have an account?
+        </span>
+
+        <a href="register.html">
+            Register
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<main class="auth-container">
+
+    <div class="auth-card login-card">
+
+
+        <!-- LEFT -->
+
+        <div class="auth-info">
+
+            <span class="auth-label">
+                WELCOME BACK
+            </span>
+
+            <h1>
+                Your next stay
+                <span>starts here.</span>
+            </h1>
+
+            <p>
+                Login to manage your hostel searches,
+                bookings and requests.
+            </p>
+
+
+            <div class="auth-benefits">
+
+                <div>
+
+                    <span>✓</span>
+
+                    <div>
+
+                        <strong>
+                            Manage your bookings
+                        </strong>
+
+                        <small>
+                            Track all your hostel requests.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span>✓</span>
+
+                    <div>
+
+                        <strong>
+                            Save your favourites
+                        </strong>
+
+                        <small>
+                            Keep your favourite properties
+                            in one place.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span>✓</span>
+
+                    <div>
+
+                        <strong>
+                            Connect with owners
+                        </strong>
+
+                        <small>
+                            Communicate about your stay.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT -->
+
+        <div class="auth-form-container">
+
+            <div class="form-heading">
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p>
+                    Login to your HostelVision account.
+                </p>
+
+            </div>
+
+
+            <!-- ROLE -->
+
+            <div class="role-selection">
+
+                <button
+                    type="button"
+                    class="role-btn active"
+                    data-role="customer">
+
+                    <span>🎓</span>
+
+                    <strong>
+                        Customer
+                    </strong>
+
+                    <small>
+                        Student / Professional
+                    </small>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="role-btn"
+                    data-role="owner">
+
+                    <span>🏠</span>
+
+                    <strong>
+                        Owner
+                    </strong>
+
+                    <small>
+                        Property Owner
+                    </small>
+
+                </button>
+
+            </div>
+
+
+            <form id="loginForm">
+
+
+                <!-- EMAIL / PHONE -->
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+                        Email or Phone
+                    </label>
+
+                    <input
+                        type="text"
+                        id="loginEmail"
+                        placeholder="Enter email or phone"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <div class="label-row">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        <a href="#">
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <div class="password-input">
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="loginPassword">
+
+                            👁
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REMEMBER -->
+
+                <label class="remember">
+
+                    <input
+                        type="checkbox"
+                        id="rememberMe"
+                    >
+
+                    <span>
+                        Remember me
+                    </span>
+
+                </label>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="auth-submit">
+
+                    Login
+
+                </button>
+
+
+                <div
+                    class="form-message"
+                    id="loginMessage">
+
+                </div>
+
+            </form>
+
+
+            <div class="auth-divider">
+
+                <span>
+                    or
+                </span>
+
+            </div>
+
+
+            <p class="switch-auth">
+
+                Don't have an account?
+
+                <a href="register.html">
+                    Create Account
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script src="../js/auth.js"></script>
+
+</body>
+
+</html>

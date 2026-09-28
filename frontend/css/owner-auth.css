@@ -1,0 +1,643 @@
+/* =========================================
+   OWNER AUTH
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f6f8;
+    color: #172033;
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.auth-page {
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 43% 57%;
+}
+
+
+/* =========================================
+   LEFT
+========================================= */
+
+.auth-left {
+    background: #172033;
+    color: white;
+
+    padding: 38px 55px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.brand a,
+.mobile-brand a {
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.brand span,
+.mobile-brand span {
+    color: #e63946;
+}
+
+
+.owner-intro {
+    max-width: 520px;
+
+    margin: auto 0;
+}
+
+.intro-label {
+    display: inline-block;
+
+    color: #e63946;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 17px;
+}
+
+.owner-intro h1 {
+    margin: 0 0 18px;
+
+    font-size: 42px;
+
+    line-height: 1.15;
+}
+
+.owner-intro > p {
+    color: #b8bfcc;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================
+   BENEFITS
+========================================= */
+
+.owner-benefits {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.benefit {
+    display: flex;
+
+    gap: 14px;
+
+    align-items: flex-start;
+}
+
+.benefit > span {
+    width: 25px;
+    height: 25px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(230,57,70,0.18);
+
+    color: #ff6671;
+
+    font-weight: 700;
+}
+
+.benefit strong {
+    display: block;
+
+    color: white;
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+.benefit p {
+    margin: 0;
+
+    color: #929baa;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   RIGHT
+========================================= */
+
+.auth-right {
+    background: #f7f8fa;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 35px 45px;
+
+    overflow-y: auto;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 680px;
+}
+
+.mobile-brand {
+    display: none;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.auth-header {
+    margin-bottom: 20px;
+}
+
+.role-label {
+    color: #e63946;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+}
+
+.auth-header h2 {
+    margin: 7px 0 6px;
+
+    font-size: 28px;
+}
+
+.auth-header p {
+    margin: 0;
+
+    color: #747c89;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.registration-progress {
+    display: flex;
+
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+.progress-step {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: #9299a5;
+
+    font-size: 11px;
+}
+
+.progress-step span {
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e4e7eb;
+
+    font-weight: 700;
+}
+
+.progress-step.active {
+    color: #e63946;
+}
+
+.progress-step.active span {
+    background: #e63946;
+    color: white;
+}
+
+.progress-line {
+    width: 55px;
+    height: 1px;
+
+    background: #dfe2e7;
+
+    margin: 0 9px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+#ownerRegisterForm {
+    background: white;
+
+    border: 1px solid #e3e6ea;
+
+    border-radius: 10px;
+
+    padding: 25px;
+}
+
+.form-section-title {
+    color: #172033;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid #eef0f2;
+
+    margin-bottom: 18px;
+}
+
+.business-title {
+    margin-top: 24px;
+}
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+
+    color: #3d4552;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    margin-bottom: 6px;
+}
+
+.form-group label span {
+    color: #e63946;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    border: 1px solid #dfe3e8;
+
+    border-radius: 6px;
+
+    background: white;
+
+    padding: 10px 11px;
+
+    color: #172033;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #e63946;
+
+    box-shadow:
+        0 0 0 3px rgba(230,57,70,0.08);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+
+/* =========================================
+   PASSWORD
+========================================= */
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 55px;
+}
+
+.password-wrapper button {
+    position: absolute;
+
+    right: 9px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: #e63946;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   PASSWORD STRENGTH
+========================================= */
+
+.password-strength {
+    margin-top: -6px;
+    margin-bottom: 10px;
+}
+
+.strength-bar {
+    display: flex;
+
+    gap: 4px;
+
+    margin-bottom: 4px;
+}
+
+.strength-bar span {
+    height: 3px;
+
+    flex: 1;
+
+    border-radius: 3px;
+
+    background: #e3e6ea;
+}
+
+.password-strength small {
+    color: #8a919c;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   TERMS
+========================================= */
+
+.terms-row {
+    margin: 17px 0;
+}
+
+.checkbox-label {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    color: #6f7783;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    margin-top: 2px;
+
+    accent-color: #e63946;
+}
+
+.checkbox-label a {
+    color: #e63946;
+
+    text-decoration: none;
+}
+
+.checkbox-label a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.register-btn {
+    width: 100%;
+
+    border: none;
+
+    background: #e63946;
+
+    color: white;
+
+    padding: 12px;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.register-btn:hover {
+    background: #cf2f3c;
+}
+
+.register-btn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.register-message {
+    display: none;
+
+    margin-top: 12px;
+
+    padding: 10px;
+
+    border-radius: 6px;
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+.register-message.success {
+    display: block;
+
+    background: #edf9f1;
+
+    color: #218847;
+}
+
+.register-message.error {
+    display: block;
+
+    background: #fff0f0;
+
+    color: #d83240;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.auth-footer {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #7b8290;
+
+    font-size: 12px;
+}
+
+.auth-footer a,
+.customer-link a {
+    color: #e63946;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.customer-link {
+    text-align: center;
+
+    margin-top: 13px;
+
+    color: #858c98;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 950px) {
+
+    .auth-page {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-left {
+        display: none;
+    }
+
+    .auth-right {
+        padding: 30px 20px;
+    }
+
+    .mobile-brand {
+        display: block;
+
+        margin-bottom: 30px;
+    }
+
+    .mobile-brand a {
+        color: #172033;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .auth-right {
+        padding: 20px 12px;
+    }
+
+    #ownerRegisterForm {
+        padding: 18px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+    .auth-header h2 {
+        font-size: 23px;
+    }
+
+    .registration-progress {
+        justify-content: center;
+    }
+
+    .progress-line {
+        width: 25px;
+    }
+
+}

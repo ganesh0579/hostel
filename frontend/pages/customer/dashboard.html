@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Dashboard - HostelVision</title>
+
+    <link rel="stylesheet"
+          href="../../css/style.css">
+
+    <link rel="stylesheet"
+          href="../../css/customer.css">
+
+</head>
+
+<body class="customer-dashboard">
+
+
+<!-- =====================================================
+     TOP NAVBAR
+===================================================== -->
+
+<header class="dashboard-navbar">
+
+    <div class="dashboard-nav-left">
+
+        <a href="../../index.html"
+           class="dashboard-logo">
+
+            Hostel<span>Vision</span>
+
+        </a>
+
+        <span class="dashboard-divider"></span>
+
+        <span class="dashboard-title">
+            Customer
+        </span>
+
+    </div>
+
+
+    <div class="dashboard-nav-right">
+
+        <a href="../search.html">
+            Explore Hostels
+        </a>
+
+        <button class="notification-btn"
+                id="notificationBtn">
+
+            🔔
+
+            <span class="notification-count">
+                2
+            </span>
+
+        </button>
+
+
+        <div class="user-menu">
+
+            <div class="user-avatar">
+                GV
+            </div>
+
+            <div class="user-info">
+
+                <strong>
+                    Ganesh Varma
+                </strong>
+
+                <small>
+                    Customer
+                </small>
+
+            </div>
+
+            <span>
+               ⌄
+            </span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     DASHBOARD LAYOUT
+===================================================== -->
+
+<div class="dashboard-layout">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="dashboard-sidebar">
+
+        <nav class="dashboard-menu">
+
+
+            <a href="dashboard.html"
+               class="dashboard-menu-item active">
+
+                <span>▦</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="../search.html"
+               class="dashboard-menu-item">
+
+                <span>⌕</span>
+
+                Explore Hostels
+
+            </a>
+
+
+            <a href="bookings.html"
+               class="dashboard-menu-item">
+
+                <span>▣</span>
+
+                My Bookings
+
+                <span class="menu-badge">
+                    1
+                </span>
+
+            </a>
+
+
+            <a href="complaints.html"
+               class="dashboard-menu-item">
+
+                <span>⚠</span>
+
+                Complaints
+
+            </a>
+
+
+            <a href="profile.html"
+               class="dashboard-menu-item">
+
+                <span>◉</span>
+
+                My Profile
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="../../index.html"
+               class="dashboard-menu-item">
+
+                <span>⌂</span>
+
+                Back to Website
+
+            </a>
+
+
+            <button
+                class="dashboard-menu-item logout-btn"
+                id="logoutBtn">
+
+                <span>↪</span>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome-section">
+
+            <div>
+
+                <p class="welcome-label">
+                    CUSTOMER DASHBOARD
+                </p>
+
+                <h1>
+                    Welcome back, Ganesh 👋
+                </h1>
+
+                <p>
+                    Find your next place to call home.
+                </p>
+
+            </div>
+
+
+            <a href="../search.html"
+               class="explore-btn">
+
+                + Explore Hostels
+
+            </a>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STATS
+        ================================================== -->
+
+        <section class="dashboard-stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon red">
+                    ♡
+                </div>
+
+                <div>
+
+                    <small>
+                        Saved Hostels
+                    </small>
+
+                    <strong>
+                        5
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    ▣
+                </div>
+
+                <div>
+
+                    <small>
+                        Active Booking
+                    </small>
+
+                    <strong>
+                        1
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ✓
+                </div>
+
+                <div>
+
+                    <small>
+                        Completed Stays
+                    </small>
+
+                    <strong>
+                        2
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    ⚠
+                </div>
+
+                <div>
+
+                    <small>
+                        Open Complaints
+                    </small>
+
+                    <strong>
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CURRENT BOOKING
+        ================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Current Booking
+                    </h2>
+
+                    <p>
+                        Your active hostel stay
+                    </p>
+
+                </div>
+
+                <a href="bookings.html">
+                    View All
+                </a>
+
+            </div>
+
+
+            <div class="current-booking">
+
+                <div class="booking-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=700&q=80"
+                        alt="UrbanNest Hostel"
+                    >
+
+                </div>
+
+
+                <div class="current-booking-info">
+
+                    <div class="booking-status">
+                        ACTIVE
+                    </div>
+
+                    <h3>
+                        UrbanNest Premium Hostel
+                    </h3>
+
+                    <p>
+                        📍 Madhapur, Hyderabad
+                    </p>
+
+                    <div class="booking-details">
+
+                        <div>
+
+                            <small>
+                                Room
+                            </small>
+
+                            <strong>
+                                Double Sharing
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                Check-in
+                            </small>
+
+                            <strong>
+                                01 Oct 2026
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                Monthly Rent
+                            </small>
+
+                            <strong>
+                                ₹7,500
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="booking-action">
+
+                    <span>
+                        Booking ID
+                    </span>
+
+                    <strong>
+                        HV-10245
+                    </strong>
+
+                    <a href="bookings.html">
+                        View Booking
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RECENT ACTIVITY
+        ================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Recent Activity
+                    </h2>
+
+                    <p>
+                        Your latest HostelVision activity
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity-list">
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Booking confirmed
+                        </strong>
+
+                        <p>
+                            UrbanNest Premium Hostel
+                        </p>
+
+                    </div>
+
+                    <time>
+                        2 days ago
+                    </time>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon red">
+                        ♡
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Hostel saved
+                        </strong>
+
+                        <p>
+                            GreenStay PG was added to favourites.
+                        </p>
+
+                    </div>
+
+                    <time>
+                        4 days ago
+                    </time>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon blue">
+                        ↗
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Room request sent
+                        </strong>
+
+                        <p>
+                            StudentHub Residency
+                        </p>
+
+                    </div>
+
+                    <time>
+                        1 week ago
+                    </time>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RECOMMENDED HOSTELS
+        ================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Recommended for You
+                    </h2>
+
+                    <p>
+                        Hostels you may be interested in
+                    </p>
+
+                </div>
+
+                <a href="../search.html">
+                    See All
+                </a>
+
+            </div>
+
+
+            <div class="recommended-grid">
+
+
+                <article class="recommended-card">
+
+                    <div class="recommended-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=700&q=80"
+                            alt="StudentHub"
+                        >
+
+                        <span>
+                            ★ 4.5
+                        </span>
+
+                    </div>
+
+                    <div class="recommended-content">
+
+                        <h3>
+                            StudentHub Residency
+                        </h3>
+
+                        <p>
+                            📍 Gachibowli
+                        </p>
+
+                        <strong>
+                            ₹6,800
+                            <small>/month</small>
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="recommended-card">
+
+                    <div class="recommended-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=700&q=80"
+                            alt="GreenStay"
+                        >
+
+                        <span>
+                            ★ 4.6
+                        </span>
+
+                    </div>
+
+                    <div class="recommended-content">
+
+                        <h3>
+                            GreenStay PG
+                        </h3>
+
+                        <p>
+                            📍 Kondapur
+                        </p>
+
+                        <strong>
+                            ₹8,200
+                            <small>/month</small>
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="recommended-card">
+
+                    <div class="recommended-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=700&q=80"
+                            alt="Comfort Living"
+                        >
+
+                        <span>
+                            ★ 4.4
+                        </span>
+
+                    </div>
+
+                    <div class="recommended-content">
+
+                        <h3>
+                            Comfort Living PG
+                        </h3>
+
+                        <p>
+                            📍 Hitech City
+                        </p>
+
+                        <strong>
+                            ₹9,000
+                            <small>/month</small>
+                        </strong>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     NOTIFICATION PANEL
+===================================================== -->
+
+<div
+    class="notification-panel"
+    id="notificationPanel">
+
+    <div class="notification-header">
+
+        <strong>
+            Notifications
+        </strong>
+
+        <button id="closeNotifications">
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="notification-item">
+
+        <span class="green">
+            ✓
+        </span>
+
+        <div>
+
+            <strong>
+                Booking confirmed
+            </strong>
+
+            <p>
+                Your UrbanNest booking is confirmed.
+            </p>
+
+            <small>
+                2 days ago
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="notification-item">
+
+        <span class="red">
+            ♡
+        </span>
+
+        <div>
+
+            <strong>
+                New recommendation
+            </strong>
+
+            <p>
+                GreenStay PG matches your preferences.
+            </p>
+
+            <small>
+                4 days ago
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="../../js/customer.js"></script>
+
+</body>
+
+</html>

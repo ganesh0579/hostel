@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | HostelVision</title>
+
+    <link rel="stylesheet" href="../../css/customer.css">
+    <link rel="stylesheet" href="../../css/profile.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="dashboard-navbar">
+
+    <div class="dashboard-logo">
+        <a href="../../index.html">
+            Hostel<span>Vision</span>
+        </a>
+    </div>
+
+    <div class="dashboard-nav-right">
+
+        <div class="notification-icon"
+             onclick="showNotifications()">
+
+            🔔
+            <span class="notification-count">3</span>
+
+        </div>
+
+        <div class="customer-profile">
+
+            <div class="profile-avatar">
+                GV
+            </div>
+
+            <div class="profile-info">
+
+                <strong>Ganesh Varma</strong>
+
+                <small>Customer</small>
+
+            </div>
+
+            <span class="profile-arrow">
+                ▼
+            </span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= LAYOUT ================= -->
+
+<div class="dashboard-layout">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="dashboard-sidebar">
+
+        <div class="sidebar-user">
+
+            <div class="large-avatar">
+                GV
+            </div>
+
+            <div>
+
+                <strong>Ganesh Varma</strong>
+
+                <span>Customer</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html">
+                <span>🏠</span>
+                Dashboard
+            </a>
+
+            <a href="../../search.html">
+                <span>🔍</span>
+                Find Hostels
+            </a>
+
+            <a href="bookings.html">
+                <span>📋</span>
+                My Bookings
+            </a>
+
+            <a href="complaints.html">
+                <span>⚠️</span>
+                Complaints
+                <span class="menu-badge">2</span>
+            </a>
+
+            <a href="profile.html"
+               class="active">
+
+                <span>👤</span>
+                My Profile
+
+            </a>
+
+            <div class="sidebar-divider"></div>
+
+            <a href="../../index.html">
+
+                <span>🌐</span>
+                Visit Website
+
+            </a>
+
+            <a href="#"
+               onclick="logout(event)">
+
+                <span>🚪</span>
+                Logout
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="dashboard-main">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="profile-page-header">
+
+            <div>
+
+                <div class="breadcrumb">
+                    Dashboard / My Profile
+                </div>
+
+                <h1>
+                    My Profile
+                </h1>
+
+                <p>
+                    Manage your personal information and account settings.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PROFILE TOP ================= -->
+
+        <section class="profile-top-card">
+
+            <div class="profile-photo-section">
+
+                <div class="profile-large-avatar"
+                     id="profileAvatar">
+
+                    GV
+
+                </div>
+
+                <button
+                    class="change-photo-btn"
+                    onclick="changePhoto()">
+
+                    Change Photo
+
+                </button>
+
+                <input
+                    type="file"
+                    id="photoInput"
+                    accept="image/*"
+                    hidden>
+
+            </div>
+
+
+            <div class="profile-basic-info">
+
+                <h2 id="profileName">
+                    Ganesh Varma
+                </h2>
+
+                <p>
+                    Customer
+                </p>
+
+                <span class="verified-user">
+                    ✓ Verified Account
+                </span>
+
+                <div class="profile-member">
+
+                    Member since
+                    <strong>January 2026</strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-actions">
+
+                <button
+                    class="edit-profile-btn"
+                    onclick="enableEditing()">
+
+                    ✏ Edit Profile
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTENT GRID ================= -->
+
+        <div class="profile-content-grid">
+
+
+            <!-- ================= PERSONAL INFO ================= -->
+
+            <section class="profile-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Personal Information
+                        </h2>
+
+                        <p>
+                            Your basic account information.
+                        </p>
+
+                    </div>
+
+                    <span class="card-icon">
+                        👤
+                    </span>
+
+                </div>
+
+
+                <form id="profileForm">
+
+
+                    <div class="form-row">
+
+                        <div class="profile-form-group">
+
+                            <label>
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                value="Ganesh Varma"
+                                disabled>
+
+                        </div>
+
+
+                        <div class="profile-form-group">
+
+                            <label>
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                value="ganesh@example.com"
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="profile-form-group">
+
+                            <label>
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                value="+91 98765 43210"
+                                disabled>
+
+                        </div>
+
+
+                        <div class="profile-form-group">
+
+                            <label>
+                                Date of Birth
+                            </label>
+
+                            <input
+                                type="date"
+                                id="dob"
+                                value="2005-01-15"
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="profile-form-group">
+
+                            <label>
+                                Gender
+                            </label>
+
+                            <select
+                                id="gender"
+                                disabled>
+
+                                <option value="male">
+                                    Male
+                                </option>
+
+                                <option value="female">
+                                    Female
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="profile-form-group">
+
+                            <label>
+                                City
+                            </label>
+
+                            <input
+                                type="text"
+                                id="city"
+                                value="Hyderabad"
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-form-actions"
+                         id="profileFormActions">
+
+                        <button
+                            type="button"
+                            class="cancel-edit-btn"
+                            onclick="cancelEditing()">
+
+                            Cancel
+
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="save-profile-btn">
+
+                            Save Changes
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- ================= ACCOUNT SECURITY ================= -->
+
+            <section class="profile-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Account Security
+                        </h2>
+
+                        <p>
+                            Manage your password and security.
+                        </p>
+
+                    </div>
+
+                    <span class="card-icon">
+                        🔐
+                    </span>
+
+                </div>
+
+
+                <div class="security-item">
+
+                    <div>
+
+                        <strong>
+                            Password
+                        </strong>
+
+                        <p>
+                            Last changed 30 days ago
+                        </p>
+
+                    </div>
+
+                    <button
+                        onclick="openPasswordModal()">
+
+                        Change
+
+                    </button>
+
+                </div>
+
+
+                <div class="security-item">
+
+                    <div>
+
+                        <strong>
+                            Email Verification
+                        </strong>
+
+                        <p>
+                            Your email is verified.
+                        </p>
+
+                    </div>
+
+                    <span class="security-status">
+                        ✓ Verified
+                    </span>
+
+                </div>
+
+
+                <div class="security-item">
+
+                    <div>
+
+                        <strong>
+                            Phone Verification
+                        </strong>
+
+                        <p>
+                            Your phone number is verified.
+                        </p>
+
+                    </div>
+
+                    <span class="security-status">
+                        ✓ Verified
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ACCOUNT ACTIVITY ================= -->
+
+            <section class="profile-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Account Activity
+                        </h2>
+
+                        <p>
+                            Overview of your HostelVision activity.
+                        </p>
+
+                    </div>
+
+                    <span class="card-icon">
+                        📊
+                    </span>
+
+                </div>
+
+
+                <div class="activity-grid">
+
+                    <div class="activity-box">
+
+                        <strong>
+                            4
+                        </strong>
+
+                        <span>
+                            Bookings
+                        </span>
+
+                    </div>
+
+
+                    <div class="activity-box">
+
+                        <strong>
+                            6
+                        </strong>
+
+                        <span>
+                            Saved Hostels
+                        </span>
+
+                    </div>
+
+
+                    <div class="activity-box">
+
+                        <strong>
+                            4
+                        </strong>
+
+                        <span>
+                            Complaints
+                        </span>
+
+                    </div>
+
+
+                    <div class="activity-box">
+
+                        <strong>
+                            2
+                        </strong>
+
+                        <span>
+                            Reviews
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PREFERENCES ================= -->
+
+            <section class="profile-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Preferences
+                        </h2>
+
+                        <p>
+                            Control how HostelVision communicates with you.
+                        </p>
+
+                    </div>
+
+                    <span class="card-icon">
+                        ⚙️
+                    </span>
+
+                </div>
+
+
+                <div class="preference-item">
+
+                    <div>
+
+                        <strong>
+                            Booking Notifications
+                        </strong>
+
+                        <p>
+                            Receive updates about your bookings.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="bookingNotifications"
+                            checked>
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="preference-item">
+
+                    <div>
+
+                        <strong>
+                            Complaint Updates
+                        </strong>
+
+                        <p>
+                            Get notified when complaint status changes.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="complaintNotifications"
+                            checked>
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="preference-item">
+
+                    <div>
+
+                        <strong>
+                            Hostel Recommendations
+                        </strong>
+
+                        <p>
+                            Receive recommendations based on your searches.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="recommendationNotifications">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+        <!-- ================= DANGER ZONE ================= -->
+
+        <section class="danger-zone">
+
+            <div>
+
+                <h2>
+                    Account Actions
+                </h2>
+
+                <p>
+                    These actions affect your HostelVision account.
+                </p>
+
+            </div>
+
+
+            <div class="danger-actions">
+
+                <button
+                    class="logout-btn"
+                    onclick="logout(event)">
+
+                    🚪 Logout
+
+                </button>
+
+                <button
+                    class="delete-account-btn"
+                    onclick="deleteAccount()">
+
+                    Delete Account
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= PASSWORD MODAL ================= -->
+
+<div id="passwordModal"
+     class="modal-overlay">
+
+    <div class="password-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Change Password
+                </h2>
+
+                <p>
+                    Create a new secure password.
+                </p>
+
+            </div>
+
+            <button
+                class="modal-close"
+                onclick="closePasswordModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="passwordForm">
+
+
+            <div class="profile-form-group">
+
+                <label>
+                    Current Password
+                </label>
+
+                <input
+                    type="password"
+                    id="currentPassword"
+                    required>
+
+            </div>
+
+
+            <div class="profile-form-group">
+
+                <label>
+                    New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="newPassword"
+                    required>
+
+            </div>
+
+
+            <div class="profile-form-group">
+
+                <label>
+                    Confirm New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    required>
+
+            </div>
+
+
+            <div class="password-actions">
+
+                <button
+                    type="button"
+                    class="cancel-edit-btn"
+                    onclick="closePasswordModal()">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-profile-btn">
+
+                    Update Password
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="../../js/customer.js"></script>
+<script src="../../js/profile.js"></script>
+
+</body>
+
+</html>

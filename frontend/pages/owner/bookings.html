@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bookings | HostelVision</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../../css/owner.css">
+    <link rel="stylesheet" href="../../css/owner-bookings.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="owner-navbar">
+
+    <div class="owner-logo">
+
+        <i class="fa-solid fa-building"></i>
+
+        <span>
+            Hostel<span>Vision</span>
+        </span>
+
+    </div>
+
+
+    <div class="owner-navbar-right">
+
+        <button
+            class="notification-btn"
+            onclick="showNotifications()">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span class="notification-dot"></span>
+
+        </button>
+
+
+        <div class="owner-profile-mini">
+
+            <div class="owner-avatar">
+                G
+            </div>
+
+            <div>
+
+                <strong>Ganesh</strong>
+
+                <small>
+                    Property Owner
+                </small>
+
+            </div>
+
+            <i class="fa-solid fa-chevron-down"></i>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     LAYOUT
+===================================================== -->
+
+<div class="owner-layout">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================= -->
+
+    <aside class="owner-sidebar">
+
+        <div class="sidebar-menu">
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="hostels.html">
+
+                <i class="fa-solid fa-building"></i>
+
+                <span>
+                    My Hostels
+                </span>
+
+            </a>
+
+
+            <a href="add-hostel.html">
+
+                <i class="fa-solid fa-plus-circle"></i>
+
+                <span>
+                    Add Hostel
+                </span>
+
+            </a>
+
+
+            <a href="rooms.html">
+
+                <i class="fa-solid fa-door-open"></i>
+
+                <span>
+                    Rooms
+                </span>
+
+            </a>
+
+
+            <a href="bookings.html"
+               class="active">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <span>
+                    Bookings
+                </span>
+
+            </a>
+
+
+            <a href="#"
+               onclick="comingSoon(event)">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+        </div>
+
+
+
+        <div class="sidebar-bottom">
+
+            <a href="#"
+               onclick="showHelp(event)">
+
+                <i class="fa-solid fa-circle-question"></i>
+
+                <span>
+                    Help & Support
+                </span>
+
+            </a>
+
+
+            <a href="#"
+               class="logout-link"
+               onclick="logoutOwner(event)">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN
+    ================================================= -->
+
+    <main class="owner-main">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="bookings-header">
+
+            <div>
+
+                <div class="breadcrumb">
+
+                    <span>
+                        Owner
+                    </span>
+
+                    <i class="fa-solid fa-angle-right"></i>
+
+                    <span>
+                        Bookings
+                    </span>
+
+                </div>
+
+
+                <h1>
+                    Booking Management
+                </h1>
+
+
+                <p>
+                    Review and manage booking requests from your customers.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================= -->
+
+        <section class="booking-stats">
+
+
+            <div class="booking-stat-card">
+
+                <div class="booking-stat-icon total">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Bookings
+                    </span>
+
+                    <strong id="totalBookings">
+                        12
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="booking-stat-card">
+
+                <div class="booking-stat-icon pending">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Pending
+                    </span>
+
+                    <strong id="pendingBookings">
+                        3
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="booking-stat-card">
+
+                <div class="booking-stat-icon confirmed">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Confirmed
+                    </span>
+
+                    <strong id="confirmedBookings">
+                        6
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="booking-stat-card">
+
+                <div class="booking-stat-icon revenue">
+
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Booking Revenue
+                    </span>
+
+                    <strong id="bookingRevenue">
+                        ₹42,500
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             TABS
+        ================================================= -->
+
+        <section class="booking-tabs">
+
+            <button
+                class="booking-tab active"
+                data-status="all">
+
+                All
+
+                <span id="allCount">
+                    12
+                </span>
+
+            </button>
+
+
+            <button
+                class="booking-tab"
+                data-status="pending">
+
+                Pending
+
+                <span id="pendingTabCount">
+                    3
+                </span>
+
+            </button>
+
+
+            <button
+                class="booking-tab"
+                data-status="confirmed">
+
+                Confirmed
+
+                <span id="confirmedTabCount">
+                    6
+                </span>
+
+            </button>
+
+
+            <button
+                class="booking-tab"
+                data-status="completed">
+
+                Completed
+
+                <span id="completedTabCount">
+                    2
+                </span>
+
+            </button>
+
+
+            <button
+                class="booking-tab"
+                data-status="cancelled">
+
+                Cancelled
+
+                <span id="cancelledTabCount">
+                    1
+                </span>
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FILTERS
+        ================================================= -->
+
+        <section class="booking-tools">
+
+
+            <div class="booking-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="bookingSearch"
+                    placeholder="Search customer, booking ID or room..."
+                >
+
+            </div>
+
+
+
+            <select id="propertyFilter">
+
+                <option value="all">
+                    All Properties
+                </option>
+
+                <option value="UrbanNest Premium Hostel">
+                    UrbanNest Premium Hostel
+                </option>
+
+                <option value="StudentHub Residency">
+                    StudentHub Residency
+                </option>
+
+                <option value="GreenStay PG">
+                    GreenStay PG
+                </option>
+
+            </select>
+
+
+
+            <select id="paymentFilter">
+
+                <option value="all">
+                    All Payments
+                </option>
+
+                <option value="paid">
+                    Paid
+                </option>
+
+                <option value="pending">
+                    Payment Pending
+                </option>
+
+                <option value="refunded">
+                    Refunded
+                </option>
+
+            </select>
+
+
+
+            <button
+                class="clear-filter-btn"
+                onclick="clearBookingFilters()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Clear
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             BOOKING LIST
+        ================================================= -->
+
+        <section class="booking-section">
+
+
+            <div class="booking-section-header">
+
+                <div>
+
+                    <h2>
+                        Booking Requests
+                    </h2>
+
+                    <span id="bookingResultCount">
+                        12 bookings
+                    </span>
+
+                </div>
+
+
+                <select
+                    id="sortBookings">
+
+                    <option value="newest">
+                        Newest First
+                    </option>
+
+                    <option value="oldest">
+                        Oldest First
+                    </option>
+
+                    <option value="amount-high">
+                        Amount: High to Low
+                    </option>
+
+                    <option value="amount-low">
+                        Amount: Low to High
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div
+                id="bookingsList"
+                class="bookings-list">
+
+                <!-- JavaScript renders bookings -->
+
+            </div>
+
+
+
+            <div
+                id="bookingEmptyState"
+                class="booking-empty-state">
+
+                <div class="empty-booking-icon">
+
+                    <i class="fa-solid fa-calendar-xmark"></i>
+
+                </div>
+
+                <h3>
+                    No bookings found
+                </h3>
+
+                <p>
+                    No bookings match your current filters.
+                </p>
+
+                <button onclick="clearBookingFilters()">
+                    Clear Filters
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     BOOKING DETAILS MODAL
+===================================================== -->
+
+<div
+    id="bookingDetailsModal"
+    class="modal-overlay">
+
+
+    <div class="booking-modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Booking Details
+                </h2>
+
+                <p id="modalBookingId">
+                    Booking #HV1001
+                </p>
+
+            </div>
+
+
+            <button onclick="closeBookingDetails()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <div
+            id="bookingDetailsContent"
+            class="booking-details-content">
+
+            <!-- JS -->
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<script src="../../js/owner-bookings.js"></script>
+<script src="../../js/booking-store.js"></script>
+<script src="../../js/owner-bookings.js"></script>
+</body>
+
+</html>

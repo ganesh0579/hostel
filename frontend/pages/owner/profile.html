@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Owner Profile | HostelVision</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../../css/owner.css">
+    <link rel="stylesheet" href="../../css/owner-profile.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="owner-navbar">
+
+    <div class="owner-logo">
+
+        <i class="fa-solid fa-building"></i>
+
+        <span>
+            Hostel<span>Vision</span>
+        </span>
+
+    </div>
+
+
+    <div class="owner-navbar-right">
+
+        <button
+            class="notification-btn"
+            onclick="showNotifications()">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span class="notification-dot"></span>
+
+        </button>
+
+
+        <div class="owner-profile-mini">
+
+            <div class="owner-avatar" id="navAvatar">
+                G
+            </div>
+
+            <div>
+
+                <strong id="navOwnerName">
+                    Ganesh
+                </strong>
+
+                <small>
+                    Property Owner
+                </small>
+
+            </div>
+
+            <i class="fa-solid fa-chevron-down"></i>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     LAYOUT
+===================================================== -->
+
+<div class="owner-layout">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================= -->
+
+    <aside class="owner-sidebar">
+
+        <div class="sidebar-menu">
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="hostels.html">
+
+                <i class="fa-solid fa-building"></i>
+
+                <span>
+                    My Hostels
+                </span>
+
+            </a>
+
+
+            <a href="add-hostel.html">
+
+                <i class="fa-solid fa-plus-circle"></i>
+
+                <span>
+                    Add Hostel
+                </span>
+
+            </a>
+
+
+            <a href="rooms.html">
+
+                <i class="fa-solid fa-door-open"></i>
+
+                <span>
+                    Rooms
+                </span>
+
+            </a>
+
+
+            <a href="bookings.html">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <span>
+                    Bookings
+                </span>
+
+            </a>
+
+
+            <a href="profile.html"
+               class="active">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+        </div>
+
+
+
+        <div class="sidebar-bottom">
+
+            <a href="#"
+               onclick="showHelp(event)">
+
+                <i class="fa-solid fa-circle-question"></i>
+
+                <span>
+                    Help & Support
+                </span>
+
+            </a>
+
+
+            <a href="#"
+               class="logout-link"
+               onclick="logoutOwner(event)">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN
+    ================================================= -->
+
+    <main class="owner-main">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="profile-header">
+
+            <div>
+
+                <div class="breadcrumb">
+
+                    <span>
+                        Owner
+                    </span>
+
+                    <i class="fa-solid fa-angle-right"></i>
+
+                    <span>
+                        Profile
+                    </span>
+
+                </div>
+
+
+                <h1>
+                    Owner Profile
+                </h1>
+
+
+                <p>
+                    Manage your account and property owner information.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PROFILE OVERVIEW
+        ================================================= -->
+
+        <section class="profile-overview">
+
+            <div class="large-avatar"
+                 id="largeAvatar">
+
+                G
+
+            </div>
+
+
+            <div class="profile-overview-info">
+
+                <h2 id="profileDisplayName">
+                    Ganesh
+                </h2>
+
+                <p id="profileDisplayEmail">
+                    owner@hostelvision.com
+                </p>
+
+                <div class="profile-badges">
+
+                    <span>
+                        <i class="fa-solid fa-circle-check"></i>
+                        Verified Owner
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-building"></i>
+                        Property Owner
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-overview-actions">
+
+                <button
+                    class="outline-btn"
+                    onclick="scrollToSecurity()">
+
+                    <i class="fa-solid fa-lock"></i>
+                    Security
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PROFILE GRID
+        ================================================= -->
+
+        <div class="profile-grid">
+
+
+            <!-- =================================================
+                 PERSONAL INFORMATION
+            ================================================= -->
+
+            <section class="profile-card">
+
+                <div class="profile-card-header">
+
+                    <div>
+
+                        <h2>
+                            Personal Information
+                        </h2>
+
+                        <p>
+                            Your basic account information.
+                        </p>
+
+                    </div>
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+                <form id="profileForm">
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="ownerName"
+                                value="Ganesh"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="ownerPhone"
+                                value="9876543210"
+                                maxlength="10"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="ownerEmail"
+                                value="owner@hostelvision.com"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                Address
+                            </label>
+
+                            <textarea
+                                id="ownerAddress"
+                                rows="3"
+                                placeholder="Enter your address">Hyderabad, Telangana, India</textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="cancel-profile-btn"
+                            onclick="resetProfile()">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="save-profile-btn">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            Save Changes
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 BUSINESS INFORMATION
+            ================================================= -->
+
+            <section class="profile-card">
+
+                <div class="profile-card-header">
+
+                    <div>
+
+                        <h2>
+                            Business Information
+                        </h2>
+
+                        <p>
+                            Information about your property business.
+                        </p>
+
+                    </div>
+
+                    <i class="fa-solid fa-briefcase"></i>
+
+                </div>
+
+
+                <div class="business-list">
+
+
+                    <div class="business-item">
+
+                        <div class="business-icon">
+
+                            <i class="fa-solid fa-building"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Business Type
+                            </span>
+
+                            <strong>
+                                Hostel / PG Owner
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="business-item">
+
+                        <div class="business-icon">
+
+                            <i class="fa-solid fa-house"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Total Properties
+                            </span>
+
+                            <strong>
+                                4 Properties
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="business-item">
+
+                        <div class="business-icon">
+
+                            <i class="fa-solid fa-door-open"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Total Rooms
+                            </span>
+
+                            <strong>
+                                48 Rooms
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="business-item">
+
+                        <div class="business-icon">
+
+                            <i class="fa-solid fa-calendar-check"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Member Since
+                            </span>
+
+                            <strong>
+                                September 2026
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ACCOUNT INFORMATION
+            ================================================= -->
+
+            <section class="profile-card">
+
+                <div class="profile-card-header">
+
+                    <div>
+
+                        <h2>
+                            Account Information
+                        </h2>
+
+                        <p>
+                            Your HostelVision account details.
+                        </p>
+
+                    </div>
+
+                    <i class="fa-solid fa-id-card"></i>
+
+                </div>
+
+
+                <div class="account-info">
+
+
+                    <div class="account-row">
+
+                        <span>
+                            Account ID
+                        </span>
+
+                        <strong>
+                            HV-OWNER-1001
+                        </strong>
+
+                    </div>
+
+
+                    <div class="account-row">
+
+                        <span>
+                            Account Type
+                        </span>
+
+                        <strong>
+                            Property Owner
+                        </strong>
+
+                    </div>
+
+
+                    <div class="account-row">
+
+                        <span>
+                            Verification Status
+                        </span>
+
+                        <strong class="verified-text">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Verified
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="account-row">
+
+                        <span>
+                            Last Login
+                        </span>
+
+                        <strong>
+                            Today, 10:32 PM
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 NOTIFICATION SETTINGS
+            ================================================= -->
+
+            <section class="profile-card">
+
+                <div class="profile-card-header">
+
+                    <div>
+
+                        <h2>
+                            Notification Preferences
+                        </h2>
+
+                        <p>
+                            Choose which notifications you receive.
+                        </p>
+
+                    </div>
+
+                    <i class="fa-solid fa-bell"></i>
+
+                </div>
+
+
+                <div class="notification-settings">
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                New Booking Requests
+                            </strong>
+
+                            <span>
+                                Get notified when a customer requests a room.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="bookingNotifications"
+                                checked>
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Payment Notifications
+                            </strong>
+
+                            <span>
+                                Receive payment and refund updates.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="paymentNotifications"
+                                checked>
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Complaint Notifications
+                            </strong>
+
+                            <span>
+                                Get notified about customer complaints.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="complaintNotifications"
+                                checked>
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                HostelVision Updates
+                            </strong>
+
+                            <span>
+                                Product updates and important announcements.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="systemNotifications">
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="notification-save">
+
+                    <button
+                        class="save-profile-btn"
+                        onclick="saveNotificationSettings()">
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Save Preferences
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SECURITY
+            ================================================= -->
+
+            <section
+                class="profile-card security-card"
+                id="securitySection">
+
+                <div class="profile-card-header">
+
+                    <div>
+
+                        <h2>
+                            Security
+                        </h2>
+
+                        <p>
+                            Manage your password and account security.
+                        </p>
+
+                    </div>
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+
+                <form id="passwordForm">
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                Current Password
+                            </label>
+
+                            <div class="password-input">
+
+                                <input
+                                    type="password"
+                                    id="currentPassword"
+                                    placeholder="Enter current password">
+
+                                <button
+                                    type="button"
+                                    onclick="togglePassword('currentPassword', this)">
+
+                                    <i class="fa-regular fa-eye"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label>
+                                New Password
+                            </label>
+
+                            <div class="password-input">
+
+                                <input
+                                    type="password"
+                                    id="newPassword"
+                                    placeholder="New password">
+
+                                <button
+                                    type="button"
+                                    onclick="togglePassword('newPassword', this)">
+
+                                    <i class="fa-regular fa-eye"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Confirm Password
+                            </label>
+
+                            <div class="password-input">
+
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Confirm password">
+
+                                <button
+                                    type="button"
+                                    onclick="togglePassword('confirmPassword', this)">
+
+                                    <i class="fa-regular fa-eye"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="security-note">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <span>
+                            Use at least 8 characters with a combination
+                            of letters, numbers and special characters.
+                        </span>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="save-profile-btn">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            Update Password
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="../../js/owner-profile.js"></script>
+
+</body>
+
+</html>

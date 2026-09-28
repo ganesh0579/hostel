@@ -1,0 +1,519 @@
+/* =========================================
+   MY HOSTELS
+========================================= */
+
+.hostels-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.hostels-page-header h1 {
+    margin: 6px 0 5px;
+    font-size: 27px;
+}
+
+.hostels-page-header p {
+    margin: 0;
+    color: #7b8290;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.hostel-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.summary-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.summary-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.summary-icon.blue {
+    background: #edf4ff;
+}
+
+.summary-icon.green {
+    background: #edf9f1;
+}
+
+.summary-icon.orange {
+    background: #fff5e7;
+}
+
+.summary-icon.red {
+    background: #fff0f0;
+}
+
+.summary-card span {
+    display: block;
+    color: #858c98;
+    font-size: 10px;
+    margin-bottom: 4px;
+}
+
+.summary-card strong {
+    color: #172033;
+    font-size: 21px;
+}
+
+
+/* =========================================
+   TOOLBAR
+========================================= */
+
+.hostel-toolbar {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+    padding: 12px;
+    display: flex;
+    gap: 9px;
+    margin-bottom: 18px;
+}
+
+.hostel-search {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #dfe2e7;
+    border-radius: 6px;
+    padding: 0 10px;
+}
+
+.hostel-search span {
+    font-size: 12px;
+}
+
+.hostel-search input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 9px 0;
+    font-size: 11px;
+    color: #172033;
+}
+
+.hostel-toolbar select {
+    border: 1px solid #dfe2e7;
+    border-radius: 6px;
+    padding: 0 10px;
+    background: white;
+    color: #4d5562;
+    font-size: 11px;
+    outline: none;
+}
+
+.clear-filters {
+    border: 1px solid #dfe2e7;
+    background: white;
+    border-radius: 6px;
+    padding: 0 13px;
+    cursor: pointer;
+    color: #69717e;
+    font-size: 11px;
+}
+
+
+/* =========================================
+   HOSTEL CARD
+========================================= */
+
+.hostel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.owner-hostel-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: visible;
+    display: grid;
+    grid-template-columns: 235px 1fr;
+    min-height: 220px;
+}
+
+.owner-hostel-image {
+    position: relative;
+    height: 100%;
+    min-height: 220px;
+    overflow: hidden;
+    border-radius: 10px 0 0 10px;
+}
+
+.owner-hostel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.status-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 5px 8px;
+    border-radius: 12px;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.status-badge.active {
+    background: #edf9f1;
+    color: #218847;
+}
+
+.status-badge.pending {
+    background: #fff5e7;
+    color: #b96d00;
+}
+
+.status-badge.inactive {
+    background: #f0f1f3;
+    color: #747c89;
+}
+
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.owner-hostel-content {
+    padding: 18px 20px;
+    min-width: 0;
+}
+
+.hostel-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.hostel-card-top h2 {
+    margin: 0 0 5px;
+    font-size: 17px;
+    color: #172033;
+}
+
+.hostel-card-top p {
+    margin: 0;
+    color: #858c98;
+    font-size: 10px;
+}
+
+.type-badge {
+    background: #edf4ff;
+    color: #3478db;
+    padding: 5px 8px;
+    border-radius: 12px;
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.type-badge.pg {
+    background: #fff5e7;
+    color: #b96d00;
+}
+
+
+/* =========================================
+   METRICS
+========================================= */
+
+.hostel-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    padding: 13px 0;
+    border-top: 1px solid #f0f1f3;
+    border-bottom: 1px solid #f0f1f3;
+}
+
+.hostel-metrics span {
+    display: block;
+    color: #8a919c;
+    font-size: 9px;
+    margin-bottom: 4px;
+}
+
+.hostel-metrics strong {
+    color: #303746;
+    font-size: 13px;
+}
+
+.hostel-metrics strong.available {
+    color: #218847;
+}
+
+
+/* =========================================
+   OCCUPANCY
+========================================= */
+
+.occupancy-section {
+    padding: 11px 0;
+}
+
+.occupancy-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    color: #7b8290;
+    font-size: 9px;
+}
+
+.occupancy-title strong {
+    color: #303746;
+}
+
+.hostel-progress {
+    height: 5px;
+    background: #edf0f3;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.hostel-progress span {
+    display: block;
+    height: 100%;
+    background: #e63946;
+    border-radius: 5px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.hostel-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.hostel-card-footer > small {
+    color: #9ba1ab;
+    font-size: 9px;
+}
+
+.hostel-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
+.hostel-actions button,
+.hostel-actions a {
+    border: 1px solid #dfe2e7;
+    background: white;
+    color: #424a57;
+    border-radius: 5px;
+    padding: 7px 10px;
+    font-size: 9px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.hostel-actions button:hover,
+.hostel-actions a:hover {
+    border-color: #172033;
+}
+
+.hostel-actions .primary-action {
+    background: #172033;
+    border-color: #172033;
+    color: white;
+}
+
+
+/* =========================================
+   ACTION MENU
+========================================= */
+
+.more-button {
+    width: 30px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    font-size: 16px !important;
+}
+
+.action-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 38px;
+    width: 175px;
+    background: white;
+    border: 1px solid #e1e4e8;
+    border-radius: 7px;
+    box-shadow: 0 8px 25px rgba(23,32,51,.12);
+    z-index: 20;
+    padding: 5px;
+}
+
+.action-menu.show {
+    display: block;
+}
+
+.action-menu button {
+    width: 100%;
+    border: none;
+    text-align: left;
+    border-radius: 4px;
+    padding: 9px;
+    font-weight: 500;
+}
+
+.action-menu button:hover {
+    background: #f5f6f8;
+}
+
+
+/* =========================================
+   EMPTY
+========================================= */
+
+.empty-hostels {
+    display: none;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 55px 20px;
+    text-align: center;
+}
+
+.empty-hostels.show {
+    display: block;
+}
+
+.empty-hostels > div {
+    font-size: 40px;
+}
+
+.empty-hostels h2 {
+    font-size: 17px;
+    margin: 12px 0 6px;
+}
+
+.empty-hostels p {
+    color: #858c98;
+    font-size: 11px;
+}
+
+.empty-hostels button {
+    margin-top: 10px;
+    border: none;
+    background: #e63946;
+    color: white;
+    padding: 9px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1050px) {
+
+    .hostel-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .owner-hostel-card {
+        grid-template-columns: 190px 1fr;
+    }
+
+    .hostel-metrics {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 12px;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .hostel-toolbar {
+        flex-wrap: wrap;
+    }
+
+    .hostel-search {
+        flex-basis: 100%;
+    }
+
+    .owner-hostel-card {
+        grid-template-columns: 1fr;
+    }
+
+    .owner-hostel-image {
+        height: 180px;
+        min-height: 180px;
+        border-radius: 10px 10px 0 0;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .hostels-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hostel-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .hostel-toolbar select,
+    .clear-filters {
+        height: 35px;
+    }
+
+    .hostel-metrics {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hostel-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hostel-actions {
+        flex-wrap: wrap;
+    }
+
+}

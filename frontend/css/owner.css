@@ -1,0 +1,464 @@
+/* =====================================================
+   HOSTELVISION - OWNER COMMON LAYOUT
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f6f8;
+    color: #172033;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.owner-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 66px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e3e6eb;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 24px;
+
+    z-index: 1000;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.owner-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    color: #172033;
+
+    white-space: nowrap;
+}
+
+.owner-logo i {
+    font-size: 20px;
+    color: #172033;
+}
+
+.owner-logo > span > span {
+    color: #e63946;
+}
+
+
+/* =====================================================
+   NAVBAR RIGHT
+===================================================== */
+
+.owner-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+
+/* =====================================================
+   NOTIFICATION
+===================================================== */
+
+.notification-btn {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    background: transparent;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    color: #4e5869;
+
+    position: relative;
+}
+
+.notification-btn:hover {
+    background: #f3f4f6;
+}
+
+.notification-btn i {
+    font-size: 18px;
+}
+
+.notification-dot {
+    position: absolute;
+
+    top: 7px;
+    right: 7px;
+
+    width: 7px;
+    height: 7px;
+
+    background: #e63946;
+
+    border: 2px solid white;
+
+    border-radius: 50%;
+}
+
+
+/* =====================================================
+   OWNER PROFILE MINI
+===================================================== */
+
+.owner-profile-mini {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    cursor: pointer;
+
+    min-width: 180px;
+}
+
+.owner-avatar {
+    width: 38px;
+    height: 38px;
+
+    background: #172033;
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    flex-shrink: 0;
+}
+
+.owner-profile-mini > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.owner-profile-mini strong {
+    color: #172033;
+    font-size: 14px;
+}
+
+.owner-profile-mini small {
+    color: #7b8494;
+    font-size: 11px;
+}
+
+.owner-profile-mini > i {
+    color: #687284;
+    font-size: 11px;
+
+    margin-left: auto;
+}
+
+
+/* =====================================================
+   OWNER LAYOUT
+===================================================== */
+
+.owner-layout {
+    display: flex;
+
+    min-height: 100vh;
+
+    padding-top: 66px;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.owner-sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 66px;
+    bottom: 0;
+
+    width: 255px;
+
+    background: #172033;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 18px 12px;
+
+    overflow-y: auto;
+
+    z-index: 900;
+}
+
+
+/* =====================================================
+   SIDEBAR MENU
+===================================================== */
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+/* =====================================================
+   SIDEBAR LINKS
+===================================================== */
+
+.owner-sidebar a {
+    text-decoration: none;
+
+    color: #b8c0cf;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 43px;
+
+    padding: 0 14px;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.owner-sidebar a i {
+    width: 18px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    flex-shrink: 0;
+}
+
+.owner-sidebar a span {
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.owner-sidebar a:hover {
+    background: #222d42;
+    color: white;
+}
+
+
+/* =====================================================
+   ACTIVE
+===================================================== */
+
+.owner-sidebar a.active {
+    background: #e63946;
+    color: white;
+}
+
+.owner-sidebar a.active:hover {
+    background: #d92f3d;
+}
+
+
+/* =====================================================
+   SIDEBAR BOTTOM
+===================================================== */
+
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+    padding-top: 12px;
+}
+
+.sidebar-bottom .logout-link {
+    color: #ffadb4;
+}
+
+.sidebar-bottom .logout-link:hover {
+    background: rgba(230,57,70,0.15);
+    color: #ffccd0;
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.owner-main {
+    width: calc(100% - 255px);
+
+    margin-left: 255px;
+
+    min-height: calc(100vh - 66px);
+
+    padding: 30px 25px 50px;
+
+    background: #f5f6f8;
+}
+
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+.owner-sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.owner-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.owner-sidebar::-webkit-scrollbar-thumb {
+    background: #3b465b;
+    border-radius: 10px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .owner-sidebar {
+        width: 220px;
+    }
+
+    .owner-main {
+        width: calc(100% - 220px);
+        margin-left: 220px;
+    }
+
+    .owner-profile-mini {
+        min-width: auto;
+    }
+
+    .owner-profile-mini > div:nth-child(2) {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .owner-navbar {
+        padding: 0 14px;
+    }
+
+    .owner-logo {
+        font-size: 18px;
+    }
+
+    .owner-sidebar {
+        width: 70px;
+
+        padding: 15px 8px;
+    }
+
+    .owner-sidebar a {
+        justify-content: center;
+
+        padding: 0;
+
+        gap: 0;
+    }
+
+    .owner-sidebar a span {
+        display: none;
+    }
+
+    .owner-sidebar a i {
+        width: auto;
+        font-size: 17px;
+    }
+
+    .owner-main {
+        width: calc(100% - 70px);
+
+        margin-left: 70px;
+
+        padding: 25px 15px 40px;
+    }
+
+    .owner-profile-mini {
+        min-width: auto;
+    }
+
+    .owner-profile-mini > i {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .owner-logo span {
+        display: none;
+    }
+
+    .owner-navbar-right {
+        gap: 8px;
+    }
+
+    .owner-main {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+}

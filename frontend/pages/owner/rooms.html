@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rooms Management | HostelVision</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../../css/owner.css">
+    <link rel="stylesheet" href="../../css/owner-rooms.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="owner-navbar">
+
+    <div class="owner-logo">
+        <i class="fa-solid fa-building"></i>
+        <span>Hostel<span>Vision</span></span>
+    </div>
+
+    <div class="owner-navbar-right">
+
+        <button class="notification-btn" onclick="showNotifications()">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notification-dot"></span>
+        </button>
+
+        <div class="owner-profile-mini">
+            <div class="owner-avatar">G</div>
+
+            <div>
+                <strong>Ganesh</strong>
+                <small>Property Owner</small>
+            </div>
+
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= PAGE LAYOUT ================= -->
+
+<div class="owner-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="owner-sidebar">
+
+        <div class="sidebar-menu">
+
+            <a href="dashboard.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="hostels.html">
+                <i class="fa-solid fa-building"></i>
+                <span>My Hostels</span>
+            </a>
+
+            <a href="add-hostel.html">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>Add Hostel</span>
+            </a>
+
+            <a href="rooms.html" class="active">
+                <i class="fa-solid fa-door-open"></i>
+                <span>Rooms</span>
+            </a>
+
+            <a href="#" onclick="comingSoon(event)">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Bookings</span>
+            </a>
+
+            <a href="#" onclick="comingSoon(event)">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <a href="#" onclick="showHelp(event)">
+                <i class="fa-solid fa-circle-question"></i>
+                <span>Help & Support</span>
+            </a>
+
+            <a href="#" class="logout-link" onclick="logoutOwner(event)">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="owner-main">
+
+        <!-- PAGE HEADER -->
+
+        <div class="rooms-header">
+
+            <div>
+
+                <div class="breadcrumb">
+                    <span>Owner</span>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <span>Rooms</span>
+                </div>
+
+                <h1>Rooms Management</h1>
+
+                <p>
+                    Manage rooms, occupancy, rent and availability
+                    across your properties.
+                </p>
+
+            </div>
+
+            <button class="primary-btn" onclick="openAddRoomModal()">
+                <i class="fa-solid fa-plus"></i>
+                Add Room
+            </button>
+
+        </div>
+
+
+        <!-- ================= PROPERTY SELECTOR ================= -->
+
+        <section class="property-selector-card">
+
+            <div class="property-selector-left">
+
+                <div class="selector-icon">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+
+                <div>
+
+                    <label>Select Property</label>
+
+                    <select id="propertySelect"
+                            onchange="changeProperty()">
+
+                        <option value="urbannest">
+                            UrbanNest Premium Hostel - Madhapur
+                        </option>
+
+                        <option value="studenthub">
+                            StudentHub Residency - Gachibowli
+                        </option>
+
+                        <option value="greenstay">
+                            GreenStay PG - Kondapur
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="property-status">
+                <span class="status-dot"></span>
+                Active Property
+            </div>
+
+        </section>
+
+
+        <!-- ================= SUMMARY ================= -->
+
+        <section class="room-stats">
+
+            <div class="room-stat-card">
+
+                <div class="room-stat-icon total">
+                    <i class="fa-solid fa-door-open"></i>
+                </div>
+
+                <div>
+                    <span>Total Rooms</span>
+                    <strong id="totalRooms">20</strong>
+                </div>
+
+            </div>
+
+
+            <div class="room-stat-card">
+
+                <div class="room-stat-icon occupied">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div>
+                    <span>Occupied Beds</span>
+                    <strong id="occupiedBeds">38</strong>
+                </div>
+
+            </div>
+
+
+            <div class="room-stat-card">
+
+                <div class="room-stat-icon available">
+                    <i class="fa-solid fa-bed"></i>
+                </div>
+
+                <div>
+                    <span>Available Beds</span>
+                    <strong id="availableBeds">10</strong>
+                </div>
+
+            </div>
+
+
+            <div class="room-stat-card">
+
+                <div class="room-stat-icon maintenance">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+
+                <div>
+                    <span>Maintenance</span>
+                    <strong id="maintenanceRooms">1</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SEARCH / FILTER ================= -->
+
+        <section class="room-tools">
+
+            <div class="room-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="roomSearch"
+                    placeholder="Search room number..."
+                >
+
+            </div>
+
+
+            <select id="roomTypeFilter">
+
+                <option value="all">All Room Types</option>
+                <option value="single">Single Sharing</option>
+                <option value="double">Double Sharing</option>
+                <option value="triple">Triple Sharing</option>
+                <option value="four">Four Sharing</option>
+
+            </select>
+
+
+            <select id="roomStatusFilter">
+
+                <option value="all">All Status</option>
+                <option value="available">Available</option>
+                <option value="partial">Partially Occupied</option>
+                <option value="full">Fully Occupied</option>
+                <option value="maintenance">Maintenance</option>
+
+            </select>
+
+            <button class="clear-btn" onclick="clearRoomFilters()">
+                <i class="fa-solid fa-xmark"></i>
+                Clear
+            </button>
+
+        </section>
+
+
+        <!-- ================= ROOM LIST ================= -->
+
+        <section class="rooms-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Rooms</h2>
+                    <span id="roomCount">20 rooms</span>
+                </div>
+
+                <button class="secondary-btn"
+                        onclick="openBulkRoomModal()">
+
+                    <i class="fa-solid fa-layer-group"></i>
+                    Add Multiple Rooms
+
+                </button>
+
+            </div>
+
+
+            <div id="roomsGrid" class="rooms-grid">
+
+                <!-- JavaScript renders rooms -->
+
+            </div>
+
+
+            <!-- EMPTY STATE -->
+
+            <div id="roomEmptyState" class="room-empty-state">
+
+                <div class="empty-icon">
+                    <i class="fa-solid fa-door-closed"></i>
+                </div>
+
+                <h3>No rooms found</h3>
+
+                <p>
+                    Try changing your search or filter options.
+                </p>
+
+                <button onclick="clearRoomFilters()">
+                    Clear Filters
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- ADD / EDIT ROOM MODAL -->
+<!-- ================================================= -->
+
+<div id="roomModal" class="modal-overlay">
+
+    <div class="room-modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h2 id="modalTitle">Add Room</h2>
+                <p>Add room information for this property.</p>
+            </div>
+
+            <button onclick="closeRoomModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="roomForm">
+
+            <input type="hidden" id="editRoomId">
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Room Number *</label>
+
+                    <input
+                        type="text"
+                        id="roomNumber"
+                        placeholder="Example: 101"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Room Type *</label>
+
+                    <select id="roomType" required>
+
+                        <option value="">Select Type</option>
+                        <option value="single">Single Sharing</option>
+                        <option value="double">Double Sharing</option>
+                        <option value="triple">Triple Sharing</option>
+                        <option value="four">Four Sharing</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Capacity *</label>
+
+                    <input
+                        type="number"
+                        id="roomCapacity"
+                        min="1"
+                        max="10"
+                        placeholder="Example: 2"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Occupied Beds</label>
+
+                    <input
+                        type="number"
+                        id="roomOccupied"
+                        min="0"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Monthly Rent *</label>
+
+                    <div class="input-prefix">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            id="roomRent"
+                            min="0"
+                            placeholder="6500"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Status</label>
+
+                    <select id="roomStatus">
+
+                        <option value="available">
+                            Available
+                        </option>
+
+                        <option value="partial">
+                            Partially Occupied
+                        </option>
+
+                        <option value="full">
+                            Fully Occupied
+                        </option>
+
+                        <option value="maintenance">
+                            Maintenance
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeRoomModal()">
+
+                    Cancel
+
+                </button>
+
+                <button type="submit" class="save-btn">
+
+                    <i class="fa-solid fa-check"></i>
+                    Save Room
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- BULK ROOM MODAL -->
+<!-- ================================================= -->
+
+<div id="bulkRoomModal" class="modal-overlay">
+
+    <div class="room-modal bulk-modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h2>Add Multiple Rooms</h2>
+
+                <p>
+                    Quickly create a group of rooms.
+                </p>
+            </div>
+
+            <button onclick="closeBulkRoomModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="bulkRoomForm">
+
+            <div class="bulk-info">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>
+                    Example: Starting room <strong>201</strong>
+                    and quantity <strong>5</strong>
+                    creates rooms 201-205.
+                </span>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Starting Room Number *</label>
+
+                    <input
+                        type="number"
+                        id="bulkStartRoom"
+                        placeholder="201"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Number of Rooms *</label>
+
+                    <input
+                        type="number"
+                        id="bulkQuantity"
+                        min="1"
+                        max="50"
+                        placeholder="5"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Room Type *</label>
+
+                    <select id="bulkRoomType" required>
+
+                        <option value="single">
+                            Single Sharing
+                        </option>
+
+                        <option value="double" selected>
+                            Double Sharing
+                        </option>
+
+                        <option value="triple">
+                            Triple Sharing
+                        </option>
+
+                        <option value="four">
+                            Four Sharing
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Capacity *</label>
+
+                    <input
+                        type="number"
+                        id="bulkCapacity"
+                        value="2"
+                        min="1"
+                        max="10"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Monthly Rent *</label>
+
+                    <div class="input-prefix">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            id="bulkRent"
+                            value="6500"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeBulkRoomModal()">
+
+                    Cancel
+
+                </button>
+
+                <button type="submit" class="save-btn">
+
+                    <i class="fa-solid fa-layer-group"></i>
+                    Create Rooms
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="../../js/owner-rooms.js"></script>
+
+</body>
+</html>

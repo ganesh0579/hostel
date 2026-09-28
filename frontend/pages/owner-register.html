@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Owner Registration | HostelVision</title>
+
+    <link rel="stylesheet"
+          href="../css/owner-auth.css">
+
+</head>
+
+<body>
+
+<div class="auth-page">
+
+    <!-- LEFT SIDE -->
+
+    <section class="auth-left">
+
+        <div class="brand">
+            <a href="../index.html">
+                Hostel<span>Vision</span>
+            </a>
+        </div>
+
+        <div class="owner-intro">
+
+            <span class="intro-label">
+                FOR PROPERTY OWNERS
+            </span>
+
+            <h1>
+                Grow your hostel business with HostelVision.
+            </h1>
+
+            <p>
+                List your hostel or PG, manage rooms, receive
+                booking requests and connect with students
+                looking for accommodation.
+            </p>
+
+            <div class="owner-benefits">
+
+                <div class="benefit">
+                    <span>✓</span>
+                    <div>
+                        <strong>Reach more customers</strong>
+                        <p>Show your property to students and professionals.</p>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <span>✓</span>
+                    <div>
+                        <strong>Manage your properties</strong>
+                        <p>Manage hostels, rooms, pricing and availability.</p>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <span>✓</span>
+                    <div>
+                        <strong>Manage bookings</strong>
+                        <p>Receive and respond to customer booking requests.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RIGHT SIDE -->
+
+    <section class="auth-right">
+
+        <div class="auth-container">
+
+            <div class="mobile-brand">
+                <a href="../index.html">
+                    Hostel<span>Vision</span>
+                </a>
+            </div>
+
+            <div class="auth-header">
+
+                <span class="role-label">
+                    OWNER ACCOUNT
+                </span>
+
+                <h2>
+                    Create your owner account
+                </h2>
+
+                <p>
+                    Register your property and start receiving customers.
+                </p>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div class="registration-progress">
+
+                <div class="progress-step active">
+                    <span>1</span>
+                    <small>Account</small>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <span>2</span>
+                    <small>Business</small>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <span>3</span>
+                    <small>Complete</small>
+                </div>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form id="ownerRegisterForm">
+
+
+                <!-- OWNER INFORMATION -->
+
+                <div class="form-section-title">
+                    Owner Information
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Full Name
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="ownerName"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone Number
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="ownerPhone"
+                            placeholder="+91 98765 43210"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="ownerEmail"
+                        placeholder="you@example.com"
+                        required>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Password
+                            <span>*</span>
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="ownerPassword"
+                                placeholder="Create password"
+                                required>
+
+                            <button
+                                type="button"
+                                onclick="togglePassword('ownerPassword', this)">
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Confirm Password
+                            <span>*</span>
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="ownerConfirmPassword"
+                                placeholder="Confirm password"
+                                required>
+
+                            <button
+                                type="button"
+                                onclick="togglePassword('ownerConfirmPassword', this)">
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="password-strength">
+
+                    <div class="strength-bar">
+
+                        <span id="strength1"></span>
+                        <span id="strength2"></span>
+                        <span id="strength3"></span>
+                        <span id="strength4"></span>
+
+                    </div>
+
+                    <small id="strengthText">
+                        Password strength
+                    </small>
+
+                </div>
+
+
+                <!-- BUSINESS INFORMATION -->
+
+                <div class="form-section-title business-title">
+                    Business Information
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Business / Hostel Name
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="businessName"
+                        placeholder="Example: UrbanNest Premium Hostel"
+                        required>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Property Type
+                            <span>*</span>
+                        </label>
+
+                        <select id="propertyType" required>
+
+                            <option value="">
+                                Select property type
+                            </option>
+
+                            <option value="hostel">
+                                Hostel
+                            </option>
+
+                            <option value="pg">
+                                PG
+                            </option>
+
+                            <option value="coliving">
+                                Co-Living
+                            </option>
+
+                            <option value="apartments">
+                                Student Apartments
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            City
+                            <span>*</span>
+                        </label>
+
+                        <select id="ownerCity" required>
+
+                            <option value="">
+                                Select city
+                            </option>
+
+                            <option value="Hyderabad">
+                                Hyderabad
+                            </option>
+
+                            <option value="Bengaluru">
+                                Bengaluru
+                            </option>
+
+                            <option value="Chennai">
+                                Chennai
+                            </option>
+
+                            <option value="Pune">
+                                Pune
+                            </option>
+
+                            <option value="Mumbai">
+                                Mumbai
+                            </option>
+
+                            <option value="Delhi">
+                                Delhi
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Property Address
+                        <span>*</span>
+                    </label>
+
+                    <textarea
+                        id="propertyAddress"
+                        rows="3"
+                        placeholder="Enter complete property address"
+                        required></textarea>
+
+                </div>
+
+
+                <!-- TERMS -->
+
+                <div class="terms-row">
+
+                    <label class="checkbox-label">
+
+                        <input
+                            type="checkbox"
+                            id="ownerTerms"
+                            required>
+
+                        <span>
+                            I agree to the
+                            <a href="#">
+                                Terms & Conditions
+                            </a>
+                            and
+                            <a href="#">
+                                Owner Policy
+                            </a>.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="register-btn">
+
+                    Create Owner Account
+
+                </button>
+
+
+                <div
+                    id="registerMessage"
+                    class="register-message">
+                </div>
+
+
+            </form>
+
+
+            <!-- LOGIN -->
+
+            <div class="auth-footer">
+
+                Already have an owner account?
+
+                <a href="owner-login.html">
+                    Login
+                </a>
+
+            </div>
+
+
+            <div class="customer-link">
+
+                Looking for a hostel?
+
+                <a href="login.html">
+                    Customer Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="../js/owner-auth.js"></script>
+
+</body>
+
+</html>

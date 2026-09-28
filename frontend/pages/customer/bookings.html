@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Bookings - HostelVision</title>
+
+
+    <!-- =====================================================
+         COMMON CSS
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="../../css/style.css">
+
+    <link rel="stylesheet"
+          href="../../css/customer.css">
+
+    <link rel="stylesheet"
+          href="../../css/bookings.css">
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- =====================================================
+         PAGE OVERRIDES
+    ====================================================== -->
+
+    <style>
+
+        /* =================================================
+           DYNAMIC BOOKING CONTAINER
+        ================================================= */
+
+        #bookingsContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+
+        /* =================================================
+           BOOKING CARD
+        ================================================= */
+
+        .booking-list-card {
+            display: flex;
+            background: #ffffff;
+            border: 1px solid #e4e7ec;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.2s ease;
+        }
+
+        .booking-list-card:hover {
+            border-color: #d8dce3;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+        }
+
+
+        /* =================================================
+           IMAGE
+        ================================================= */
+
+        .booking-list-image {
+            width: 220px;
+            min-width: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-list-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        /* =================================================
+           STATUS BADGE
+        ================================================= */
+
+        .status-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            background: white;
+        }
+
+        .active-status {
+            color: #18875b;
+            background: #e8f8f0;
+        }
+
+        .pending-status {
+            color: #a96b00;
+            background: #fff4d9;
+        }
+
+        .completed-status {
+            color: #4664c2;
+            background: #edf1ff;
+        }
+
+        .cancelled-status {
+            color: #d13c47;
+            background: #fdebed;
+        }
+
+
+        /* =================================================
+           CONTENT
+        ================================================= */
+
+        .booking-list-content {
+            flex: 1;
+            padding: 20px;
+            min-width: 0;
+        }
+
+
+        /* =================================================
+           TITLE
+        ================================================= */
+
+        .booking-title-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 18px;
+        }
+
+        .booking-title-row h2 {
+            margin: 0 0 6px;
+            font-size: 19px;
+            color: #172033;
+        }
+
+        .booking-title-row p {
+            margin: 0;
+            font-size: 13px;
+            color: #7b8494;
+        }
+
+        .booking-id {
+            font-size: 12px;
+            color: #687282;
+            white-space: nowrap;
+        }
+
+
+        /* =================================================
+           INFO GRID
+        ================================================= */
+
+        .booking-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+
+            padding: 15px 0;
+
+            border-top: 1px solid #edf0f3;
+            border-bottom: 1px solid #edf0f3;
+        }
+
+        .booking-info-grid small {
+            display: block;
+            color: #8991a0;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .booking-info-grid strong {
+            display: block;
+            color: #30394a;
+            font-size: 13px;
+        }
+
+
+        /* =================================================
+           BOTTOM
+        ================================================= */
+
+        .booking-card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+
+            padding-top: 15px;
+        }
+
+        .booking-card-bottom a,
+        .booking-card-bottom button {
+            font-family: inherit;
+        }
+
+
+        /* =================================================
+           STATUS TEXT
+        ================================================= */
+
+        .booking-pending {
+            color: #a96b00;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .booking-confirmed {
+            color: #18875b;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .booking-completed {
+            color: #4664c2;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .booking-cancelled {
+            color: #d13c47;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+
+        /* =================================================
+           BUTTONS
+        ================================================= */
+
+        .cancel-btn,
+        .review-btn {
+            border: none;
+            cursor: pointer;
+
+            padding: 8px 12px;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .cancel-btn {
+            color: #d13c47;
+            background: #fff1f2;
+        }
+
+        .cancel-btn:hover {
+            background: #fde4e6;
+        }
+
+        .review-btn {
+            color: #4d63b8;
+            background: #eef1ff;
+        }
+
+        .review-btn:hover {
+            background: #e3e8ff;
+        }
+
+
+        /* =================================================
+           EMPTY STATE
+        ================================================= */
+
+        .booking-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            background: #ffffff;
+
+            border: 1px solid #e4e7ec;
+            border-radius: 12px;
+
+            padding: 60px 20px;
+
+            margin-top: 10px;
+        }
+
+        .booking-empty > div {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #f1f3f7;
+
+            color: #70798a;
+
+            font-size: 24px;
+
+            margin-bottom: 15px;
+        }
+
+        .booking-empty h2 {
+            margin: 0 0 7px;
+
+            color: #172033;
+
+            font-size: 19px;
+        }
+
+        .booking-empty p {
+            margin: 0 0 18px;
+
+            color: #8991a0;
+
+            font-size: 13px;
+        }
+
+        .booking-empty a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 10px 16px;
+
+            background: #e63946;
+
+            color: white;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+
+        /* =================================================
+           RESPONSIVE
+        ================================================= */
+
+        @media (max-width: 800px) {
+
+            .booking-list-card {
+                flex-direction: column;
+            }
+
+            .booking-list-image {
+                width: 100%;
+                min-width: 100%;
+                height: 190px;
+            }
+
+            .booking-list-image img {
+                min-height: 190px;
+            }
+
+            .booking-info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .booking-title-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .booking-info-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .booking-card-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="customer-dashboard">
+
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<header class="dashboard-navbar">
+
+
+    <div class="dashboard-nav-left">
+
+        <a href="../../index.html"
+           class="dashboard-logo">
+
+            Hostel<span>Vision</span>
+
+        </a>
+
+
+        <span class="dashboard-divider"></span>
+
+
+        <span class="dashboard-title">
+            Customer
+        </span>
+
+    </div>
+
+
+
+    <div class="dashboard-nav-right">
+
+
+        <a href="../search.html">
+            Explore Hostels
+        </a>
+
+
+        <button
+            class="notification-btn"
+            id="notificationBtn">
+
+            🔔
+
+            <span class="notification-count">
+                2
+            </span>
+
+        </button>
+
+
+        <div class="user-menu">
+
+            <div class="user-avatar">
+                GV
+            </div>
+
+
+            <div class="user-info">
+
+                <strong>
+                    Ganesh Varma
+                </strong>
+
+                <small>
+                    Customer
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     LAYOUT
+====================================================== -->
+
+<div class="dashboard-layout">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="dashboard-sidebar">
+
+
+        <nav class="dashboard-menu">
+
+
+            <a href="dashboard.html"
+               class="dashboard-menu-item">
+
+                <span>▦</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="../search.html"
+               class="dashboard-menu-item">
+
+                <span>⌕</span>
+
+                Explore Hostels
+
+            </a>
+
+
+            <a href="bookings.html"
+               class="dashboard-menu-item active">
+
+                <span>▣</span>
+
+                My Bookings
+
+                <span
+                    class="menu-badge"
+                    id="sidebarBookingCount">
+
+                    0
+
+                </span>
+
+            </a>
+
+
+            <a href="complaints.html"
+               class="dashboard-menu-item">
+
+                <span>⚠</span>
+
+                Complaints
+
+            </a>
+
+
+            <a href="profile.html"
+               class="dashboard-menu-item">
+
+                <span>◉</span>
+
+                My Profile
+
+            </a>
+
+
+        </nav>
+
+
+
+        <div class="sidebar-bottom">
+
+
+            <a href="../../index.html"
+               class="dashboard-menu-item">
+
+                <span>⌂</span>
+
+                Back to Website
+
+            </a>
+
+
+            <button
+                class="dashboard-menu-item logout-btn"
+                id="logoutBtn">
+
+                <span>↪</span>
+
+                Logout
+
+            </button>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN
+    ================================================== -->
+
+    <main class="dashboard-main bookings-main">
+
+
+        <!-- =================================================
+             PAGE HEADER
+        ================================================== -->
+
+        <section class="page-heading">
+
+
+            <div>
+
+                <p class="welcome-label">
+                    CUSTOMER ACCOUNT
+                </p>
+
+
+                <h1>
+                    My Bookings
+                </h1>
+
+
+                <p>
+                    Track and manage all your hostel bookings.
+                </p>
+
+            </div>
+
+
+            <a href="../search.html"
+               class="explore-btn">
+
+                + Find a Hostel
+
+            </a>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             BOOKING TABS
+        ================================================== -->
+
+        <div class="booking-tabs">
+
+
+            <button
+                class="booking-tab active"
+                data-status="all">
+
+                All
+
+                <span id="allCount">
+                    0
+                </span>
+
+            </button>
+
+
+            <button
+                class="booking-tab"
+                data-status="pending">
+
+                Pending
+
+                <span id="pendingCount">
+                    0
+                </span>
+
+            </button>
+
+
+            <button
+                class="booking-tab"
+                data-status="confirmed">
+
+                Confirmed
+
+                <span id="confirmedCount">
+                    0
+                </span>
+
+            </button>
+
+
+            <button
+                class="booking-tab"
+                data-status="completed">
+
+                Completed
+
+                <span id="completedCount">
+                    0
+                </span>
+
+            </button>
+
+
+            <button
+                class="booking-tab"
+                data-status="cancelled">
+
+                Cancelled
+
+                <span id="cancelledCount">
+                    0
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             DYNAMIC BOOKINGS
+        ================================================== -->
+
+        <section class="bookings-list">
+
+            <div id="bookingsContainer"></div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     
+     Everything required for THIS page is included here.
+     No separate bookings.js is required for this page.
+====================================================== -->
+
+<script>
+
+
+/* =====================================================
+   SHARED BOOKING STORAGE
+===================================================== */
+
+const BOOKING_STORAGE_KEY =
+    "hostelvisionBookings";
+
+
+/* =====================================================
+   CURRENT CUSTOMER
+===================================================== */
+
+const currentCustomer = {
+
+    id: "demo-customer",
+
+    name: "Ganesh Varma",
+
+    email: "ganesh@gmail.com"
+
+};
+
+
+/* =====================================================
+   DEFAULT BOOKING
+===================================================== */
+
+function initializeBookingStorage() {
+
+    const existing =
+        localStorage.getItem(
+            BOOKING_STORAGE_KEY
+        );
+
+
+    if (existing) {
+
+        return;
+
+    }
+
+
+    const defaultBookings = [
+
+        {
+
+            id: "HV1001",
+
+            customerId:
+                "demo-customer",
+
+            customer:
+                "Ganesh Varma",
+
+            email:
+                "ganesh@gmail.com",
+
+            phone:
+                "9876543210",
+
+            property:
+                "UrbanNest Premium Hostel",
+
+            location:
+                "Madhapur, Hyderabad",
+
+            room:
+                "102",
+
+            roomType:
+                "Double Sharing",
+
+            checkIn:
+                "2026-10-01",
+
+            checkOut:
+                "2027-03-31",
+
+            amount:
+                6500,
+
+            payment:
+                "paid",
+
+            status:
+                "pending",
+
+            created:
+                new Date().toISOString()
+
+        }
+
+    ];
+
+
+    localStorage.setItem(
+
+        BOOKING_STORAGE_KEY,
+
+        JSON.stringify(
+            defaultBookings
+        )
+
+    );
+
+}
+
+
+/* =====================================================
+   GET BOOKINGS
+===================================================== */
+
+function getBookings() {
+
+    initializeBookingStorage();
+
+
+    try {
+
+        return JSON.parse(
+
+            localStorage.getItem(
+                BOOKING_STORAGE_KEY
+            )
+
+        ) || [];
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Booking storage error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* =====================================================
+   SAVE BOOKINGS
+===================================================== */
+
+function saveBookings(
+    bookings
+) {
+
+    localStorage.setItem(
+
+        BOOKING_STORAGE_KEY,
+
+        JSON.stringify(
+            bookings
+        )
+
+    );
+
+}
+
+
+/* =====================================================
+   FIND BOOKING
+===================================================== */
+
+function findBooking(id) {
+
+    return getBookings().find(
+
+        booking =>
+            booking.id === id
+
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE BOOKING
+===================================================== */
+
+function updateBooking(
+
+    id,
+
+    updates
+
+) {
+
+    const bookings =
+        getBookings();
+
+
+    const booking =
+        bookings.find(
+
+            item =>
+                item.id === id
+
+        );
+
+
+    if (!booking) {
+
+        return null;
+
+    }
+
+
+    Object.assign(
+
+        booking,
+
+        updates
+
+    );
+
+
+    saveBookings(
+        bookings
+    );
+
+
+    return booking;
+
+}
+
+
+/* =====================================================
+   ACTIVE TAB
+===================================================== */
+
+let activeStatus = "all";
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(date) {
+
+    if (!date) {
+
+        return "-";
+
+    }
+
+
+    return new Date(date)
+        .toLocaleDateString(
+
+            "en-IN",
+
+            {
+
+                day: "2-digit",
+
+                month: "short",
+
+                year: "numeric"
+
+            }
+
+        );
+
+}
+
+
+/* =====================================================
+   GET CUSTOMER BOOKINGS
+===================================================== */
+
+function getMyBookings() {
+
+    return getBookings().filter(
+
+        booking =>
+
+            booking.customerId ===
+            currentCustomer.id
+
+    );
+
+}
+
+
+/* =====================================================
+   STATUS TEXT
+===================================================== */
+
+function getStatusText(status) {
+
+    const map = {
+
+        pending:
+            "Pending",
+
+        confirmed:
+            "Confirmed",
+
+        completed:
+            "Completed",
+
+        cancelled:
+            "Cancelled"
+
+    };
+
+
+    return map[status] ||
+           status;
+
+}
+
+
+/* =====================================================
+   STATUS CLASS
+===================================================== */
+
+function getStatusClass(status) {
+
+    const map = {
+
+        pending:
+            "pending-status",
+
+        confirmed:
+            "active-status",
+
+        completed:
+            "completed-status",
+
+        cancelled:
+            "cancelled-status"
+
+    };
+
+
+    return map[status] ||
+           "";
+
+}
+
+
+/* =====================================================
+   RENDER BOOKINGS
+===================================================== */
+
+function renderBookings() {
+
+    const container =
+        document.getElementById(
+            "bookingsContainer"
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    let bookings =
+        getMyBookings();
+
+
+    /* FILTER */
+
+    if (
+        activeStatus !==
+        "all"
+    ) {
+
+        bookings =
+            bookings.filter(
+
+                booking =>
+
+                    booking.status ===
+                    activeStatus
+
+            );
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    /* =================================================
+       EMPTY STATE
+    ================================================== */
+
+    if (
+        bookings.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="booking-empty">
+
+                <div>
+                    ▣
+                </div>
+
+                <h2>
+                    No bookings found
+                </h2>
+
+                <p>
+                    You don't have any bookings in this category.
+                </p>
+
+                <a href="../search.html">
+                    Explore Hostels
+                </a>
+
+            </div>
+
+        `;
+
+
+        updateCounts();
+
+        return;
+
+    }
+
+
+    /* =================================================
+       CREATE CARDS
+    ================================================== */
+
+    bookings.forEach(
+
+        booking => {
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "booking-list-card";
+
+
+            card.dataset.status =
+                booking.status;
+
+
+            /* IMAGE */
+
+            const image =
+                booking.property
+                    .toLowerCase()
+                    .includes("student")
+                ?
+
+                "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=700&q=80"
+
+                :
+
+                booking.property
+                    .toLowerCase()
+                    .includes("green")
+                ?
+
+                "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=700&q=80"
+
+                :
+
+                "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=700&q=80";
+
+
+            /* STATUS MESSAGE */
+
+            let statusMessage = "";
+
+
+            if (
+                booking.status ===
+                "pending"
+            ) {
+
+                statusMessage = `
+
+                    <span class="booking-pending">
+
+                        ◷ Waiting for owner response
+
+                    </span>
+
+                `;
+
+            }
+
+
+            else if (
+                booking.status ===
+                "confirmed"
+            ) {
+
+                statusMessage = `
+
+                    <span class="booking-confirmed">
+
+                        ✓ Booking Confirmed
+
+                    </span>
+
+                `;
+
+            }
+
+
+            else if (
+                booking.status ===
+                "completed"
+            ) {
+
+                statusMessage = `
+
+                    <span class="booking-completed">
+
+                        ✓ Stay Completed
+
+                    </span>
+
+                `;
+
+            }
+
+
+            else {
+
+                statusMessage = `
+
+                    <span class="booking-cancelled">
+
+                        × Booking Cancelled
+
+                    </span>
+
+                `;
+
+            }
+
+
+            /* ACTION */
+
+            let action = "";
+
+
+            if (
+                booking.status ===
+                "pending"
+            ) {
+
+                action = `
+
+                    <button
+
+                        class="cancel-btn"
+
+                        onclick="
+                            cancelCustomerBooking(
+                                '${booking.id}'
+                            )
+                        ">
+
+                        Cancel Request
+
+                    </button>
+
+                `;
+
+            }
+
+
+            else if (
+                booking.status ===
+                "confirmed"
+            ) {
+
+                action = `
+
+                    <a
+                        href="../hostel-details.html">
+
+                        View Property
+
+                    </a>
+
+                `;
+
+            }
+
+
+            else if (
+                booking.status ===
+                "completed"
+            ) {
+
+                action = `
+
+                    <button
+
+                        class="review-btn"
+
+                        onclick="
+                            writeReview(
+                                '${booking.id}'
+                            )
+                        ">
+
+                        ★ Write Review
+
+                    </button>
+
+                `;
+
+            }
+
+
+            else {
+
+                action = `
+
+                    <a
+                        href="../search.html">
+
+                        Find Similar
+
+                    </a>
+
+                `;
+
+            }
+
+
+            /* CARD */
+
+            card.innerHTML = `
+
+                <div class="booking-list-image">
+
+                    <img
+
+                        src="${image}"
+
+                        alt="${booking.property}"
+
+                    >
+
+
+                    <span
+
+                        class="status-badge
+                        ${getStatusClass(
+                            booking.status
+                        )}">
+
+                        ${getStatusText(
+                            booking.status
+                        )}
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="booking-list-content">
+
+
+                    <div class="booking-title-row">
+
+
+                        <div>
+
+                            <h2>
+                                ${booking.property}
+                            </h2>
+
+
+                            <p>
+                                📍 ${booking.location}
+                            </p>
+
+                        </div>
+
+
+                        <strong
+                            class="booking-id">
+
+                            ${booking.id}
+
+                        </strong>
+
+
+                    </div>
+
+
+
+                    <div class="booking-info-grid">
+
+
+                        <div>
+
+                            <small>
+                                Room Type
+                            </small>
+
+
+                            <strong>
+                                ${booking.roomType}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                Check-in
+                            </small>
+
+
+                            <strong>
+
+                                ${formatDate(
+                                    booking.checkIn
+                                )}
+
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                Monthly Rent
+                            </small>
+
+
+                            <strong>
+
+                                ₹${Number(
+                                    booking.amount
+                                ).toLocaleString(
+                                    "en-IN"
+                                )}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="booking-card-bottom">
+
+                        ${statusMessage}
+
+                        ${action}
+
+                    </div>
+
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+
+    );
+
+
+    updateCounts();
+
+}
+
+
+/* =====================================================
+   UPDATE COUNTS
+===================================================== */
+
+function updateCounts() {
+
+    const bookings =
+        getMyBookings();
+
+
+    const all =
+        bookings.length;
+
+
+    const pending =
+        bookings.filter(
+
+            booking =>
+                booking.status ===
+                "pending"
+
+        ).length;
+
+
+    const confirmed =
+        bookings.filter(
+
+            booking =>
+                booking.status ===
+                "confirmed"
+
+        ).length;
+
+
+    const completed =
+        bookings.filter(
+
+            booking =>
+                booking.status ===
+                "completed"
+
+        ).length;
+
+
+    const cancelled =
+        bookings.filter(
+
+            booking =>
+                booking.status ===
+                "cancelled"
+
+        ).length;
+
+
+    document.getElementById(
+        "allCount"
+    ).textContent =
+        all;
+
+
+    document.getElementById(
+        "pendingCount"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "confirmedCount"
+    ).textContent =
+        confirmed;
+
+
+    document.getElementById(
+        "completedCount"
+    ).textContent =
+        completed;
+
+
+    document.getElementById(
+        "cancelledCount"
+    ).textContent =
+        cancelled;
+
+
+    document.getElementById(
+        "sidebarBookingCount"
+    ).textContent =
+        all;
+
+}
+
+
+/* =====================================================
+   TAB EVENTS
+===================================================== */
+
+document
+    .querySelectorAll(
+        ".booking-tab"
+    )
+    .forEach(
+
+        tab => {
+
+            tab.addEventListener(
+
+                "click",
+
+                function() {
+
+
+                    document
+                        .querySelectorAll(
+                            ".booking-tab"
+                        )
+                        .forEach(
+
+                            item =>
+
+                                item.classList
+                                    .remove(
+                                        "active"
+                                    )
+
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    activeStatus =
+                        this.dataset.status;
+
+
+                    renderBookings();
+
+                }
+
+            );
+
+        }
+
+    );
+
+
+/* =====================================================
+   CANCEL CUSTOMER BOOKING
+===================================================== */
+
+function cancelCustomerBooking(
+    id
+) {
+
+    const booking =
+        findBooking(id);
+
+
+    if (!booking) {
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+
+            `Cancel booking ${id}?`
+
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    updateBooking(
+
+        id,
+
+        {
+
+            status:
+                "cancelled"
+
+        }
+
+    );
+
+
+    renderBookings();
+
+
+    alert(
+        "Booking request cancelled."
+    );
+
+}
+
+
+/* =====================================================
+   REVIEW
+===================================================== */
+
+function writeReview(
+    id
+) {
+
+    alert(
+
+        `Review system for ${id} will be connected later.`
+
+    );
+
+}
+
+
+/* =====================================================
+   NOTIFICATION
+===================================================== */
+
+const notificationBtn =
+    document.getElementById(
+        "notificationBtn"
+    );
+
+
+if (notificationBtn) {
+
+    notificationBtn.addEventListener(
+
+        "click",
+
+        function() {
+
+            const pending =
+                getMyBookings().filter(
+
+                    booking =>
+                        booking.status ===
+                        "pending"
+
+                ).length;
+
+
+            alert(
+
+                `You have ${pending} pending booking request(s).`
+
+            );
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+const logoutBtn =
+    document.getElementById(
+        "logoutBtn"
+    );
+
+
+if (logoutBtn) {
+
+    logoutBtn.addEventListener(
+
+        "click",
+
+        function() {
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to logout?"
+                );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            /*
+               Keep booking data.
+
+               Only login state is removed.
+            */
+
+            localStorage.removeItem(
+                "hostelvisionCustomerLoggedIn"
+            );
+
+
+            window.location.href =
+                "../login.html";
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    function() {
+
+        initializeBookingStorage();
+
+        renderBookings();
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>

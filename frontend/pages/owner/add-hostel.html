@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Hostel | HostelVision</title>
+
+    <link rel="stylesheet"
+          href="../../css/owner.css">
+
+    <link rel="stylesheet"
+          href="../../css/add-hostel.css">
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="owner-navbar">
+
+    <div class="owner-logo">
+
+        <a href="../../index.html">
+            Hostel<span>Vision</span>
+        </a>
+
+        <span class="portal-label">
+            OWNER PORTAL
+        </span>
+
+    </div>
+
+
+    <div class="owner-nav-right">
+
+        <a href="../../index.html"
+           class="view-site">
+
+            🌐 View Website
+
+        </a>
+
+
+        <div class="owner-notification"
+             onclick="showOwnerNotifications()">
+
+            🔔
+
+            <span>3</span>
+
+        </div>
+
+
+        <div class="owner-profile">
+
+            <div class="owner-avatar">
+                GV
+            </div>
+
+            <div>
+
+                <strong>
+                    Ganesh Varma
+                </strong>
+
+                <small>
+                    Property Owner
+                </small>
+
+            </div>
+
+            <span>▼</span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     LAYOUT
+===================================================== -->
+
+<div class="owner-layout">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="owner-sidebar">
+
+        <div class="owner-user">
+
+            <div class="owner-sidebar-avatar">
+                GV
+            </div>
+
+            <div>
+
+                <strong>
+                    Ganesh Varma
+                </strong>
+
+                <span>
+                    Property Owner
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="owner-menu">
+
+
+            <a href="dashboard.html">
+
+                <span>▣</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="hostels.html">
+
+                <span>⌂</span>
+
+                My Hostels
+
+            </a>
+
+
+            <a href="add-hostel.html"
+               class="active">
+
+                <span>＋</span>
+
+                Add Hostel
+
+            </a>
+
+
+            <a href="rooms.html">
+
+                <span>▤</span>
+
+                Rooms
+
+            </a>
+
+
+            <a href="bookings.html">
+
+                <span>▣</span>
+
+                Bookings
+
+                <b>2</b>
+
+            </a>
+
+
+            <a href="#"
+               onclick="showComingSoon(event)">
+
+                <span>⚠</span>
+
+                Complaints
+
+                <b>1</b>
+
+            </a>
+
+
+            <a href="profile.html">
+
+                <span>●</span>
+
+                My Profile
+
+            </a>
+
+
+            <div class="owner-divider"></div>
+
+
+            <a href="../../index.html">
+
+                <span>↗</span>
+
+                Visit Website
+
+            </a>
+
+
+            <a href="#"
+               onclick="ownerLogout(event)">
+
+                <span>←</span>
+
+                Logout
+
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN
+    ================================================== -->
+
+    <main class="owner-main">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="add-hostel-header">
+
+            <div>
+
+                <div class="breadcrumb">
+                    Owner Dashboard / Add Hostel
+                </div>
+
+                <h1>
+                    Add New Hostel
+                </h1>
+
+                <p>
+                    Add your property details and publish your hostel
+                    on HostelVision.
+                </p>
+
+            </div>
+
+
+            <a href="dashboard.html"
+               class="back-dashboard-btn">
+
+                ← Back to Dashboard
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PROGRESS
+        ================================================== -->
+
+        <div class="form-progress">
+
+            <div class="form-progress-step active">
+
+                <span>1</span>
+
+                <div>
+                    <strong>
+                        Property
+                    </strong>
+
+                    <small>
+                        Basic details
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="form-progress-line"></div>
+
+
+            <div class="form-progress-step">
+
+                <span>2</span>
+
+                <div>
+                    <strong>
+                        Location
+                    </strong>
+
+                    <small>
+                        Address
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="form-progress-line"></div>
+
+
+            <div class="form-progress-step">
+
+                <span>3</span>
+
+                <div>
+                    <strong>
+                        Facilities
+                    </strong>
+
+                    <small>
+                        Amenities
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="form-progress-line"></div>
+
+
+            <div class="form-progress-step">
+
+                <span>4</span>
+
+                <div>
+                    <strong>
+                        Rooms
+                    </strong>
+
+                    <small>
+                        Pricing
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="form-progress-line"></div>
+
+
+            <div class="form-progress-step">
+
+                <span>5</span>
+
+                <div>
+                    <strong>
+                        Publish
+                    </strong>
+
+                    <small>
+                        Review
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FORM
+        ================================================== -->
+
+        <form id="addHostelForm">
+
+
+            <!-- =================================================
+                 SECTION 1
+            ================================================== -->
+
+            <section class="hostel-form-card">
+
+                <div class="form-card-header">
+
+                    <div class="form-section-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Property Information
+                        </h2>
+
+                        <p>
+                            Tell customers about your hostel or PG.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full-width">
+
+                        <label>
+                            Hostel / PG Name
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="hostelName"
+                            placeholder="Example: UrbanNest Premium Hostel"
+                            maxlength="100"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Property Type
+                            <span>*</span>
+                        </label>
+
+                        <select
+                            id="propertyType"
+                            required>
+
+                            <option value="">
+                                Select property type
+                            </option>
+
+                            <option value="Hostel">
+                                Hostel
+                            </option>
+
+                            <option value="PG">
+                                PG
+                            </option>
+
+                            <option value="Co-Living">
+                                Co-Living
+                            </option>
+
+                            <option value="Student Apartments">
+                                Student Apartments
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Suitable For
+                            <span>*</span>
+                        </label>
+
+                        <select
+                            id="genderType"
+                            required>
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="Male">
+                                Boys / Male
+                            </option>
+
+                            <option value="Female">
+                                Girls / Female
+                            </option>
+
+                            <option value="Unisex">
+                                Unisex
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Contact Phone
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="contactPhone"
+                            placeholder="+91 98765 43210"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Contact Email
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="contactEmail"
+                            placeholder="hostel@example.com"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label>
+                            Property Description
+                            <span>*</span>
+                        </label>
+
+                        <textarea
+                            id="description"
+                            rows="5"
+                            maxlength="1000"
+                            placeholder="Describe your hostel, rooms, atmosphere, nearby facilities, and what makes your property special..."
+                            required></textarea>
+
+                        <small class="character-count">
+                            0 / 1000
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SECTION 2
+            ================================================== -->
+
+            <section class="hostel-form-card">
+
+                <div class="form-card-header">
+
+                    <div class="form-section-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Location
+                        </h2>
+
+                        <p>
+                            Help customers find your property easily.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            City
+                            <span>*</span>
+                        </label>
+
+                        <select
+                            id="city"
+                            required>
+
+                            <option value="">
+                                Select city
+                            </option>
+
+                            <option>
+                                Hyderabad
+                            </option>
+
+                            <option>
+                                Bengaluru
+                            </option>
+
+                            <option>
+                                Chennai
+                            </option>
+
+                            <option>
+                                Pune
+                            </option>
+
+                            <option>
+                                Mumbai
+                            </option>
+
+                            <option>
+                                Delhi
+                            </option>
+
+                            <option>
+                                Vijayawada
+                            </option>
+
+                            <option>
+                                Visakhapatnam
+                            </option>
+
+                            <option>
+                                Warangal
+                            </option>
+
+                            <option>
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Area / Locality
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="locality"
+                            placeholder="Example: Madhapur"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label>
+                            Complete Address
+                            <span>*</span>
+                        </label>
+
+                        <textarea
+                            id="address"
+                            rows="4"
+                            placeholder="House/Building number, street, locality..."
+                            required></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            PIN Code
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="pincode"
+                            placeholder="500081"
+                            maxlength="6"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Nearby Landmark
+                        </label>
+
+                        <input
+                            type="text"
+                            id="landmark"
+                            placeholder="Example: Near Metro Station">
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label>
+                            Google Maps Link
+                        </label>
+
+                        <input
+                            type="url"
+                            id="mapLink"
+                            placeholder="https://maps.google.com/...">
+
+                        <small>
+                            You can add the Google Maps location later.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SECTION 3
+            ================================================== -->
+
+            <section class="hostel-form-card">
+
+                <div class="form-card-header">
+
+                    <div class="form-section-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Facilities & Amenities
+                        </h2>
+
+                        <p>
+                            Select the facilities available at your property.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="facility-grid">
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="Wi-Fi">
+
+                        <span class="facility-box">
+                            📶
+                        </span>
+
+                        <span>
+                            Wi-Fi
+                        </span>
+
+                    </label>
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="Food">
+
+                        <span class="facility-box">
+                            🍛
+                        </span>
+
+                        <span>
+                            Food
+                        </span>
+
+                    </label>
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="AC">
+
+                        <span class="facility-box">
+                            ❄️
+                        </span>
+
+                        <span>
+                            Air Conditioning
+                        </span>
+
+                    </label>
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="Laundry">
+
+                        <span class="facility-box">
+                            🧺
+                        </span>
+
+                        <span>
+                            Laundry
+                        </span>
+
+                    </label>
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="Parking">
+
+                        <span class="facility-box">
+                            🅿️
+                        </span>
+
+                        <span>
+                            Parking
+                        </span>
+
+                    </label>
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="Power Backup">
+
+                        <span class="facility-box">
+                            🔋
+                        </span>
+
+                        <span>
+                            Power Backup
+                        </span>
+
+                    </label>
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="CCTV">
+
+                        <span class="facility-box">
+                            📹
+                        </span>
+
+                        <span>
+                            CCTV
+                        </span>
+
+                    </label>
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="Security">
+
+                        <span class="facility-box">
+                            🛡️
+                        </span>
+
+                        <span>
+                            24/7 Security
+                        </span>
+
+                    </label>
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="Housekeeping">
+
+                        <span class="facility-box">
+                            🧹
+                        </span>
+
+                        <span>
+                            Housekeeping
+                        </span>
+
+                    </label>
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="Gym">
+
+                        <span class="facility-box">
+                            🏋️
+                        </span>
+
+                        <span>
+                            Gym
+                        </span>
+
+                    </label>
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="Common Room">
+
+                        <span class="facility-box">
+                            🛋️
+                        </span>
+
+                        <span>
+                            Common Room
+                        </span>
+
+                    </label>
+
+
+                    <label class="facility-option">
+
+                        <input
+                            type="checkbox"
+                            name="facility"
+                            value="Hot Water">
+
+                        <span class="facility-box">
+                            🚿
+                        </span>
+
+                        <span>
+                            Hot Water
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SECTION 4
+            ================================================== -->
+
+            <section class="hostel-form-card">
+
+                <div class="form-card-header">
+
+                    <div class="form-section-number">
+                        04
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Property Photos
+                        </h2>
+
+                        <p>
+                            Add attractive photos to help customers understand
+                            your property.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="upload-area"
+                     id="uploadArea">
+
+                    <div class="upload-icon">
+                        📷
+                    </div>
+
+                    <h3>
+                        Upload Property Photos
+                    </h3>
+
+                    <p>
+                        Add up to 8 images of your hostel.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="upload-btn"
+                        onclick="document.getElementById('photoInput').click()">
+
+                        Choose Photos
+
+                    </button>
+
+                    <input
+                        type="file"
+                        id="photoInput"
+                        accept="image/*"
+                        multiple
+                        hidden>
+
+                    <small>
+                        JPG, PNG or WEBP · Maximum 5MB each
+                    </small>
+
+                </div>
+
+
+                <div
+                    id="photoPreview"
+                    class="photo-preview">
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SECTION 5
+            ================================================== -->
+
+            <section class="hostel-form-card">
+
+                <div class="form-card-header">
+
+                    <div class="form-section-number">
+                        05
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Room & Pricing
+                        </h2>
+
+                        <p>
+                            Add the initial room configuration for your property.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="room-form-header">
+
+                    <span>
+                        Room Type
+                    </span>
+
+                    <span>
+                        Total Rooms
+                    </span>
+
+                    <span>
+                        Available
+                    </span>
+
+                    <span>
+                        Monthly Rent
+                    </span>
+
+                </div>
+
+
+                <div class="room-row">
+
+                    <div>
+
+                        <select
+                            class="room-type">
+
+                            <option>
+                                Single Sharing
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <input
+                            type="number"
+                            class="room-total"
+                            min="0"
+                            value="0">
+
+                    </div>
+
+
+                    <div>
+
+                        <input
+                            type="number"
+                            class="room-available"
+                            min="0"
+                            value="0">
+
+                    </div>
+
+
+                    <div class="rent-input">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            class="room-rent"
+                            min="0"
+                            placeholder="0">
+
+                    </div>
+
+                </div>
+
+
+                <div class="room-row">
+
+                    <div>
+
+                        <select
+                            class="room-type">
+
+                            <option>
+                                Double Sharing
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <input
+                            type="number"
+                            class="room-total"
+                            min="0"
+                            value="0">
+
+                    </div>
+
+
+                    <div>
+
+                        <input
+                            type="number"
+                            class="room-available"
+                            min="0"
+                            value="0">
+
+                    </div>
+
+
+                    <div class="rent-input">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            class="room-rent"
+                            min="0"
+                            placeholder="0">
+
+                    </div>
+
+                </div>
+
+
+                <div class="room-row">
+
+                    <div>
+
+                        <select
+                            class="room-type">
+
+                            <option>
+                                Triple Sharing
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <input
+                            type="number"
+                            class="room-total"
+                            min="0"
+                            value="0">
+
+                    </div>
+
+
+                    <div>
+
+                        <input
+                            type="number"
+                            class="room-available"
+                            min="0"
+                            value="0">
+
+                    </div>
+
+
+                    <div class="rent-input">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            class="room-rent"
+                            min="0"
+                            placeholder="0">
+
+                    </div>
+
+                </div>
+
+
+                <div class="room-row">
+
+                    <div>
+
+                        <select
+                            class="room-type">
+
+                            <option>
+                                Four Sharing
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <input
+                            type="number"
+                            class="room-total"
+                            min="0"
+                            value="0">
+
+                    </div>
+
+
+                    <div>
+
+                        <input
+                            type="number"
+                            class="room-available"
+                            min="0"
+                            value="0">
+
+                    </div>
+
+
+                    <div class="rent-input">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            class="room-rent"
+                            min="0"
+                            placeholder="0">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SECTION 6
+            ================================================== -->
+
+            <section class="hostel-form-card">
+
+                <div class="form-card-header">
+
+                    <div class="form-section-number">
+                        06
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Rules & Policies
+                        </h2>
+
+                        <p>
+                            Set important rules customers should know.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Visitor Policy
+                        </label>
+
+                        <select id="visitorPolicy">
+
+                            <option>
+                                Visitors Allowed
+                            </option>
+
+                            <option>
+                                Visitors Not Allowed
+                            </option>
+
+                            <option>
+                                Visitors Allowed Until 8 PM
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Curfew
+                        </label>
+
+                        <select id="curfew">
+
+                            <option>
+                                No Curfew
+                            </option>
+
+                            <option>
+                                10:00 PM
+                            </option>
+
+                            <option>
+                                11:00 PM
+                            </option>
+
+                            <option>
+                                12:00 AM
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Smoking
+                        </label>
+
+                        <select id="smoking">
+
+                            <option>
+                                Not Allowed
+                            </option>
+
+                            <option>
+                                Allowed in Designated Area
+                            </option>
+
+                            <option>
+                                Allowed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Pets
+                        </label>
+
+                        <select id="pets">
+
+                            <option>
+                                Not Allowed
+                            </option>
+
+                            <option>
+                                Allowed
+                            </option>
+
+                            <option>
+                                Subject to Approval
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label>
+                            Additional Rules
+                        </label>
+
+                        <textarea
+                            id="rules"
+                            rows="4"
+                            placeholder="Enter any additional property rules..."></textarea>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SUBMIT
+            ================================================== -->
+
+            <div class="form-submit-area">
+
+                <button
+                    type="button"
+                    class="save-draft-btn"
+                    onclick="saveDraft()">
+
+                    Save as Draft
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="preview-btn"
+                    onclick="previewHostel()">
+
+                    Preview
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="publish-btn">
+
+                    Publish Hostel
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="formMessage"
+                class="form-message">
+            </div>
+
+
+        </form>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     PREVIEW MODAL
+===================================================== -->
+
+<div id="previewModal"
+     class="preview-overlay">
+
+    <div class="preview-modal">
+
+        <div class="preview-header">
+
+            <div>
+
+                <span>
+                    HOSTEL PREVIEW
+                </span>
+
+                <h2 id="previewName">
+                    Hostel Name
+                </h2>
+
+            </div>
+
+            <button
+                onclick="closePreview()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="preview-content">
+
+            <div class="preview-image-box">
+
+                <div id="previewPhoto">
+                    🏠
+                </div>
+
+            </div>
+
+
+            <div class="preview-details">
+
+                <span
+                    id="previewType"
+                    class="preview-badge">
+
+                    Hostel
+
+                </span>
+
+                <h3 id="previewTitle">
+                    Hostel Name
+                </h3>
+
+                <p id="previewLocation">
+                    📍 Location
+                </p>
+
+                <p id="previewDescription">
+                    Property description
+                </p>
+
+
+                <div class="preview-facilities"
+                     id="previewFacilities">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="close-preview-btn"
+            onclick="closePreview()">
+
+            Close Preview
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script src="../../js/owner.js"></script>
+
+<script src="../../js/add-hostel.js"></script>
+
+</body>
+
+</html>

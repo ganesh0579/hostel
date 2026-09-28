@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Complaints | HostelVision</title>
+
+    <link rel="stylesheet" href="../../css/customer.css">
+    <link rel="stylesheet" href="../../css/complaints.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="dashboard-navbar">
+
+    <div class="dashboard-logo">
+        <a href="../../index.html">Hostel<span>Vision</span></a>
+    </div>
+
+    <div class="dashboard-nav-right">
+
+        <div class="notification-icon" onclick="showNotifications()">
+            🔔
+            <span class="notification-count">3</span>
+        </div>
+
+        <div class="customer-profile">
+            <div class="profile-avatar">GV</div>
+
+            <div class="profile-info">
+                <strong>Ganesh Varma</strong>
+                <small>Customer</small>
+            </div>
+
+            <span class="profile-arrow">▼</span>
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= LAYOUT ================= -->
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="dashboard-sidebar">
+
+        <div class="sidebar-user">
+
+            <div class="large-avatar">
+                GV
+            </div>
+
+            <div>
+                <strong>Ganesh Varma</strong>
+                <span>Customer</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html">
+                <span>🏠</span>
+                Dashboard
+            </a>
+
+            <a href="../../search.html">
+                <span>🔍</span>
+                Find Hostels
+            </a>
+
+            <a href="bookings.html">
+                <span>📋</span>
+                My Bookings
+            </a>
+
+            <a href="complaints.html" class="active">
+                <span>⚠️</span>
+                Complaints
+                <span class="menu-badge">2</span>
+            </a>
+
+            <a href="profile.html">
+                <span>👤</span>
+                My Profile
+            </a>
+
+            <div class="sidebar-divider"></div>
+
+            <a href="../../index.html">
+                <span>🌐</span>
+                Visit Website
+            </a>
+
+            <a href="#" onclick="logout(event)">
+                <span>🚪</span>
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="dashboard-main">
+
+        <!-- PAGE HEADER -->
+
+        <div class="complaints-header">
+
+            <div>
+                <div class="breadcrumb">
+                    Dashboard / Complaints
+                </div>
+
+                <h1>My Complaints</h1>
+
+                <p>
+                    Raise and track your hostel-related complaints.
+                </p>
+            </div>
+
+            <button class="raise-complaint-btn" onclick="openComplaintModal()">
+                + Raise Complaint
+            </button>
+
+        </div>
+
+
+        <!-- ================= STATS ================= -->
+
+        <section class="complaint-stats">
+
+            <div class="complaint-stat-card">
+
+                <div class="stat-icon total">
+                    📋
+                </div>
+
+                <div>
+                    <span>Total Complaints</span>
+                    <strong id="totalComplaints">4</strong>
+                </div>
+
+            </div>
+
+
+            <div class="complaint-stat-card">
+
+                <div class="stat-icon open">
+                    🔴
+                </div>
+
+                <div>
+                    <span>Open</span>
+                    <strong id="openComplaints">1</strong>
+                </div>
+
+            </div>
+
+
+            <div class="complaint-stat-card">
+
+                <div class="stat-icon progress">
+                    🟠
+                </div>
+
+                <div>
+                    <span>In Progress</span>
+                    <strong id="progressComplaints">2</strong>
+                </div>
+
+            </div>
+
+
+            <div class="complaint-stat-card">
+
+                <div class="stat-icon resolved">
+                    🟢
+                </div>
+
+                <div>
+                    <span>Resolved</span>
+                    <strong id="resolvedComplaints">1</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FILTERS ================= -->
+
+        <section class="complaints-section">
+
+            <div class="section-top">
+
+                <div>
+                    <h2>Complaint History</h2>
+                    <p>Track all your submitted complaints.</p>
+                </div>
+
+            </div>
+
+
+            <div class="complaint-tabs">
+
+                <button class="complaint-tab active"
+                        data-status="all">
+                    All
+                </button>
+
+                <button class="complaint-tab"
+                        data-status="open">
+                    Open
+                </button>
+
+                <button class="complaint-tab"
+                        data-status="progress">
+                    In Progress
+                </button>
+
+                <button class="complaint-tab"
+                        data-status="resolved">
+                    Resolved
+                </button>
+
+            </div>
+
+
+            <!-- COMPLAINT LIST -->
+
+            <div id="complaintsList">
+
+
+                <!-- COMPLAINT 1 -->
+
+                <div class="complaint-card"
+                     data-status="open"
+                     data-id="CMP-1004">
+
+                    <div class="complaint-card-top">
+
+                        <div class="complaint-title-area">
+
+                            <div class="complaint-icon">
+                                💧
+                            </div>
+
+                            <div>
+
+                                <span class="complaint-id">
+                                    CMP-1004
+                                </span>
+
+                                <h3>
+                                    Water supply issue
+                                </h3>
+
+                                <p>
+                                    UrbanNest Premium Hostel
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="status-badge status-open">
+                            Open
+                        </span>
+
+                    </div>
+
+
+                    <div class="complaint-description">
+
+                        <p>
+                            Water supply is not available properly
+                            during morning hours in the hostel.
+                        </p>
+
+                    </div>
+
+
+                    <div class="complaint-card-bottom">
+
+                        <div class="complaint-meta">
+
+                            <span>📅 Sep 27, 2026</span>
+
+                            <span>⚡ High Priority</span>
+
+                        </div>
+
+                        <button
+                            class="view-complaint-btn"
+                            onclick="viewComplaint('CMP-1004')">
+                            View Details
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COMPLAINT 2 -->
+
+                <div class="complaint-card"
+                     data-status="progress"
+                     data-id="CMP-1003">
+
+                    <div class="complaint-card-top">
+
+                        <div class="complaint-title-area">
+
+                            <div class="complaint-icon">
+                                🛜
+                            </div>
+
+                            <div>
+
+                                <span class="complaint-id">
+                                    CMP-1003
+                                </span>
+
+                                <h3>
+                                    Wi-Fi connection problem
+                                </h3>
+
+                                <p>
+                                    UrbanNest Premium Hostel
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="status-badge status-progress">
+                            In Progress
+                        </span>
+
+                    </div>
+
+
+                    <div class="complaint-description">
+
+                        <p>
+                            Wi-Fi connection is frequently disconnecting
+                            inside my room.
+                        </p>
+
+                    </div>
+
+
+                    <div class="complaint-card-bottom">
+
+                        <div class="complaint-meta">
+
+                            <span>📅 Sep 24, 2026</span>
+
+                            <span>⚡ Medium Priority</span>
+
+                        </div>
+
+                        <button
+                            class="view-complaint-btn"
+                            onclick="viewComplaint('CMP-1003')">
+                            View Details
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COMPLAINT 3 -->
+
+                <div class="complaint-card"
+                     data-status="progress"
+                     data-id="CMP-1002">
+
+                    <div class="complaint-card-top">
+
+                        <div class="complaint-title-area">
+
+                            <div class="complaint-icon">
+                                🧹
+                            </div>
+
+                            <div>
+
+                                <span class="complaint-id">
+                                    CMP-1002
+                                </span>
+
+                                <h3>
+                                    Room cleaning request
+                                </h3>
+
+                                <p>
+                                    StudentHub Residency
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="status-badge status-progress">
+                            In Progress
+                        </span>
+
+                    </div>
+
+
+                    <div class="complaint-description">
+
+                        <p>
+                            Requested room cleaning because the room
+                            has not been cleaned for several days.
+                        </p>
+
+                    </div>
+
+
+                    <div class="complaint-card-bottom">
+
+                        <div class="complaint-meta">
+
+                            <span>📅 Sep 20, 2026</span>
+
+                            <span>⚡ Low Priority</span>
+
+                        </div>
+
+                        <button
+                            class="view-complaint-btn"
+                            onclick="viewComplaint('CMP-1002')">
+                            View Details
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COMPLAINT 4 -->
+
+                <div class="complaint-card"
+                     data-status="resolved"
+                     data-id="CMP-1001">
+
+                    <div class="complaint-card-top">
+
+                        <div class="complaint-title-area">
+
+                            <div class="complaint-icon">
+                                💡
+                            </div>
+
+                            <div>
+
+                                <span class="complaint-id">
+                                    CMP-1001
+                                </span>
+
+                                <h3>
+                                    Room light not working
+                                </h3>
+
+                                <p>
+                                    GreenStay PG
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="status-badge status-resolved">
+                            Resolved
+                        </span>
+
+                    </div>
+
+
+                    <div class="complaint-description">
+
+                        <p>
+                            The main room light was not working.
+                            The issue has now been fixed.
+                        </p>
+
+                    </div>
+
+
+                    <div class="complaint-card-bottom">
+
+                        <div class="complaint-meta">
+
+                            <span>📅 Sep 10, 2026</span>
+
+                            <span>⚡ Medium Priority</span>
+
+                        </div>
+
+                        <button
+                            class="view-complaint-btn"
+                            onclick="viewComplaint('CMP-1001')">
+                            View Details
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMPTY STATE -->
+
+            <div id="emptyComplaints" class="empty-complaints">
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                <h3>No complaints found</h3>
+
+                <p>
+                    There are no complaints in this category.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- RAISE COMPLAINT MODAL -->
+<!-- ================================================= -->
+
+<div id="complaintModal" class="modal-overlay">
+
+    <div class="complaint-modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h2>Raise a Complaint</h2>
+                <p>Tell us what problem you are facing.</p>
+            </div>
+
+            <button
+                class="modal-close"
+                onclick="closeComplaintModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="complaintForm">
+
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+
+                <label>
+                    Complaint Category
+                    <span>*</span>
+                </label>
+
+                <select id="complaintCategory" required>
+
+                    <option value="">
+                        Select category
+                    </option>
+
+                    <option value="water">
+                        Water Supply
+                    </option>
+
+                    <option value="electricity">
+                        Electricity
+                    </option>
+
+                    <option value="wifi">
+                        Wi-Fi / Internet
+                    </option>
+
+                    <option value="cleaning">
+                        Cleaning
+                    </option>
+
+                    <option value="food">
+                        Food
+                    </option>
+
+                    <option value="maintenance">
+                        Maintenance
+                    </option>
+
+                    <option value="security">
+                        Security
+                    </option>
+
+                    <option value="owner">
+                        Owner / Management
+                    </option>
+
+                    <option value="other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- HOSTEL -->
+
+            <div class="form-group">
+
+                <label>
+                    Hostel / PG
+                    <span>*</span>
+                </label>
+
+                <select id="complaintHostel" required>
+
+                    <option value="">
+                        Select hostel
+                    </option>
+
+                    <option value="UrbanNest Premium Hostel">
+                        UrbanNest Premium Hostel
+                    </option>
+
+                    <option value="StudentHub Residency">
+                        StudentHub Residency
+                    </option>
+
+                    <option value="GreenStay PG">
+                        GreenStay PG
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PRIORITY -->
+
+            <div class="form-group">
+
+                <label>
+                    Priority
+                    <span>*</span>
+                </label>
+
+                <div class="priority-options">
+
+                    <label class="priority-option">
+
+                        <input
+                            type="radio"
+                            name="priority"
+                            value="Low"
+                            required>
+
+                        <span>Low</span>
+
+                    </label>
+
+
+                    <label class="priority-option">
+
+                        <input
+                            type="radio"
+                            name="priority"
+                            value="Medium">
+
+                        <span>Medium</span>
+
+                    </label>
+
+
+                    <label class="priority-option">
+
+                        <input
+                            type="radio"
+                            name="priority"
+                            value="High">
+
+                        <span>High</span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUBJECT -->
+
+            <div class="form-group">
+
+                <label>
+                    Subject
+                    <span>*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="complaintSubject"
+                    placeholder="Enter complaint subject"
+                    maxlength="100"
+                    required>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                    <span>*</span>
+                </label>
+
+                <textarea
+                    id="complaintDescription"
+                    rows="5"
+                    maxlength="500"
+                    placeholder="Describe the issue clearly..."
+                    required></textarea>
+
+                <small>
+                    Maximum 500 characters
+                </small>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeComplaintModal()">
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="submit-complaint-btn">
+                    Submit Complaint
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- COMPLAINT DETAILS MODAL -->
+<!-- ================================================= -->
+
+<div id="detailsModal" class="modal-overlay">
+
+    <div class="details-modal">
+
+        <div class="modal-header">
+
+            <div>
+                <span id="detailId" class="details-id">
+                    CMP-1004
+                </span>
+
+                <h2 id="detailSubject">
+                    Water supply issue
+                </h2>
+            </div>
+
+            <button
+                class="modal-close"
+                onclick="closeDetailsModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="details-status-row">
+
+            <span id="detailStatus"
+                  class="status-badge status-open">
+                Open
+            </span>
+
+            <span id="detailPriority"
+                  class="priority-text">
+                High Priority
+            </span>
+
+        </div>
+
+
+        <div class="details-content">
+
+            <div class="detail-item">
+
+                <span>Hostel</span>
+
+                <strong id="detailHostel">
+                    UrbanNest Premium Hostel
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <span>Category</span>
+
+                <strong id="detailCategory">
+                    Water Supply
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <span>Date Submitted</span>
+
+                <strong id="detailDate">
+                    Sep 27, 2026
+                </strong>
+
+            </div>
+
+
+            <div class="detail-description">
+
+                <span>Description</span>
+
+                <p id="detailDescription">
+                    Water supply is not available properly
+                    during morning hours in the hostel.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="complaint-timeline">
+
+            <h3>Complaint Timeline</h3>
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div>
+                    <strong>Complaint Submitted</strong>
+                    <p>Complaint has been submitted successfully.</p>
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div>
+                    <strong>Under Review</strong>
+                    <p>Hostel management will review the issue.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="../../js/customer.js"></script>
+<script src="../../js/complaints.js"></script>
+
+</body>
+</html>

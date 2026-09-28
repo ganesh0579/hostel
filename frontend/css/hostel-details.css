@@ -1,0 +1,790 @@
+/* =========================================================
+   HOSTEL DETAILS PAGE
+========================================================= */
+
+.details-container {
+    max-width: 1280px;
+    margin: auto;
+    padding: 25px;
+}
+
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+
+.breadcrumb {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: #888;
+    font-size: 12px;
+    margin-bottom: 22px;
+}
+
+.breadcrumb a {
+    color: #e63946;
+}
+
+
+/* =========================================================
+   PROPERTY HEADING
+========================================================= */
+
+.property-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 25px;
+    margin-bottom: 22px;
+}
+
+.verified-property {
+    display: inline-block;
+    background: #e9f8ef;
+    color: #16834b;
+    padding: 6px 9px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.property-heading h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.property-location {
+    color: #777;
+    font-size: 13px;
+}
+
+.heading-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 13px;
+    color: #777;
+    font-size: 12px;
+}
+
+.heading-meta .rating {
+    background: #e9f8ef;
+    color: #16834b;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.heading-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.share-button,
+.save-button {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.save-button.active {
+    color: #e63946;
+    border-color: #e63946;
+}
+
+
+/* =========================================================
+   PHOTO GALLERY
+========================================================= */
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 210px 210px;
+    gap: 6px;
+    height: 426px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 35px;
+}
+
+.photo-gallery > div {
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: .3s;
+}
+
+.photo-gallery img:hover {
+    transform: scale(1.03);
+}
+
+.main-photo {
+    grid-row: 1 / 3;
+}
+
+.more-photos span {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    background: rgba(0,0,0,.75);
+    color: white;
+    padding: 9px 13px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.details-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: 30px;
+    align-items: start;
+}
+
+.details-main {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.details-section {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.details-section h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.description {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.description:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   FACILITIES
+========================================================= */
+
+.facility-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.facility-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid #eee;
+    border-radius: 7px;
+}
+
+.facility-item > span {
+    width: 38px;
+    height: 38px;
+    background: #fff0f1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.facility-item strong {
+    display: block;
+    font-size: 13px;
+}
+
+.facility-item small {
+    display: block;
+    color: #888;
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.section-title-row h2 {
+    margin-bottom: 5px;
+}
+
+.section-title-row p {
+    color: #888;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ROOMS
+========================================================= */
+
+.rooms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.room-card {
+    display: grid;
+    grid-template-columns: 125px 1fr 120px;
+    gap: 17px;
+    align-items: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.room-image {
+    height: 100px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.room-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.room-info h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.room-info p {
+    color: #777;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.room-features {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.room-features span {
+    background: #f3f4f6;
+    padding: 5px 7px;
+    border-radius: 4px;
+    font-size: 9px;
+    color: #666;
+}
+
+.room-price {
+    text-align: right;
+}
+
+.room-price strong {
+    font-size: 17px;
+}
+
+.room-price small {
+    display: block;
+    color: #888;
+    font-size: 9px;
+    margin-bottom: 10px;
+}
+
+.request-btn {
+    border: none;
+    background: #e63946;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   RULES
+========================================================= */
+
+.rules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.rules div {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 6px;
+    color: #666;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
+.map-placeholder {
+    height: 260px;
+    border-radius: 8px;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #dce8df,
+            #eef1e9
+        );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.map-placeholder > div {
+    background: white;
+    padding: 22px 30px;
+    border-radius: 9px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.1);
+}
+
+.map-placeholder span {
+    font-size: 28px;
+}
+
+.map-placeholder strong {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.map-placeholder p {
+    color: #777;
+    font-size: 11px;
+    margin: 5px 0 13px;
+}
+
+.map-placeholder button {
+    border: none;
+    background: #172033;
+    color: white;
+    padding: 8px 13px;
+    border-radius: 5px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   BOOKING SIDEBAR
+========================================================= */
+
+.booking-sidebar {
+    position: sticky;
+    top: 90px;
+}
+
+.booking-card,
+.owner-card,
+.safety-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+
+/* PRICE */
+
+.booking-price {
+    padding-bottom: 17px;
+    border-bottom: 1px solid #eee;
+}
+
+.booking-price small {
+    display: block;
+    color: #888;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.booking-price strong {
+    font-size: 27px;
+}
+
+.booking-price span {
+    color: #888;
+    font-size: 11px;
+}
+
+
+/* AVAILABILITY */
+
+.availability-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #effaf3;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 17px 0;
+}
+
+.green-dot {
+    color: #16834b;
+    font-size: 12px;
+}
+
+.availability-box strong {
+    display: block;
+    color: #16834b;
+    font-size: 12px;
+}
+
+.availability-box small {
+    display: block;
+    color: #777;
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+
+/* BUTTONS */
+
+.primary-book-btn,
+.contact-owner-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.primary-book-btn {
+    border: none;
+    background: #e63946;
+    color: white;
+    margin-bottom: 9px;
+}
+
+.primary-book-btn:hover {
+    background: #c92f3b;
+}
+
+.contact-owner-btn {
+    border: 1px solid #e63946;
+    background: white;
+    color: #e63946;
+}
+
+.booking-note {
+    text-align: center;
+    color: #999;
+    font-size: 9px;
+    line-height: 1.5;
+    margin-top: 13px;
+}
+
+
+/* =========================================================
+   OWNER CARD
+========================================================= */
+
+.owner-card h3 {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.owner-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.owner-avatar {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    background: #fff0f1;
+    color: #e63946;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.owner-info strong {
+    display: block;
+    font-size: 13px;
+}
+
+.owner-info small {
+    display: block;
+    color: #888;
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+.owner-status {
+    margin-top: 15px;
+    color: #16834b;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   SAFETY
+========================================================= */
+
+.safety-card {
+    display: flex;
+    gap: 12px;
+    background: #fff9ed;
+    border-color: #f3e4bf;
+}
+
+.safety-card > span {
+    font-size: 22px;
+}
+
+.safety-card strong {
+    display: block;
+    font-size: 12px;
+}
+
+.safety-card p {
+    color: #777;
+    font-size: 10px;
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.65);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 3000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 10px;
+    padding: 28px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    border: none;
+    background: none;
+    font-size: 25px;
+    color: #777;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.modal-content > p {
+    color: #777;
+    font-size: 12px;
+    margin-bottom: 22px;
+}
+
+#requestForm label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 13px 0 6px;
+}
+
+#requestForm input,
+#requestForm select,
+#requestForm textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 11px;
+    outline: none;
+    font-size: 12px;
+}
+
+#requestForm input:focus,
+#requestForm select:focus,
+#requestForm textarea:focus {
+    border-color: #e63946;
+}
+
+#requestForm textarea {
+    resize: vertical;
+}
+
+.submit-request {
+    width: 100%;
+    border: none;
+    background: #e63946;
+    color: white;
+    padding: 13px;
+    border-radius: 6px;
+    margin-top: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .details-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-sidebar {
+        position: static;
+    }
+
+    .photo-gallery {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 220px 220px;
+        height: 446px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .details-container {
+        padding: 18px;
+    }
+
+    .property-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .property-heading h1 {
+        font-size: 25px;
+    }
+
+    .photo-gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 150px);
+        height: auto;
+    }
+
+    .main-photo {
+        grid-column: 1 / 3;
+        grid-row: auto;
+    }
+
+    .facility-grid,
+    .rules {
+        grid-template-columns: 1fr;
+    }
+
+    .room-card {
+        grid-template-columns: 90px 1fr;
+    }
+
+    .room-price {
+        grid-column: 2;
+        text-align: left;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .heading-actions {
+        width: 100%;
+    }
+
+    .share-button,
+    .save-button {
+        flex: 1;
+    }
+
+    .photo-gallery {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 180px 110px 110px;
+    }
+
+    .room-card {
+        grid-template-columns: 1fr;
+    }
+
+    .room-image {
+        height: 170px;
+    }
+
+    .room-price {
+        grid-column: auto;
+    }
+
+}

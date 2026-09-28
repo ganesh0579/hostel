@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Owner Login | HostelVision</title>
+
+    <link rel="stylesheet"
+          href="../css/owner-auth.css">
+
+    <style>
+
+        .login-form {
+            background: white;
+            border: 1px solid #e3e6ea;
+            border-radius: 10px;
+            padding: 25px;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 18px;
+        }
+
+        .forgot-password {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -8px;
+            margin-bottom: 18px;
+        }
+
+        .forgot-password a {
+            color: #e63946;
+            font-size: 11px;
+            text-decoration: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            border: none;
+            background: #e63946;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #cf2f3c;
+        }
+
+        .login-message {
+            display: none;
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .login-message.success {
+            display: block;
+            background: #edf9f1;
+            color: #218847;
+        }
+
+        .login-message.error {
+            display: block;
+            background: #fff0f0;
+            color: #d83240;
+        }
+
+        .demo-login {
+            margin-top: 15px;
+            padding: 11px;
+            border-radius: 6px;
+            background: #f5f6f8;
+            color: #737b89;
+            font-size: 11px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="auth-page">
+
+
+    <!-- LEFT -->
+
+    <section class="auth-left">
+
+        <div class="brand">
+
+            <a href="../index.html">
+                Hostel<span>Vision</span>
+            </a>
+
+        </div>
+
+
+        <div class="owner-intro">
+
+            <span class="intro-label">
+                OWNER PORTAL
+            </span>
+
+            <h1>
+                Manage your property from one place.
+            </h1>
+
+            <p>
+                Access your HostelVision owner dashboard,
+                manage properties and rooms, respond to
+                booking requests and grow your business.
+            </p>
+
+
+            <div class="owner-benefits">
+
+                <div class="benefit">
+
+                    <span>✓</span>
+
+                    <div>
+
+                        <strong>
+                            Manage your properties
+                        </strong>
+
+                        <p>
+                            Add and update your hostel and PG listings.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <span>✓</span>
+
+                    <div>
+
+                        <strong>
+                            Manage room availability
+                        </strong>
+
+                        <p>
+                            Track rooms, prices and occupancy.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <span>✓</span>
+
+                    <div>
+
+                        <strong>
+                            Handle booking requests
+                        </strong>
+
+                        <p>
+                            Accept or reject customer requests.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RIGHT -->
+
+    <section class="auth-right">
+
+        <div class="auth-container">
+
+
+            <div class="mobile-brand">
+
+                <a href="../index.html">
+                    Hostel<span>Vision</span>
+                </a>
+
+            </div>
+
+
+            <div class="auth-header">
+
+                <span class="role-label">
+                    OWNER ACCOUNT
+                </span>
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p>
+                    Login to manage your HostelVision property.
+                </p>
+
+            </div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form
+                id="ownerLoginForm"
+                class="login-form">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="you@example.com"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter your password"
+                            required>
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('loginPassword', this)">
+
+                            Show
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="forgot-password">
+
+                    <a href="#"
+                       onclick="forgotPassword(event)">
+
+                        Forgot password?
+
+                    </a>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn">
+
+                    Login to Owner Portal
+
+                </button>
+
+
+                <div
+                    id="loginMessage"
+                    class="login-message">
+                </div>
+
+
+                <div class="demo-login">
+
+                    Demo:
+                    <strong>owner@hostelvision.com</strong>
+                    /
+                    <strong>Owner@123</strong>
+
+                </div>
+
+            </form>
+
+
+            <div class="auth-footer">
+
+                Don't have an owner account?
+
+                <a href="owner-register.html">
+                    Create Account
+                </a>
+
+            </div>
+
+
+            <div class="customer-link">
+
+                Looking for accommodation?
+
+                <a href="login.html">
+                    Customer Login
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="../js/owner-auth.js"></script>
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const form =
+            document.getElementById("ownerLoginForm");
+
+
+        form.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document.getElementById("loginEmail")
+                        .value
+                        .trim();
+
+                const password =
+                    document.getElementById("loginPassword")
+                        .value;
+
+
+                const message =
+                    document.getElementById("loginMessage");
+
+
+                if (!email || !password) {
+
+                    showLoginMessage(
+                        "Please enter email and password.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * Temporary frontend authentication.
+                 *
+                 * Real authentication will later be:
+                 *
+                 * POST /api/auth/owner/login
+                 *
+                 * Spring Boot
+                 *      ↓
+                 * MySQL
+                 */
+
+                if (
+                    email === "owner@hostelvision.com" &&
+                    password === "Owner@123"
+                ) {
+
+                    showLoginMessage(
+                        "Login successful. Opening dashboard...",
+                        "success"
+                    );
+
+
+                    localStorage.setItem(
+                        "hostelvisionOwnerLoggedIn",
+                        "true"
+                    );
+
+
+                    setTimeout(function () {
+
+                        window.location.href =
+                            "owner/dashboard.html";
+
+                    }, 700);
+
+                }
+
+                else {
+
+                    showLoginMessage(
+                        "Invalid owner email or password.",
+                        "error"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+function showLoginMessage(message, type) {
+
+    const box =
+        document.getElementById("loginMessage");
+
+    box.textContent = message;
+
+    box.className =
+        "login-message " + type;
+
+}
+
+
+function forgotPassword(event) {
+
+    event.preventDefault();
+
+    alert(
+        "Password reset will be implemented with the backend authentication system."
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>

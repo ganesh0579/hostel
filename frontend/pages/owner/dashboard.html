@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Owner Dashboard | HostelVision</title>
+
+    <link rel="stylesheet"
+          href="../../css/owner.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="owner-navbar">
+
+    <div class="owner-logo">
+
+        <a href="../../index.html">
+            Hostel<span>Vision</span>
+        </a>
+
+        <span class="portal-label">
+            OWNER PORTAL
+        </span>
+
+    </div>
+
+
+    <div class="owner-nav-right">
+
+        <a href="../../index.html"
+           class="view-site">
+
+            🌐 View Website
+
+        </a>
+
+
+        <div class="owner-notification"
+             onclick="showOwnerNotifications()">
+
+            🔔
+
+            <span>
+                3
+            </span>
+
+        </div>
+
+
+        <div class="owner-profile">
+
+            <div class="owner-avatar">
+                GV
+            </div>
+
+            <div>
+
+                <strong>
+                    Ganesh Varma
+                </strong>
+
+                <small>
+                    Property Owner
+                </small>
+
+            </div>
+
+            <span>
+                ▼
+            </span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= LAYOUT ================= -->
+
+<div class="owner-layout">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="owner-sidebar">
+
+
+        <div class="owner-user">
+
+            <div class="owner-sidebar-avatar">
+                GV
+            </div>
+
+            <div>
+
+                <strong>
+                    Ganesh Varma
+                </strong>
+
+                <span>
+                    Property Owner
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="owner-menu">
+
+
+            <a href="dashboard.html"
+               class="active">
+
+                <span>▣</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="hostels.html">
+
+                <span>⌂</span>
+
+                My Hostels
+
+            </a>
+
+
+            <a href="add-hostel.html">
+
+                <span>＋</span>
+
+                Add Hostel
+
+            </a>
+
+
+            <a href="rooms.html">
+
+                <span>▤</span>
+
+                Rooms
+
+            </a>
+
+
+            <a href="bookings.html">
+
+                <span>▣</span>
+
+                Bookings
+
+                <b id="bookingBadge">
+                    2
+                </b>
+
+            </a>
+
+
+            <a href="#"
+               onclick="showComingSoon(event)">
+
+                <span>⚠</span>
+
+                Complaints
+
+                <b>
+                    1
+                </b>
+
+            </a>
+
+
+            <a href="profile.html">
+
+                <span>●</span>
+
+                My Profile
+
+            </a>
+
+
+            <div class="owner-divider"></div>
+
+
+            <a href="../../index.html">
+
+                <span>↗</span>
+
+                Visit Website
+
+            </a>
+
+
+            <a href="#"
+               onclick="ownerLogout(event)">
+
+                <span>←</span>
+
+                Logout
+
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="owner-main">
+
+
+        <!-- HEADER -->
+
+        <div class="owner-page-header">
+
+            <div>
+
+                <span class="page-label">
+                    OWNER DASHBOARD
+                </span>
+
+                <h1>
+                    Welcome back, Ganesh 👋
+                </h1>
+
+                <p>
+                    Here's what's happening with your properties.
+                </p>
+
+            </div>
+
+
+            <a href="add-hostel.html"
+               class="add-property-btn">
+
+                + Add New Hostel
+
+            </a>
+
+        </div>
+
+
+
+        <!-- ================= STATS ================= -->
+
+        <section class="owner-stats">
+
+
+            <div class="owner-stat-card">
+
+                <div class="owner-stat-icon blue">
+                    🏠
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Hostels
+                    </span>
+
+                    <strong>
+                        3
+                    </strong>
+
+                    <small>
+                        Active properties
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="owner-stat-card">
+
+                <div class="owner-stat-icon green">
+                    🛏
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Rooms
+                    </span>
+
+                    <strong>
+                        48
+                    </strong>
+
+                    <small>
+                        Across all properties
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="owner-stat-card">
+
+                <div class="owner-stat-icon orange">
+                    📋
+                </div>
+
+                <div>
+
+                    <span>
+                        Booking Requests
+                    </span>
+
+                    <strong>
+                        12
+                    </strong>
+
+                    <small>
+                        2 need attention
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="owner-stat-card">
+
+                <div class="owner-stat-icon red">
+                    ₹
+                </div>
+
+                <div>
+
+                    <span>
+                        Monthly Revenue
+                    </span>
+
+                    <strong>
+                        ₹2.84L
+                    </strong>
+
+                    <small>
+                        Current month
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= PROPERTY OVERVIEW ================= -->
+
+        <section class="owner-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        My Properties
+                    </h2>
+
+                    <p>
+                        Overview of your listed hostels and PGs.
+                    </p>
+
+                </div>
+
+
+                <a href="hostels.html">
+                    View All
+                </a>
+
+            </div>
+
+
+
+            <div class="property-grid">
+
+
+                <!-- PROPERTY 1 -->
+
+                <div class="property-card">
+
+                    <div class="property-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=700&q=80"
+                            alt="UrbanNest Premium Hostel">
+
+                        <span class="property-status active">
+                            Active
+                        </span>
+
+                    </div>
+
+
+                    <div class="property-content">
+
+                        <h3>
+                            UrbanNest Premium Hostel
+                        </h3>
+
+                        <p class="property-location">
+                            📍 Madhapur, Hyderabad
+                        </p>
+
+
+                        <div class="property-info">
+
+                            <span>
+                                🛏 20 Rooms
+                            </span>
+
+                            <span>
+                                👥 38 Occupied
+                            </span>
+
+                        </div>
+
+
+                        <div class="occupancy">
+
+                            <div class="occupancy-header">
+
+                                <span>
+                                    Occupancy
+                                </span>
+
+                                <strong>
+                                    76%
+                                </strong>
+
+                            </div>
+
+                            <div class="progress">
+
+                                <span style="width:76%">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <a href="hostels.html"
+                           class="manage-btn">
+
+                            Manage Property
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PROPERTY 2 -->
+
+                <div class="property-card">
+
+                    <div class="property-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=700&q=80"
+                            alt="StudentHub Residency">
+
+                        <span class="property-status active">
+                            Active
+                        </span>
+
+                    </div>
+
+
+                    <div class="property-content">
+
+                        <h3>
+                            StudentHub Residency
+                        </h3>
+
+                        <p class="property-location">
+                            📍 Gachibowli, Hyderabad
+                        </p>
+
+
+                        <div class="property-info">
+
+                            <span>
+                                🛏 16 Rooms
+                            </span>
+
+                            <span>
+                                👥 27 Occupied
+                            </span>
+
+                        </div>
+
+
+                        <div class="occupancy">
+
+                            <div class="occupancy-header">
+
+                                <span>
+                                    Occupancy
+                                </span>
+
+                                <strong>
+                                    84%
+                                </strong>
+
+                            </div>
+
+                            <div class="progress">
+
+                                <span style="width:84%">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <a href="hostels.html"
+                           class="manage-btn">
+
+                            Manage Property
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PROPERTY 3 -->
+
+                <div class="property-card">
+
+                    <div class="property-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=700&q=80"
+                            alt="GreenStay PG">
+
+                        <span class="property-status active">
+                            Active
+                        </span>
+
+                    </div>
+
+
+                    <div class="property-content">
+
+                        <h3>
+                            GreenStay PG
+                        </h3>
+
+                        <p class="property-location">
+                            📍 Kondapur, Hyderabad
+                        </p>
+
+
+                        <div class="property-info">
+
+                            <span>
+                                🛏 12 Rooms
+                            </span>
+
+                            <span>
+                                👥 18 Occupied
+                            </span>
+
+                        </div>
+
+
+                        <div class="occupancy">
+
+                            <div class="occupancy-header">
+
+                                <span>
+                                    Occupancy
+                                </span>
+
+                                <strong>
+                                    75%
+                                </strong>
+
+                            </div>
+
+                            <div class="progress">
+
+                                <span style="width:75%">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <a href="hostels.html"
+                           class="manage-btn">
+
+                            Manage Property
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= BOOKINGS + ACTIVITY ================= -->
+
+        <div class="owner-two-column">
+
+
+            <!-- BOOKINGS -->
+
+            <section class="owner-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Recent Booking Requests
+                        </h2>
+
+                        <p>
+                            Requests waiting for your response.
+                        </p>
+
+                    </div>
+
+                    <a href="bookings.html">
+                        View All
+                    </a>
+
+                </div>
+
+
+                <div class="booking-request-list">
+
+
+                    <div class="booking-request">
+
+                        <div class="customer-avatar">
+                            RK
+                        </div>
+
+                        <div class="booking-customer">
+
+                            <strong>
+                                Rahul Kumar
+                            </strong>
+
+                            <span>
+                                UrbanNest Premium Hostel
+                            </span>
+
+                            <small>
+                                Double Sharing · Oct 01, 2026
+                            </small>
+
+                        </div>
+
+                        <span class="request-status pending">
+                            Pending
+                        </span>
+
+                    </div>
+
+
+                    <div class="booking-request">
+
+                        <div class="customer-avatar">
+                            AS
+                        </div>
+
+                        <div class="booking-customer">
+
+                            <strong>
+                                Ananya Sharma
+                            </strong>
+
+                            <span>
+                                StudentHub Residency
+                            </span>
+
+                            <small>
+                                Single Room · Oct 05, 2026
+                            </small>
+
+                        </div>
+
+                        <span class="request-status pending">
+                            Pending
+                        </span>
+
+                    </div>
+
+
+                    <div class="booking-request">
+
+                        <div class="customer-avatar">
+                            VK
+                        </div>
+
+                        <div class="booking-customer">
+
+                            <strong>
+                                Vivek Kumar
+                            </strong>
+
+                            <span>
+                                GreenStay PG
+                            </span>
+
+                            <small>
+                                Triple Sharing · Sep 29, 2026
+                            </small>
+
+                        </div>
+
+                        <span class="request-status approved">
+                            Approved
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ACTIVITY -->
+
+            <section class="owner-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Recent Activity
+                        </h2>
+
+                        <p>
+                            Latest updates.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="owner-activity">
+
+
+                    <div class="activity-row">
+
+                        <div class="activity-icon green">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Booking accepted
+                            </strong>
+
+                            <p>
+                                Vivek Kumar · GreenStay PG
+                            </p>
+
+                        </div>
+
+                        <small>
+                            2h
+                        </small>
+
+                    </div>
+
+
+                    <div class="activity-row">
+
+                        <div class="activity-icon blue">
+                            +
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                New room added
+                            </strong>
+
+                            <p>
+                                UrbanNest · Room 204
+                            </p>
+
+                        </div>
+
+                        <small>
+                            1d
+                        </small>
+
+                    </div>
+
+
+                    <div class="activity-row">
+
+                        <div class="activity-icon orange">
+                            !
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                New complaint
+                            </strong>
+
+                            <p>
+                                Water supply issue
+                            </p>
+
+                        </div>
+
+                        <small>
+                            2d
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script src="../../js/owner.js"></script>
+
+</body>
+
+</html>

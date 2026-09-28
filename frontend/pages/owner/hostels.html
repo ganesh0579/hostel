@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Hostels | HostelVision</title>
+
+    <link rel="stylesheet"
+          href="../../css/owner.css">
+
+    <link rel="stylesheet"
+          href="../../css/owner-hostels.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="owner-navbar">
+
+    <div class="owner-logo">
+
+        <a href="../../index.html">
+            Hostel<span>Vision</span>
+        </a>
+
+        <span class="portal-label">
+            OWNER PORTAL
+        </span>
+
+    </div>
+
+
+    <div class="owner-nav-right">
+
+        <a href="../../index.html"
+           class="view-site">
+
+            🌐 View Website
+
+        </a>
+
+
+        <div class="owner-notification"
+             onclick="showOwnerNotifications()">
+
+            🔔
+
+            <span>3</span>
+
+        </div>
+
+
+        <div class="owner-profile">
+
+            <div class="owner-avatar">
+                GV
+            </div>
+
+            <div>
+
+                <strong>
+                    Ganesh Varma
+                </strong>
+
+                <small>
+                    Property Owner
+                </small>
+
+            </div>
+
+            <span>▼</span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= LAYOUT ================= -->
+
+<div class="owner-layout">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="owner-sidebar">
+
+        <div class="owner-user">
+
+            <div class="owner-sidebar-avatar">
+                GV
+            </div>
+
+            <div>
+
+                <strong>
+                    Ganesh Varma
+                </strong>
+
+                <span>
+                    Property Owner
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="owner-menu">
+
+
+            <a href="dashboard.html">
+
+                <span>▣</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="hostels.html"
+               class="active">
+
+                <span>⌂</span>
+
+                My Hostels
+
+            </a>
+
+
+            <a href="add-hostel.html">
+
+                <span>＋</span>
+
+                Add Hostel
+
+            </a>
+
+
+            <a href="rooms.html">
+
+                <span>▤</span>
+
+                Rooms
+
+            </a>
+
+
+            <a href="bookings.html">
+
+                <span>▣</span>
+
+                Bookings
+
+                <b>2</b>
+
+            </a>
+
+
+            <a href="#"
+               onclick="showComingSoon(event)">
+
+                <span>⚠</span>
+
+                Complaints
+
+                <b>1</b>
+
+            </a>
+
+
+            <a href="profile.html">
+
+                <span>●</span>
+
+                My Profile
+
+            </a>
+
+
+            <div class="owner-divider"></div>
+
+
+            <a href="../../index.html">
+
+                <span>↗</span>
+
+                Visit Website
+
+            </a>
+
+
+            <a href="#"
+               onclick="ownerLogout(event)">
+
+                <span>←</span>
+
+                Logout
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="owner-main">
+
+
+        <!-- HEADER -->
+
+        <div class="hostels-page-header">
+
+            <div>
+
+                <span class="page-label">
+                    PROPERTY MANAGEMENT
+                </span>
+
+                <h1>
+                    My Hostels
+                </h1>
+
+                <p>
+                    Manage all your hostel and PG properties from one place.
+                </p>
+
+            </div>
+
+
+            <a href="add-hostel.html"
+               class="add-property-btn">
+
+                + Add New Hostel
+
+            </a>
+
+        </div>
+
+
+
+        <!-- ================= SUMMARY ================= -->
+
+        <section class="hostel-summary">
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon blue">
+                    🏠
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Properties
+                    </span>
+
+                    <strong id="totalProperties">
+                        3
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon green">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Active
+                    </span>
+
+                    <strong id="activeProperties">
+                        3
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon orange">
+                    🛏
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Rooms
+                    </span>
+
+                    <strong>
+                        48
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon red">
+                    👥
+                </div>
+
+                <div>
+
+                    <span>
+                        Occupied Beds
+                    </span>
+
+                    <strong>
+                        83
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= TOOLBAR ================= -->
+
+        <section class="hostel-toolbar">
+
+
+            <div class="hostel-search">
+
+                <span>
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    id="hostelSearch"
+                    placeholder="Search by hostel name or location...">
+
+            </div>
+
+
+            <select id="statusFilter">
+
+                <option value="all">
+                    All Status
+                </option>
+
+                <option value="active">
+                    Active
+                </option>
+
+                <option value="inactive">
+                    Inactive
+                </option>
+
+                <option value="pending">
+                    Pending Verification
+                </option>
+
+            </select>
+
+
+            <select id="typeFilter">
+
+                <option value="all">
+                    All Types
+                </option>
+
+                <option value="hostel">
+                    Hostel
+                </option>
+
+                <option value="pg">
+                    PG
+                </option>
+
+                <option value="coliving">
+                    Co-Living
+                </option>
+
+            </select>
+
+
+            <button
+                class="clear-filters"
+                onclick="clearFilters()">
+
+                Clear
+
+            </button>
+
+        </section>
+
+
+
+        <!-- ================= PROPERTY LIST ================= -->
+
+        <section
+            id="hostelList"
+            class="hostel-list">
+
+
+            <!-- PROPERTY 1 -->
+
+            <article
+                class="owner-hostel-card"
+                data-name="UrbanNest Premium Hostel"
+                data-location="Madhapur Hyderabad"
+                data-status="active"
+                data-type="hostel">
+
+
+                <div class="owner-hostel-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80"
+                        alt="UrbanNest Premium Hostel">
+
+                    <span class="status-badge active">
+                        Active
+                    </span>
+
+                </div>
+
+
+                <div class="owner-hostel-content">
+
+
+                    <div class="hostel-card-top">
+
+                        <div>
+
+                            <h2>
+                                UrbanNest Premium Hostel
+                            </h2>
+
+                            <p>
+                                📍 Madhapur, Hyderabad
+                            </p>
+
+                        </div>
+
+                        <span class="type-badge">
+                            Hostel
+                        </span>
+
+                    </div>
+
+
+                    <div class="hostel-metrics">
+
+
+                        <div>
+
+                            <span>
+                                Rooms
+                            </span>
+
+                            <strong>
+                                20
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Occupied
+                            </span>
+
+                            <strong>
+                                38 / 48
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Available
+                            </span>
+
+                            <strong class="available">
+                                10
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Starting Rent
+                            </span>
+
+                            <strong>
+                                ₹6,500
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="occupancy-section">
+
+                        <div class="occupancy-title">
+
+                            <span>
+                                Occupancy
+                            </span>
+
+                            <strong>
+                                76%
+                            </strong>
+
+                        </div>
+
+                        <div class="hostel-progress">
+
+                            <span style="width:76%"></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hostel-card-footer">
+
+                        <small>
+                            Updated 2 hours ago
+                        </small>
+
+
+                        <div class="hostel-actions">
+
+                            <button
+                                onclick="viewHostel('UrbanNest Premium Hostel')">
+
+                                View
+
+                            </button>
+
+                            <button
+                                onclick="editHostel('UrbanNest Premium Hostel')">
+
+                                Edit
+
+                            </button>
+
+                            <a href="rooms.html"
+                               class="primary-action">
+
+                                Manage Rooms
+
+                            </a>
+
+                            <button
+                                class="more-button"
+                                onclick="toggleMenu(this)">
+
+                                ⋮
+
+                            </button>
+
+                            <div class="action-menu">
+
+                                <button
+                                    onclick="toggleProperty(this, 'UrbanNest Premium Hostel')">
+
+                                    Deactivate Property
+
+                                </button>
+
+                                <button
+                                    onclick="duplicateHostel('UrbanNest Premium Hostel')">
+
+                                    Duplicate
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- PROPERTY 2 -->
+
+            <article
+                class="owner-hostel-card"
+                data-name="StudentHub Residency"
+                data-location="Gachibowli Hyderabad"
+                data-status="active"
+                data-type="hostel">
+
+
+                <div class="owner-hostel-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=80"
+                        alt="StudentHub Residency">
+
+                    <span class="status-badge active">
+                        Active
+                    </span>
+
+                </div>
+
+
+                <div class="owner-hostel-content">
+
+
+                    <div class="hostel-card-top">
+
+                        <div>
+
+                            <h2>
+                                StudentHub Residency
+                            </h2>
+
+                            <p>
+                                📍 Gachibowli, Hyderabad
+                            </p>
+
+                        </div>
+
+                        <span class="type-badge">
+                            Hostel
+                        </span>
+
+                    </div>
+
+
+                    <div class="hostel-metrics">
+
+                        <div>
+
+                            <span>
+                                Rooms
+                            </span>
+
+                            <strong>
+                                16
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Occupied
+                            </span>
+
+                            <strong>
+                                27 / 32
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Available
+                            </span>
+
+                            <strong class="available">
+                                5
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Starting Rent
+                            </span>
+
+                            <strong>
+                                ₹7,000
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="occupancy-section">
+
+                        <div class="occupancy-title">
+
+                            <span>
+                                Occupancy
+                            </span>
+
+                            <strong>
+                                84%
+                            </strong>
+
+                        </div>
+
+                        <div class="hostel-progress">
+
+                            <span style="width:84%"></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hostel-card-footer">
+
+                        <small>
+                            Updated yesterday
+                        </small>
+
+
+                        <div class="hostel-actions">
+
+                            <button
+                                onclick="viewHostel('StudentHub Residency')">
+
+                                View
+
+                            </button>
+
+                            <button
+                                onclick="editHostel('StudentHub Residency')">
+
+                                Edit
+
+                            </button>
+
+                            <a href="rooms.html"
+                               class="primary-action">
+
+                                Manage Rooms
+
+                            </a>
+
+                            <button
+                                class="more-button"
+                                onclick="toggleMenu(this)">
+
+                                ⋮
+
+                            </button>
+
+                            <div class="action-menu">
+
+                                <button
+                                    onclick="toggleProperty(this, 'StudentHub Residency')">
+
+                                    Deactivate Property
+
+                                </button>
+
+                                <button
+                                    onclick="duplicateHostel('StudentHub Residency')">
+
+                                    Duplicate
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- PROPERTY 3 -->
+
+            <article
+                class="owner-hostel-card"
+                data-name="GreenStay PG"
+                data-location="Kondapur Hyderabad"
+                data-status="active"
+                data-type="pg">
+
+
+                <div class="owner-hostel-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80"
+                        alt="GreenStay PG">
+
+                    <span class="status-badge active">
+                        Active
+                    </span>
+
+                </div>
+
+
+                <div class="owner-hostel-content">
+
+
+                    <div class="hostel-card-top">
+
+                        <div>
+
+                            <h2>
+                                GreenStay PG
+                            </h2>
+
+                            <p>
+                                📍 Kondapur, Hyderabad
+                            </p>
+
+                        </div>
+
+                        <span class="type-badge pg">
+                            PG
+                        </span>
+
+                    </div>
+
+
+                    <div class="hostel-metrics">
+
+                        <div>
+
+                            <span>
+                                Rooms
+                            </span>
+
+                            <strong>
+                                12
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Occupied
+                            </span>
+
+                            <strong>
+                                18 / 24
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Available
+                            </span>
+
+                            <strong class="available">
+                                6
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Starting Rent
+                            </span>
+
+                            <strong>
+                                ₹5,500
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="occupancy-section">
+
+                        <div class="occupancy-title">
+
+                            <span>
+                                Occupancy
+                            </span>
+
+                            <strong>
+                                75%
+                            </strong>
+
+                        </div>
+
+                        <div class="hostel-progress">
+
+                            <span style="width:75%"></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hostel-card-footer">
+
+                        <small>
+                            Updated 3 days ago
+                        </small>
+
+
+                        <div class="hostel-actions">
+
+                            <button
+                                onclick="viewHostel('GreenStay PG')">
+
+                                View
+
+                            </button>
+
+                            <button
+                                onclick="editHostel('GreenStay PG')">
+
+                                Edit
+
+                            </button>
+
+                            <a href="rooms.html"
+                               class="primary-action">
+
+                                Manage Rooms
+
+                            </a>
+
+                            <button
+                                class="more-button"
+                                onclick="toggleMenu(this)">
+
+                                ⋮
+
+                            </button>
+
+                            <div class="action-menu">
+
+                                <button
+                                    onclick="toggleProperty(this, 'GreenStay PG')">
+
+                                    Deactivate Property
+
+                                </button>
+
+                                <button
+                                    onclick="duplicateHostel('GreenStay PG')">
+
+                                    Duplicate
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- PROPERTY 4 -->
+
+            <article
+                class="owner-hostel-card"
+                data-name="Sunrise Student PG"
+                data-location="Kukatpally Hyderabad"
+                data-status="pending"
+                data-type="pg">
+
+
+                <div class="owner-hostel-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80"
+                        alt="Sunrise Student PG">
+
+                    <span class="status-badge pending">
+                        Pending Verification
+                    </span>
+
+                </div>
+
+
+                <div class="owner-hostel-content">
+
+
+                    <div class="hostel-card-top">
+
+                        <div>
+
+                            <h2>
+                                Sunrise Student PG
+                            </h2>
+
+                            <p>
+                                📍 Kukatpally, Hyderabad
+                            </p>
+
+                        </div>
+
+                        <span class="type-badge pg">
+                            PG
+                        </span>
+
+                    </div>
+
+
+                    <div class="hostel-metrics">
+
+                        <div>
+
+                            <span>
+                                Rooms
+                            </span>
+
+                            <strong>
+                                8
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Occupied
+                            </span>
+
+                            <strong>
+                                0 / 16
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Available
+                            </span>
+
+                            <strong class="available">
+                                16
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Starting Rent
+                            </span>
+
+                            <strong>
+                                ₹6,000
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="occupancy-section">
+
+                        <div class="occupancy-title">
+
+                            <span>
+                                Occupancy
+                            </span>
+
+                            <strong>
+                                0%
+                            </strong>
+
+                        </div>
+
+                        <div class="hostel-progress">
+
+                            <span style="width:0%"></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hostel-card-footer">
+
+                        <small>
+                            Submitted today
+                        </small>
+
+
+                        <div class="hostel-actions">
+
+                            <button
+                                onclick="viewHostel('Sunrise Student PG')">
+
+                                View
+
+                            </button>
+
+                            <button
+                                onclick="editHostel('Sunrise Student PG')">
+
+                                Edit
+
+                            </button>
+
+                            <button
+                                class="primary-action"
+                                onclick="checkVerification()">
+
+                                Verification
+
+                            </button>
+
+                            <button
+                                class="more-button"
+                                onclick="toggleMenu(this)">
+
+                                ⋮
+
+                            </button>
+
+                            <div class="action-menu">
+
+                                <button
+                                    onclick="duplicateHostel('Sunrise Student PG')">
+
+                                    Duplicate
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- EMPTY STATE -->
+
+        <div
+            id="emptyState"
+            class="empty-hostels">
+
+            <div>
+                🏠
+            </div>
+
+            <h2>
+                No properties found
+            </h2>
+
+            <p>
+                Try changing your search or filter.
+            </p>
+
+            <button onclick="clearFilters()">
+                Clear Filters
+            </button>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script src="../../js/owner.js"></script>
+
+<script src="../../js/owner-hostels.js"></script>
+
+
+</body>
+
+</html>

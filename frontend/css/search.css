@@ -1,0 +1,837 @@
+/* =========================================================
+   HOSTELVISION SEARCH PAGE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #f6f7f9;
+}
+
+
+/* =========================================================
+   SEARCH HEADER
+========================================================= */
+
+.search-header {
+    background: #172033;
+    color: white;
+    padding: 35px 0;
+}
+
+.search-header-container {
+    max-width: 1280px;
+    margin: auto;
+    padding: 0 25px;
+}
+
+.breadcrumb {
+    color: #aeb6c4;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.search-header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.search-subtitle {
+    color: #c4cad4;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   LARGE SEARCH
+========================================================= */
+
+.large-search {
+    margin-top: 25px;
+
+    background: white;
+
+    border-radius: 8px;
+
+    padding: 8px;
+
+    display: flex;
+
+    max-width: 950px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, .18);
+}
+
+.large-search-input,
+.property-select {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 8px 16px;
+
+    color: #172033;
+}
+
+.large-search-input {
+    flex: 2;
+
+    border-right: 1px solid #e4e6e9;
+}
+
+.property-select {
+    flex: 1;
+}
+
+.large-search-input input,
+.property-select select {
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 14px;
+
+    color: #172033;
+}
+
+.large-search-input input::placeholder {
+    color: #999;
+}
+
+.main-search-btn {
+    border: none;
+
+    background: #e63946;
+
+    color: white;
+
+    padding: 0 30px;
+
+    border-radius: 6px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.main-search-btn:hover {
+    background: #c92f3b;
+}
+
+
+/* =========================================================
+   MAIN SEARCH CONTAINER
+========================================================= */
+
+.search-container {
+    max-width: 1280px;
+
+    margin: auto;
+
+    padding: 35px 25px 70px;
+}
+
+
+/* =========================================================
+   RESULT TOP BAR
+========================================================= */
+
+.result-topbar {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.result-topbar h2 {
+    font-size: 22px;
+
+    margin-bottom: 5px;
+}
+
+.result-topbar h2 span {
+    color: #e63946;
+}
+
+.result-topbar p {
+    color: #777;
+
+    font-size: 13px;
+}
+
+.sort-box {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.sort-box label {
+    color: #777;
+
+    font-size: 13px;
+}
+
+.sort-box select {
+    padding: 9px 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+
+    background: white;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MAIN TWO COLUMN LAYOUT
+========================================================= */
+
+.search-layout {
+    display: grid;
+
+    grid-template-columns: 245px 1fr;
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   FILTER SIDEBAR
+========================================================= */
+
+.filter-sidebar {
+    background: white;
+
+    border: 1px solid #e2e5e9;
+
+    border-radius: 9px;
+
+    padding: 20px;
+
+    position: sticky;
+
+    top: 90px;
+}
+
+.filter-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 17px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.filter-heading h3 {
+    font-size: 17px;
+}
+
+.filter-heading button {
+    border: none;
+
+    background: none;
+
+    color: #e63946;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   FILTER SECTIONS
+========================================================= */
+
+.filter-section {
+    padding: 18px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.filter-section:last-child {
+    border-bottom: none;
+}
+
+.filter-section h4 {
+    font-size: 13px;
+
+    margin-bottom: 13px;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.price-values {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 11px;
+
+    color: #666;
+
+    margin-bottom: 10px;
+}
+
+.range-container {
+    position: relative;
+
+    height: 25px;
+}
+
+.range-container input {
+    position: absolute;
+
+    width: 100%;
+
+    pointer-events: none;
+
+    appearance: none;
+
+    height: 4px;
+
+    background: #e5e7eb;
+
+    outline: none;
+}
+
+.range-container input::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 15px;
+
+    height: 15px;
+
+    background: #e63946;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    border: 2px solid white;
+
+    box-shadow: 0 0 0 1px #e63946;
+}
+
+
+/* =========================================================
+   CHECKBOX / RADIO
+========================================================= */
+
+.check-option {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin: 10px 0;
+
+    cursor: pointer;
+
+    color: #555;
+
+    font-size: 12px;
+}
+
+.check-option input {
+    accent-color: #e63946;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   ACTIVE FILTERS
+========================================================= */
+
+.active-filters {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-bottom: 15px;
+}
+
+.filter-tag {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    background: #fff0f1;
+
+    color: #e63946;
+
+    border: 1px solid #ffd4d7;
+
+    padding: 6px 9px;
+
+    border-radius: 15px;
+
+    font-size: 11px;
+}
+
+.filter-tag button {
+    border: none;
+
+    background: none;
+
+    color: #e63946;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   HOSTEL RESULTS
+========================================================= */
+
+.hostel-results {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   HOSTEL CARD
+========================================================= */
+
+.search-hostel-card {
+    background: white;
+
+    border: 1px solid #e2e5e9;
+
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    transition: .25s;
+}
+
+.search-hostel-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, .09);
+}
+
+
+/* =========================================================
+   HOSTEL IMAGE
+========================================================= */
+
+.search-image {
+    height: 190px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #ddd;
+}
+
+.search-image img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform .35s;
+}
+
+.search-hostel-card:hover .search-image img {
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.verified-badge {
+    position: absolute;
+
+    top: 10px;
+
+    left: 10px;
+
+    background: #16834b;
+
+    color: white;
+
+    padding: 5px 8px;
+
+    border-radius: 4px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+.favorite-btn {
+    position: absolute;
+
+    right: 10px;
+
+    top: 10px;
+
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, .12);
+}
+
+.favorite-btn.active {
+    color: #e63946;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.search-card-content {
+    padding: 14px;
+}
+
+.search-card-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 9px;
+}
+
+.rating-badge {
+    background: #e9f8ef;
+
+    color: #137845;
+
+    padding: 4px 7px;
+
+    border-radius: 4px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+.availability {
+    color: #16834b;
+
+    font-size: 10px;
+}
+
+.search-card-content h3 {
+    font-size: 15px;
+
+    margin-bottom: 7px;
+
+    color: #172033;
+}
+
+.card-location {
+    color: #777;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.card-tags {
+    display: flex;
+
+    gap: 5px;
+
+    flex-wrap: wrap;
+
+    margin-top: 12px;
+}
+
+.card-tags span {
+    background: #f1f3f5;
+
+    color: #666;
+
+    padding: 5px 7px;
+
+    border-radius: 4px;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   CARD BOTTOM
+========================================================= */
+
+.card-bottom {
+    border-top: 1px solid #eee;
+
+    margin-top: 14px;
+
+    padding-top: 13px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.card-price strong {
+    font-size: 16px;
+
+    color: #172033;
+}
+
+.card-price span {
+    font-size: 9px;
+
+    color: #888;
+}
+
+.details-btn {
+    background: #fff0f1;
+
+    color: #e63946;
+
+    padding: 8px 10px;
+
+    border-radius: 5px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+.details-btn:hover {
+    background: #e63946;
+
+    color: white;
+}
+
+
+/* =========================================================
+   NO RESULTS
+========================================================= */
+
+.no-results {
+    text-align: center;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    padding: 60px 20px;
+
+    grid-column: 1 / -1;
+}
+
+.no-results-icon {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+.no-results h3 {
+    font-size: 20px;
+
+    margin-bottom: 7px;
+}
+
+.no-results p {
+    color: #777;
+
+    font-size: 13px;
+
+    margin-bottom: 18px;
+}
+
+.no-results button {
+    border: none;
+
+    background: #e63946;
+
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   LOAD MORE
+========================================================= */
+
+.load-more-container {
+    text-align: center;
+
+    margin-top: 30px;
+}
+
+.load-more {
+    background: white;
+
+    border: 1px solid #e63946;
+
+    color: #e63946;
+
+    padding: 12px 25px;
+
+    border-radius: 6px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.load-more:hover {
+    background: #e63946;
+
+    color: white;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .hostel-results {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .search-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-sidebar {
+        position: static;
+    }
+
+    .hostel-results {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .large-search {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .large-search-input {
+        border-right: none;
+
+        border-bottom: 1px solid #eee;
+    }
+
+    .main-search-btn {
+        padding: 13px;
+    }
+
+    .result-topbar {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .sort-box {
+        width: 100%;
+    }
+
+    .sort-box select {
+        flex: 1;
+    }
+
+    .hostel-results {
+        grid-template-columns: 1fr;
+    }
+
+    .search-header h1 {
+        font-size: 25px;
+    }
+
+}

@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Search Hostels - HostelVision</title>
+
+    <!-- Main website CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Search page CSS -->
+    <link rel="stylesheet" href="../css/search.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <!-- LOGO -->
+        <a href="../index.html" class="logo">
+            Hostel<span>Vision</span>
+        </a>
+
+
+        <!-- LOCATION -->
+        <div class="location">
+
+            <span>📍</span>
+
+            <div>
+                <small>Your location</small>
+                <strong id="currentLocation">
+                    Hyderabad
+                </strong>
+            </div>
+
+            <span class="arrow">⌄</span>
+
+        </div>
+
+
+        <!-- SEARCH -->
+        <div class="search-box">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search hostels, PGs, locations..."
+            >
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+        <nav class="nav-links">
+
+            <a href="../index.html">
+                Home
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+            <a href="register.html"
+               class="register-btn">
+                Register
+            </a>
+
+        </nav>
+
+
+        <button class="mobile-menu">
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     SEARCH HEADER
+===================================================== -->
+
+<section class="search-header">
+
+    <div class="search-header-container">
+
+        <div>
+
+            <p class="breadcrumb">
+                Home / Search
+            </p>
+
+            <h1>
+                Find your perfect stay
+            </h1>
+
+            <p class="search-subtitle">
+                Discover hostels and PGs that match your
+                lifestyle and budget.
+            </p>
+
+        </div>
+
+
+        <!-- SEARCH FORM -->
+
+        <div class="large-search">
+
+            <div class="large-search-input">
+
+                <span>📍</span>
+
+                <input
+                    type="text"
+                    id="locationSearch"
+                    placeholder="Search city, area or college"
+                    value="Hyderabad"
+                >
+
+            </div>
+
+
+            <div class="property-select">
+
+                <span>🏠</span>
+
+                <select id="propertyType">
+
+                    <option value="all">
+                        All Properties
+                    </option>
+
+                    <option value="boys">
+                        Boys Hostel
+                    </option>
+
+                    <option value="girls">
+                        Girls Hostel
+                    </option>
+
+                    <option value="coliving">
+                        Co-Living
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="main-search-btn"
+                id="mainSearchBtn">
+
+                Search
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN SEARCH AREA
+===================================================== -->
+
+<main class="search-container">
+
+
+    <!-- ===============================================
+         TOP RESULT BAR
+    ================================================ -->
+
+    <div class="result-topbar">
+
+        <div>
+
+            <h2>
+                Hostels in
+                <span id="resultLocation">
+                    Hyderabad
+                </span>
+            </h2>
+
+            <p id="resultCount">
+                24 properties found
+            </p>
+
+        </div>
+
+
+        <!-- SORT -->
+
+        <div class="sort-box">
+
+            <label for="sortSelect">
+                Sort by:
+            </label>
+
+            <select id="sortSelect">
+
+                <option value="recommended">
+                    Recommended
+                </option>
+
+                <option value="price-low">
+                    Price: Low to High
+                </option>
+
+                <option value="price-high">
+                    Price: High to Low
+                </option>
+
+                <option value="rating">
+                    Highest Rated
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===============================================
+         SEARCH CONTENT
+    ================================================ -->
+
+    <div class="search-layout">
+
+
+        <!-- ===========================================
+             FILTER SIDEBAR
+        ============================================ -->
+
+        <aside class="filter-sidebar">
+
+
+            <div class="filter-heading">
+
+                <h3>
+                    Filters
+                </h3>
+
+                <button id="clearFilters">
+                    Clear All
+                </button>
+
+            </div>
+
+
+            <!-- PRICE -->
+
+            <div class="filter-section">
+
+                <h4>
+                    Monthly Budget
+                </h4>
+
+
+                <div class="price-values">
+
+                    <span>
+                        ₹<span id="minPriceValue">0</span>
+                    </span>
+
+                    <span>
+                        ₹<span id="maxPriceValue">20,000</span>
+                    </span>
+
+                </div>
+
+
+                <div class="range-container">
+
+                    <input
+                        type="range"
+                        id="minPrice"
+                        min="0"
+                        max="20000"
+                        value="0"
+                        step="500"
+                    >
+
+                    <input
+                        type="range"
+                        id="maxPrice"
+                        min="0"
+                        max="20000"
+                        value="20000"
+                        step="500"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GENDER -->
+
+            <div class="filter-section">
+
+                <h4>
+                    Property Type
+                </h4>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="type-filter"
+                        value="boys"
+                    >
+
+                    <span>
+                        Boys Hostel
+                    </span>
+
+                </label>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="type-filter"
+                        value="girls"
+                    >
+
+                    <span>
+                        Girls Hostel
+                    </span>
+
+                </label>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="type-filter"
+                        value="coliving"
+                    >
+
+                    <span>
+                        Co-Living
+                    </span>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- ROOM TYPE -->
+
+            <div class="filter-section">
+
+                <h4>
+                    Room Type
+                </h4>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="room-filter"
+                        value="single"
+                    >
+
+                    <span>
+                        Single Room
+                    </span>
+
+                </label>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="room-filter"
+                        value="double"
+                    >
+
+                    <span>
+                        Double Sharing
+                    </span>
+
+                </label>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="room-filter"
+                        value="triple"
+                    >
+
+                    <span>
+                        Triple Sharing
+                    </span>
+
+                </label>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="room-filter"
+                        value="four"
+                    >
+
+                    <span>
+                        4+ Sharing
+                    </span>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- FACILITIES -->
+
+            <div class="filter-section">
+
+                <h4>
+                    Facilities
+                </h4>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="facility-filter"
+                        value="wifi"
+                    >
+
+                    <span>
+                        WiFi
+                    </span>
+
+                </label>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="facility-filter"
+                        value="food"
+                    >
+
+                    <span>
+                        Food
+                    </span>
+
+                </label>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="facility-filter"
+                        value="ac"
+                    >
+
+                    <span>
+                        AC
+                    </span>
+
+                </label>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="facility-filter"
+                        value="laundry"
+                    >
+
+                    <span>
+                        Laundry
+                    </span>
+
+                </label>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="facility-filter"
+                        value="parking"
+                    >
+
+                    <span>
+                        Parking
+                    </span>
+
+                </label>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="checkbox"
+                        class="facility-filter"
+                        value="gym"
+                    >
+
+                    <span>
+                        Gym
+                    </span>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- RATING -->
+
+            <div class="filter-section">
+
+                <h4>
+                    Rating
+                </h4>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="radio"
+                        name="rating"
+                        value="4"
+                    >
+
+                    <span>
+                        ⭐ 4+ Rating
+                    </span>
+
+                </label>
+
+
+                <label class="check-option">
+
+                    <input
+                        type="radio"
+                        name="rating"
+                        value="3"
+                    >
+
+                    <span>
+                        ⭐ 3+ Rating
+                    </span>
+
+                </label>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- ===========================================
+             RESULTS
+        ============================================ -->
+
+        <section class="results-area">
+
+
+            <!-- ACTIVE FILTERS -->
+
+            <div
+                class="active-filters"
+                id="activeFilters">
+
+            </div>
+
+
+
+            <!-- HOSTEL GRID -->
+
+            <div
+                class="hostel-results"
+                id="hostelResults">
+
+
+                <!-- =====================================
+                     HOSTEL CARD 1
+                ====================================== -->
+
+                <article
+                    class="search-hostel-card"
+
+                    data-type="boys"
+                    data-price="7500"
+                    data-rating="4.7"
+                    data-room="double"
+                    data-facilities="wifi,ac,food,laundry"
+                >
+
+                    <div class="search-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80"
+                            alt="UrbanNest hostel"
+                        >
+
+                        <span class="verified-badge">
+                            ✓ Verified
+                        </span>
+
+                        <button
+                            class="favorite-btn"
+                            aria-label="Add to favorites">
+
+                            ♡
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="search-card-content">
+
+
+                        <div class="search-card-top">
+
+                            <span class="rating-badge">
+                                ★ 4.7
+                            </span>
+
+                            <span class="availability">
+                                ● 8 beds left
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            UrbanNest Premium Hostel
+                        </h3>
+
+
+                        <p class="card-location">
+                            📍 Madhapur, Hyderabad
+                        </p>
+
+
+                        <div class="card-tags">
+
+                            <span>Double Sharing</span>
+                            <span>WiFi</span>
+                            <span>AC</span>
+                            <span>Food</span>
+
+                        </div>
+
+
+                        <div class="card-bottom">
+
+                            <div class="card-price">
+
+                                <strong>
+                                    ₹7,500
+                                </strong>
+
+                                <span>
+                                    / month
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="hostel-details.html"
+                                class="details-btn">
+
+                                View Details
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =====================================
+                     HOSTEL CARD 2
+                ====================================== -->
+
+                <article
+                    class="search-hostel-card"
+
+                    data-type="boys"
+                    data-price="6800"
+                    data-rating="4.5"
+                    data-room="triple"
+                    data-facilities="wifi,food,laundry"
+                >
+
+                    <div class="search-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=900&q=80"
+                            alt="StudentHub hostel"
+                        >
+
+                        <span class="verified-badge">
+                            ✓ Verified
+                        </span>
+
+                        <button class="favorite-btn">
+                            ♡
+                        </button>
+
+                    </div>
+
+
+                    <div class="search-card-content">
+
+                        <div class="search-card-top">
+
+                            <span class="rating-badge">
+                                ★ 4.5
+                            </span>
+
+                            <span class="availability">
+                                ● 5 beds left
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            StudentHub Residency
+                        </h3>
+
+
+                        <p class="card-location">
+                            📍 Gachibowli, Hyderabad
+                        </p>
+
+
+                        <div class="card-tags">
+
+                            <span>Triple Sharing</span>
+                            <span>WiFi</span>
+                            <span>Food</span>
+                            <span>Laundry</span>
+
+                        </div>
+
+
+                        <div class="card-bottom">
+
+                            <div class="card-price">
+
+                                <strong>
+                                    ₹6,800
+                                </strong>
+
+                                <span>
+                                    / month
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="hostel-details.html"
+                                class="details-btn">
+
+                                View Details
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =====================================
+                     HOSTEL CARD 3
+                ====================================== -->
+
+                <article
+                    class="search-hostel-card"
+
+                    data-type="girls"
+                    data-price="8200"
+                    data-rating="4.6"
+                    data-room="double"
+                    data-facilities="wifi,food,parking"
+                >
+
+                    <div class="search-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80"
+                            alt="GreenStay hostel"
+                        >
+
+                        <span class="verified-badge">
+                            ✓ Verified
+                        </span>
+
+                        <button class="favorite-btn">
+                            ♡
+                        </button>
+
+                    </div>
+
+
+                    <div class="search-card-content">
+
+                        <div class="search-card-top">
+
+                            <span class="rating-badge">
+                                ★ 4.6
+                            </span>
+
+                            <span class="availability">
+                                ● 6 beds left
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            GreenStay PG
+                        </h3>
+
+
+                        <p class="card-location">
+                            📍 Kondapur, Hyderabad
+                        </p>
+
+
+                        <div class="card-tags">
+
+                            <span>Double Sharing</span>
+                            <span>WiFi</span>
+                            <span>Food</span>
+                            <span>Parking</span>
+
+                        </div>
+
+
+                        <div class="card-bottom">
+
+                            <div class="card-price">
+
+                                <strong>
+                                    ₹8,200
+                                </strong>
+
+                                <span>
+                                    / month
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="hostel-details.html"
+                                class="details-btn">
+
+                                View Details
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =====================================
+                     HOSTEL CARD 4
+                ====================================== -->
+
+                <article
+                    class="search-hostel-card"
+
+                    data-type="coliving"
+                    data-price="9000"
+                    data-rating="4.4"
+                    data-room="single"
+                    data-facilities="ac,wifi,gym"
+                >
+
+                    <div class="search-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=900&q=80"
+                            alt="Comfort Living PG"
+                        >
+
+                        <span class="verified-badge">
+                            ✓ Verified
+                        </span>
+
+                        <button class="favorite-btn">
+                            ♡
+                        </button>
+
+                    </div>
+
+
+                    <div class="search-card-content">
+
+                        <div class="search-card-top">
+
+                            <span class="rating-badge">
+                                ★ 4.4
+                            </span>
+
+                            <span class="availability">
+                                ● 3 beds left
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Comfort Living PG
+                        </h3>
+
+
+                        <p class="card-location">
+                            📍 Hitech City, Hyderabad
+                        </p>
+
+
+                        <div class="card-tags">
+
+                            <span>Single Room</span>
+                            <span>AC</span>
+                            <span>WiFi</span>
+                            <span>Gym</span>
+
+                        </div>
+
+
+                        <div class="card-bottom">
+
+                            <div class="card-price">
+
+                                <strong>
+                                    ₹9,000
+                                </strong>
+
+                                <span>
+                                    / month
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="hostel-details.html"
+                                class="details-btn">
+
+                                View Details
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =====================================
+                     HOSTEL CARD 5
+                ====================================== -->
+
+                <article
+                    class="search-hostel-card"
+
+                    data-type="boys"
+                    data-price="5500"
+                    data-rating="4.2"
+                    data-room="four"
+                    data-facilities="wifi,food,parking"
+                >
+
+                    <div class="search-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=900&q=80"
+                            alt="Campus Stay Hostel"
+                        >
+
+                        <span class="verified-badge">
+                            ✓ Verified
+                        </span>
+
+                        <button class="favorite-btn">
+                            ♡
+                        </button>
+
+                    </div>
+
+
+                    <div class="search-card-content">
+
+                        <div class="search-card-top">
+
+                            <span class="rating-badge">
+                                ★ 4.2
+                            </span>
+
+                            <span class="availability">
+                                ● 12 beds left
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Campus Stay Hostel
+                        </h3>
+
+
+                        <p class="card-location">
+                            📍 Kukatpally, Hyderabad
+                        </p>
+
+
+                        <div class="card-tags">
+
+                            <span>4 Sharing</span>
+                            <span>WiFi</span>
+                            <span>Food</span>
+                            <span>Parking</span>
+
+                        </div>
+
+
+                        <div class="card-bottom">
+
+                            <div class="card-price">
+
+                                <strong>
+                                    ₹5,500
+                                </strong>
+
+                                <span>
+                                    / month
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="hostel-details.html"
+                                class="details-btn">
+
+                                View Details
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =====================================
+                     HOSTEL CARD 6
+                ====================================== -->
+
+                <article
+                    class="search-hostel-card"
+
+                    data-type="girls"
+                    data-price="7200"
+                    data-rating="4.8"
+                    data-room="triple"
+                    data-facilities="wifi,ac,food,laundry,gym"
+                >
+
+                    <div class="search-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80"
+                            alt="Elite Women Residency"
+                        >
+
+                        <span class="verified-badge">
+                            ✓ Verified
+                        </span>
+
+                        <button class="favorite-btn">
+                            ♡
+                        </button>
+
+                    </div>
+
+
+                    <div class="search-card-content">
+
+                        <div class="search-card-top">
+
+                            <span class="rating-badge">
+                                ★ 4.8
+                            </span>
+
+                            <span class="availability">
+                                ● 4 beds left
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Elite Women Residency
+                        </h3>
+
+
+                        <p class="card-location">
+                            📍 Begumpet, Hyderabad
+                        </p>
+
+
+                        <div class="card-tags">
+
+                            <span>Triple Sharing</span>
+                            <span>AC</span>
+                            <span>Food</span>
+                            <span>Laundry</span>
+
+                        </div>
+
+
+                        <div class="card-bottom">
+
+                            <div class="card-price">
+
+                                <strong>
+                                    ₹7,200
+                                </strong>
+
+                                <span>
+                                    / month
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="hostel-details.html"
+                                class="details-btn">
+
+                                View Details
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =====================================
+                     HOSTEL CARD 7
+                ====================================== -->
+
+                <article
+                    class="search-hostel-card"
+
+                    data-type="coliving"
+                    data-price="10500"
+                    data-rating="4.3"
+                    data-room="single"
+                    data-facilities="wifi,ac,parking,gym"
+                >
+
+                    <div class="search-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80"
+                            alt="Urban Co Living"
+                        >
+
+                        <span class="verified-badge">
+                            ✓ Verified
+                        </span>
+
+                        <button class="favorite-btn">
+                            ♡
+                        </button>
+
+                    </div>
+
+
+                    <div class="search-card-content">
+
+                        <div class="search-card-top">
+
+                            <span class="rating-badge">
+                                ★ 4.3
+                            </span>
+
+                            <span class="availability">
+                                ● 7 beds left
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Urban Co-Living Spaces
+                        </h3>
+
+
+                        <p class="card-location">
+                            📍 Jubilee Hills, Hyderabad
+                        </p>
+
+
+                        <div class="card-tags">
+
+                            <span>Single Room</span>
+                            <span>AC</span>
+                            <span>WiFi</span>
+                            <span>Gym</span>
+
+                        </div>
+
+
+                        <div class="card-bottom">
+
+                            <div class="card-price">
+
+                                <strong>
+                                    ₹10,500
+                                </strong>
+
+                                <span>
+                                    / month
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="hostel-details.html"
+                                class="details-btn">
+
+                                View Details
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =====================================
+                     HOSTEL CARD 8
+                ====================================== -->
+
+                <article
+                    class="search-hostel-card"
+
+                    data-type="boys"
+                    data-price="6200"
+                    data-rating="4.1"
+                    data-room="double"
+                    data-facilities="wifi,food"
+                >
+
+                    <div class="search-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=80"
+                            alt="Student Comfort Hostel"
+                        >
+
+                        <span class="verified-badge">
+                            ✓ Verified
+                        </span>
+
+                        <button class="favorite-btn">
+                            ♡
+                        </button>
+
+                    </div>
+
+
+                    <div class="search-card-content">
+
+                        <div class="search-card-top">
+
+                            <span class="rating-badge">
+                                ★ 4.1
+                            </span>
+
+                            <span class="availability">
+                                ● 10 beds left
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Student Comfort Hostel
+                        </h3>
+
+
+                        <p class="card-location">
+                            📍 Ameerpet, Hyderabad
+                        </p>
+
+
+                        <div class="card-tags">
+
+                            <span>Double Sharing</span>
+                            <span>WiFi</span>
+                            <span>Food</span>
+
+                        </div>
+
+
+                        <div class="card-bottom">
+
+                            <div class="card-price">
+
+                                <strong>
+                                    ₹6,200
+                                </strong>
+
+                                <span>
+                                    / month
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="hostel-details.html"
+                                class="details-btn">
+
+                                View Details
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+
+            <!-- NO RESULTS -->
+
+            <div
+                class="no-results"
+                id="noResults"
+                style="display:none;">
+
+                <div class="no-results-icon">
+                    🏠
+                </div>
+
+                <h3>
+                    No hostels found
+                </h3>
+
+                <p>
+                    Try changing your filters or search location.
+                </p>
+
+                <button id="resetSearch">
+                    Clear Filters
+                </button>
+
+            </div>
+
+
+            <!-- LOAD MORE -->
+
+            <div class="load-more-container">
+
+                <button
+                    class="load-more"
+                    id="loadMore">
+
+                    Load More Hostels
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <h2>
+                Hostel<span>Vision</span>
+            </h2>
+
+            <p>
+                Find your place.
+                Live your journey.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                HostelVision
+            </h4>
+
+            <a href="../index.html">
+                Home
+            </a>
+
+            <a href="#">
+                About Us
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Customers
+            </h4>
+
+            <a href="search.html">
+                Explore Hostels
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+            <a href="register.html">
+                Register
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Owners
+            </h4>
+
+            <a href="register.html">
+                Become a Partner
+            </a>
+
+            <a href="login.html">
+                Owner Login
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 HostelVision. All rights reserved.
+        </p>
+
+        <p>
+            Made for students & young professionals.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- SEARCH JAVASCRIPT -->
+
+<script src="../js/search.js"></script>
+
+</body>
+
+</html>

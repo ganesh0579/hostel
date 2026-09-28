@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HostelVision - Find Your Perfect Stay</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="index.html" class="logo">
+            Hostel<span>Vision</span>
+        </a>
+
+        <div class="location">
+            <span>📍</span>
+            <div>
+                <small>Your location</small>
+                <strong>Hyderabad</strong>
+            </div>
+            <span class="arrow">⌄</span>
+        </div>
+
+        <div class="search-box">
+
+            <span class="search-icon">🔍</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search hostels, PGs, locations..."
+            >
+
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="pages/search.html">Explore</a>
+
+            <a href="pages/login.html">
+                Login
+            </a>
+
+            <a href="pages/register.html"
+               class="register-btn">
+                Register
+            </a>
+
+        </nav>
+
+        <button class="mobile-menu" id="mobileMenu">
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="hero-tag">
+            🏠 India's smarter hostel discovery platform
+        </span>
+
+        <h1>
+            Find a place that
+            <span>feels like home.</span>
+        </h1>
+
+        <p>
+            Discover verified hostels and PGs near your college,
+            workplace or city.
+        </p>
+
+
+        <div class="hero-search">
+
+            <div class="search-location">
+
+                <span>📍</span>
+
+                <div>
+                    <small>Location</small>
+
+                    <input
+                        id="heroLocation"
+                        type="text"
+                        placeholder="Enter city or area"
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="search-type">
+
+                <span>🏠</span>
+
+                <div>
+                    <small>Property type</small>
+
+                    <select id="propertyType">
+
+                        <option value="all">
+                            Hostel / PG
+                        </option>
+
+                        <option value="boys">
+                            Boys Hostel
+                        </option>
+
+                        <option value="girls">
+                            Girls Hostel
+                        </option>
+
+                        <option value="co-living">
+                            Co-Living
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="search-button"
+                onclick="searchHostels()">
+
+                Search
+
+            </button>
+
+        </div>
+
+
+        <div class="popular-searches">
+
+            <span>Popular:</span>
+
+            <button>Hyderabad</button>
+            <button>Bangalore</button>
+            <button>Chennai</button>
+            <button>Vijayawada</button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-container">
+
+
+<!-- ================= QUICK CATEGORIES ================= -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <div>
+            <h2>Explore by category</h2>
+            <p>Find a stay that matches your needs</p>
+        </div>
+
+        <a href="pages/search.html">
+            View All →
+        </a>
+
+    </div>
+
+
+    <div class="category-grid">
+
+        <div class="category-card">
+
+            <div class="category-icon boys">
+                👨
+            </div>
+
+            <h3>Boys Hostel</h3>
+
+            <p>Comfortable stays for boys</p>
+
+        </div>
+
+
+        <div class="category-card">
+
+            <div class="category-icon girls">
+                👩
+            </div>
+
+            <h3>Girls Hostel</h3>
+
+            <p>Safe and comfortable stays</p>
+
+        </div>
+
+
+        <div class="category-card">
+
+            <div class="category-icon coliving">
+                🏢
+            </div>
+
+            <h3>Co-Living</h3>
+
+            <p>Modern shared living spaces</p>
+
+        </div>
+
+
+        <div class="category-card">
+
+            <div class="category-icon student">
+                🎓
+            </div>
+
+            <h3>Student Stay</h3>
+
+            <p>Near colleges & universities</p>
+
+        </div>
+
+
+        <div class="category-card">
+
+            <div class="category-icon working">
+                💼
+            </div>
+
+            <h3>Working Professionals</h3>
+
+            <p>Stay near your workplace</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= POPULAR HOSTELS ================= -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Popular hostels</h2>
+
+            <p>
+                Most searched stays this week
+            </p>
+
+        </div>
+
+        <a href="pages/search.html">
+            See all →
+        </a>
+
+    </div>
+
+
+    <div class="hostel-row">
+
+
+        <!-- CARD 1 -->
+
+        <article class="hostel-card">
+
+            <div class="image-container">
+
+                <img
+                    src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+                    alt="Hostel room"
+                >
+
+                <span class="verified">
+                    ✓ Verified
+                </span>
+
+                <button class="heart">
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div class="hostel-info">
+
+                <div class="rating">
+                    ★ 4.7
+                </div>
+
+                <h3>
+                    UrbanNest Premium Hostel
+                </h3>
+
+                <p class="location-text">
+                    📍 Madhapur, Hyderabad
+                </p>
+
+                <div class="facilities">
+
+                    <span>WiFi</span>
+                    <span>AC</span>
+                    <span>Food</span>
+
+                </div>
+
+
+                <div class="price-row">
+
+                    <div>
+
+                        <strong>
+                            ₹7,500
+                        </strong>
+
+                        <small>
+                            / month
+                        </small>
+
+                    </div>
+
+                    <a href="pages/hostel-details.html">
+                        View →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- CARD 2 -->
+
+        <article class="hostel-card">
+
+            <div class="image-container">
+
+                <img
+                    src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80"
+                    alt="Hostel"
+                >
+
+                <span class="verified">
+                    ✓ Verified
+                </span>
+
+                <button class="heart">
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div class="hostel-info">
+
+                <div class="rating">
+                    ★ 4.5
+                </div>
+
+                <h3>
+                    StudentHub Residency
+                </h3>
+
+                <p class="location-text">
+                    📍 Gachibowli, Hyderabad
+                </p>
+
+                <div class="facilities">
+
+                    <span>WiFi</span>
+                    <span>Food</span>
+                    <span>Laundry</span>
+
+                </div>
+
+
+                <div class="price-row">
+
+                    <div>
+
+                        <strong>
+                            ₹6,800
+                        </strong>
+
+                        <small>
+                            / month
+                        </small>
+
+                    </div>
+
+                    <a href="pages/hostel-details.html">
+                        View →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- CARD 3 -->
+
+        <article class="hostel-card">
+
+            <div class="image-container">
+
+                <img
+                    src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80"
+                    alt="Hostel room"
+                >
+
+                <span class="verified">
+                    ✓ Verified
+                </span>
+
+                <button class="heart">
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div class="hostel-info">
+
+                <div class="rating">
+                    ★ 4.6
+                </div>
+
+                <h3>
+                    GreenStay PG
+                </h3>
+
+                <p class="location-text">
+                    📍 Kondapur, Hyderabad
+                </p>
+
+                <div class="facilities">
+
+                    <span>WiFi</span>
+                    <span>Parking</span>
+                    <span>Food</span>
+
+                </div>
+
+
+                <div class="price-row">
+
+                    <div>
+
+                        <strong>
+                            ₹8,200
+                        </strong>
+
+                        <small>
+                            / month
+                        </small>
+
+                    </div>
+
+                    <a href="pages/hostel-details.html">
+                        View →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- CARD 4 -->
+
+        <article class="hostel-card">
+
+            <div class="image-container">
+
+                <img
+                    src="https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=800&q=80"
+                    alt="Hostel room"
+                >
+
+                <span class="verified">
+                    ✓ Verified
+                </span>
+
+                <button class="heart">
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div class="hostel-info">
+
+                <div class="rating">
+                    ★ 4.4
+                </div>
+
+                <h3>
+                    Comfort Living PG
+                </h3>
+
+                <p class="location-text">
+                    📍 Hitech City, Hyderabad
+                </p>
+
+                <div class="facilities">
+
+                    <span>AC</span>
+                    <span>WiFi</span>
+                    <span>Gym</span>
+
+                </div>
+
+
+                <div class="price-row">
+
+                    <div>
+
+                        <strong>
+                            ₹9,000
+                        </strong>
+
+                        <small>
+                            / month
+                        </small>
+
+                    </div>
+
+                    <a href="pages/hostel-details.html">
+                        View →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= OFFER ================= -->
+
+<section class="offer-section">
+
+    <div class="offer-content">
+
+        <span>
+            HOSTELVISION SPECIAL
+        </span>
+
+        <h2>
+            Find your stay.
+            Move in with confidence.
+        </h2>
+
+        <p>
+            Compare prices, facilities and availability
+            before choosing your next stay.
+        </p>
+
+        <a href="pages/search.html"
+           class="offer-button">
+
+            Explore Hostels
+
+        </a>
+
+    </div>
+
+    <div class="offer-icon">
+        🏠
+    </div>
+
+</section>
+
+
+<!-- ================= WHY HOSTELVISION ================= -->
+
+<section class="section">
+
+    <div class="section-header center">
+
+        <div>
+
+            <h2>
+                Why HostelVision?
+            </h2>
+
+            <p>
+                Everything you need to find your next stay
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ✓
+            </div>
+
+            <h3>Verified Properties</h3>
+
+            <p>
+                Discover properties with verified
+                information and facilities.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🔍
+            </div>
+
+            <h3>Easy Comparison</h3>
+
+            <p>
+                Compare price, rooms, facilities
+                and location easily.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📍
+            </div>
+
+            <h3>Great Locations</h3>
+
+            <p>
+                Find hostels near colleges,
+                workplaces and important areas.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🔒
+            </div>
+
+            <h3>Secure Platform</h3>
+
+            <p>
+                Your account and booking information
+                stays protected.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= OWNER CTA ================= -->
+
+<section class="owner-section">
+
+    <div>
+
+        <span>
+            FOR HOSTEL OWNERS
+        </span>
+
+        <h2>
+            Have a hostel or PG?
+        </h2>
+
+        <p>
+            List your property on HostelVision
+            and reach students and professionals.
+        </p>
+
+    </div>
+
+    <a href="pages/register.html">
+        Become a Partner →
+    </a>
+
+</section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <h2>
+                Hostel<span>Vision</span>
+            </h2>
+
+            <p>
+                Find your place.
+                Live your journey.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>HostelVision</h4>
+
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Careers</a>
+
+        </div>
+
+
+        <div>
+
+            <h4>For Customers</h4>
+
+            <a href="pages/search.html">
+                Explore Hostels
+            </a>
+
+            <a href="pages/login.html">
+                Login
+            </a>
+
+            <a href="pages/register.html">
+                Register
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h4>For Owners</h4>
+
+            <a href="pages/register.html">
+                Become a Partner
+            </a>
+
+            <a href="pages/login.html">
+                Owner Login
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 HostelVision. All rights reserved.
+        </p>
+
+        <p>
+            Made for students & young professionals.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

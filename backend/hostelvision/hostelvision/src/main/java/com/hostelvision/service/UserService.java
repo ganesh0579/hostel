@@ -1,5 +1,5 @@
 package com.hostelvision.service;
-
+import com.hostelvision.dto.LoginRequest;
 import com.hostelvision.dto.RegisterRequest;
 import com.hostelvision.entity.User;
 import com.hostelvision.repository.UserRepository;
@@ -46,4 +46,18 @@ public class UserService {
 
         return userRepository.save(user);
     }
+    public User loginUser(LoginRequest request) {
+
+    User user = userRepository.findByEmail(request.getEmail())
+            .orElseThrow(() -> new RuntimeException("Invalid email or password"));
+
+    if (!passwordEncoder.matches(
+            request.getPassword(),
+            user.getPassword())) {
+
+        throw new RuntimeException("Invalid email or password");
+    }
+
+    return user;
+}
 }

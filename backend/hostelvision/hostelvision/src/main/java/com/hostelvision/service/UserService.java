@@ -1,4 +1,6 @@
 package com.hostelvision.service;
+import com.hostelvision.dto.ProfileResponse;
+import com.hostelvision.dto.UpdateProfileRequest;
 import com.hostelvision.dto.LoginRequest;
 import com.hostelvision.dto.RegisterRequest;
 import com.hostelvision.entity.User;
@@ -59,5 +61,57 @@ public class UserService {
     }
 
     return user;
+}
+// Get logged-in user's profile
+public ProfileResponse getProfile(String email) {
+
+    User user = userRepository.findByEmail(email)
+            .orElseThrow(() ->
+                    new RuntimeException("User not found"));
+
+    return ProfileResponse.fromUser(user);
+}
+
+
+// Update logged-in user's profile
+public ProfileResponse updateProfile(
+        String email,
+        UpdateProfileRequest request) {
+
+    User user = userRepository.findByEmail(email)
+            .orElseThrow(() ->
+                    new RuntimeException("User not found"));
+
+    if (request.getFullName() == null ||
+            request.getFullName().isBlank()) {
+
+        throw new RuntimeException(
+                "Full name is required");
+    }
+
+    if (request.getPhone() == null ||
+            request.getPhone().isBlank()) {
+
+        throw new RuntimeException(
+                "Phone number is required");
+    }
+
+    // Check whether the new phone belongs
+    // to another user
+    if (!user.getPhone().equals(request.getPhone())
+            && userRepository.existsByPhone(
+                    request.getPhone())) {
+
+        throw new RuntimeException(
+                "Phone number already registered");
+    }
+
+    user.setFullName(request.getFullName());
+    user.setPhone(request.getPhone());
+
+    User updatedUser =
+            userRepository.save(user);
+
+    return ProfileResponse.fromUser(updatedUser);
 }
 }

@@ -32,6 +32,9 @@ public class Room {
     @Column(nullable = false)
     private Boolean available;
 
+    @Column(nullable = false)
+private Boolean active = true;
+
     @Column(length = 1000)
     private String amenities;
 
@@ -118,6 +121,7 @@ public class Room {
     public Boolean getAvailable() {
         return available;
     }
+    
 
     public void setAvailable(Boolean available) {
         this.available = available;
@@ -150,4 +154,12 @@ public class Room {
     public void setHostel(Hostel hostel) {
         this.hostel = hostel;
     }
+
+    public Boolean getActive() {
+    return active;
+}
+
+public void setActive(Boolean active) {
+    this.active = active;
+}
 }

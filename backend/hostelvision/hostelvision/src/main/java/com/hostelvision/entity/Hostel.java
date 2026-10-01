@@ -38,6 +38,9 @@ public class Hostel {
 
     private String imageUrl;
 
+    @Column(nullable = false)
+private Boolean active = true;
+
     private LocalDateTime createdAt;
 
     @ManyToOne
@@ -143,4 +146,12 @@ public class Hostel {
     public void setOwner(User owner) {
         this.owner = owner;
     }
+
+    public Boolean getActive() {
+    return active;
+}
+
+public void setActive(Boolean active) {
+    this.active = active;
+}
 }

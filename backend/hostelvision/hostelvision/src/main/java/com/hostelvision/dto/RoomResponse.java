@@ -15,6 +15,7 @@ public class RoomResponse {
     private Double monthlyRent;
     private Double securityDeposit;
     private Boolean available;
+    private Boolean active;
     private String amenities;
     private String imageUrl;
     private Long hostelId;
@@ -34,6 +35,7 @@ public class RoomResponse {
             Double monthlyRent,
             Double securityDeposit,
             Boolean available,
+            Boolean active,
             String amenities,
             String imageUrl,
             Long hostelId,
@@ -49,6 +51,7 @@ public class RoomResponse {
         this.monthlyRent = monthlyRent;
         this.securityDeposit = securityDeposit;
         this.available = available;
+        this.active = active;
         this.amenities = amenities;
         this.imageUrl = imageUrl;
         this.hostelId = hostelId;
@@ -71,6 +74,7 @@ public class RoomResponse {
                 room.getMonthlyRent(),
                 room.getSecurityDeposit(),
                 room.getAvailable(),
+                room.getActive(),
                 room.getAmenities(),
                 room.getImageUrl(),
                 room.getHostel().getId(),
@@ -83,55 +87,119 @@ public class RoomResponse {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getRoomNumber() {
         return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     public String getRoomType() {
         return roomType;
     }
 
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
     public Integer getCapacity() {
         return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
     }
 
     public Integer getOccupiedBeds() {
         return occupiedBeds;
     }
 
+    public void setOccupiedBeds(Integer occupiedBeds) {
+        this.occupiedBeds = occupiedBeds;
+    }
+
     public Integer getAvailableBeds() {
         return availableBeds;
+    }
+
+    public void setAvailableBeds(Integer availableBeds) {
+        this.availableBeds = availableBeds;
     }
 
     public Double getMonthlyRent() {
         return monthlyRent;
     }
 
+    public void setMonthlyRent(Double monthlyRent) {
+        this.monthlyRent = monthlyRent;
+    }
+
     public Double getSecurityDeposit() {
         return securityDeposit;
+    }
+
+    public void setSecurityDeposit(Double securityDeposit) {
+        this.securityDeposit = securityDeposit;
     }
 
     public Boolean getAvailable() {
         return available;
     }
 
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public String getAmenities() {
         return amenities;
+    }
+
+    public void setAmenities(String amenities) {
+        this.amenities = amenities;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public Long getHostelId() {
         return hostelId;
+    }
+
+    public void setHostelId(Long hostelId) {
+        this.hostelId = hostelId;
     }
 
     public String getHostelName() {
         return hostelName;
     }
 
+    public void setHostelName(String hostelName) {
+        this.hostelName = hostelName;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

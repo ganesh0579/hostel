@@ -19,6 +19,7 @@ public class HostelResponse {
     private Long ownerId;
     private String ownerName;
     private LocalDateTime createdAt;
+    private Boolean active;
 
     public HostelResponse() {
     }
@@ -36,7 +37,8 @@ public class HostelResponse {
             String imageUrl,
             Long ownerId,
             String ownerName,
-            LocalDateTime createdAt) {
+            LocalDateTime createdAt,
+            Boolean active) {
 
         this.id = id;
         this.name = name;
@@ -51,6 +53,7 @@ public class HostelResponse {
         this.ownerId = ownerId;
         this.ownerName = ownerName;
         this.createdAt = createdAt;
+        this.active = active;
     }
 
     public static HostelResponse fromHostel(Hostel hostel) {
@@ -68,7 +71,8 @@ public class HostelResponse {
                 hostel.getImageUrl(),
                 hostel.getOwner().getId(),
                 hostel.getOwner().getFullName(),
-                hostel.getCreatedAt()
+                hostel.getCreatedAt(),
+                hostel.getActive()
         );
     }
 
@@ -76,51 +80,111 @@ public class HostelResponse {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getAddress() {
         return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCity() {
         return city;
     }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public String getState() {
         return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getPincode() {
         return pincode;
     }
 
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
     public String getGender() {
         return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getAmenities() {
         return amenities;
     }
 
+    public void setAmenities(String amenities) {
+        this.amenities = amenities;
+    }
+
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Long getOwnerId() {
         return ownerId;
     }
 
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
+    }
+
     public String getOwnerName() {
         return ownerName;
     }
 
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

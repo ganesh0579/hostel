@@ -52,17 +52,17 @@ public class SecurityConfig {
 
             // API access rules
             .authorizeHttpRequests(auth -> auth
+        .requestMatchers(
+                "/api/users/register",
+                "/api/users/login",
+                "/api/hello"
+        ).permitAll()
 
-                    // Public APIs
-                    .requestMatchers(
-                            "/api/users/register",
-                            "/api/users/login",
-                            "/api/hello"
-                    ).permitAll()
+        .requestMatchers("/api/admin/**")
+        .hasRole("ADMIN")
 
-                    // Everything else requires JWT
-                    .anyRequest().authenticated()
-            )
+        .anyRequest().authenticated()
+)
 
             // Disable browser login
             .formLogin(form -> form.disable())

@@ -2,15 +2,183 @@
    COMPLAINTS PAGE
 ========================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+let complaints = [];
 
-    setupComplaintTabs();
 
-    setupComplaintForm();
+/* =========================================
+   INITIALIZATION
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        setupComplaintTabs();
+
+        setupComplaintForm();
+
+        await loadComplaints();
+
+    }
+);
+
+
+/* =========================================
+   LOAD COMPLAINTS FROM BACKEND
+========================================= */
+
+async function loadComplaints() {
+
+    try {
+
+        complaints =
+            await apiRequest("/complaints/my");
+
+        console.log(
+            "Customer complaints:",
+            complaints
+        );
+
+        renderComplaints();
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load complaints:",
+            error
+        );
+
+        alert(
+            "Unable to load complaints."
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   RENDER COMPLAINTS
+========================================= */
+
+function renderComplaints() {
+
+   const container =
+    document.getElementById(
+        "complaintsList"
+    );
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    complaints.forEach(
+        complaint => {
+
+            const status =
+                normalizeStatus(
+                    complaint.status
+                );
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+            card.className =
+                "complaint-card";
+
+            card.dataset.id =
+                complaint.id;
+
+            card.dataset.status =
+                status;
+
+
+            card.innerHTML = `
+
+                <div class="complaint-title-area">
+
+                    <div>
+
+                        <h3>
+                            ${escapeHtml(
+                                complaint.subject
+                            )}
+                        </h3>
+
+                        <p>
+                            Hostel #${complaint.hostelId}
+                        </p>
+
+                    </div>
+
+                    <span class="status-badge ${getStatusClass(status)}">
+
+                        ${getStatusText(status)}
+
+                    </span>
+
+                </div>
+
+
+                <div class="complaint-description">
+
+                    <p>
+                        ${escapeHtml(
+                            complaint.description
+                        )}
+                    </p>
+
+                </div>
+
+
+                <div class="complaint-meta">
+
+                    <span>
+                        📅 ${formatDate(
+                            complaint.createdAt
+                        )}
+                    </span>
+
+                    <span>
+                        ⚡ ${getCategoryFromSubject(
+                            complaint.subject
+                        )}
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="view-complaint-btn"
+                    onclick="viewComplaint('${complaint.id}')">
+
+                    View Complaint
+
+                </button>
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
+
 
     updateComplaintStats();
 
-});
+    filterComplaints("all");
+
+}
 
 
 /* =========================================
@@ -19,64 +187,107 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function setupComplaintTabs() {
 
-    const tabs = document.querySelectorAll(".complaint-tab");
+    const tabs =
+        document.querySelectorAll(
+            ".complaint-tab"
+        );
 
-    tabs.forEach(tab => {
 
-        tab.addEventListener("click", function () {
+    tabs.forEach(
+        tab => {
 
-            tabs.forEach(item => {
-                item.classList.remove("active");
-            });
+            tab.addEventListener(
+                "click",
+                function () {
 
-            this.classList.add("active");
+                    tabs.forEach(
+                        item => {
 
-            const status = this.dataset.status;
+                            item.classList.remove(
+                                "active"
+                            );
 
-            filterComplaints(status);
+                        }
+                    );
 
-        });
 
-    });
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    const status =
+                        this.dataset.status;
+
+
+                    filterComplaints(
+                        status
+                    );
+
+                }
+            );
+
+        }
+    );
 
 }
 
 
+/* =========================================
+   FILTER
+========================================= */
+
 function filterComplaints(status) {
 
-    const cards = document.querySelectorAll(".complaint-card");
+    const cards =
+        document.querySelectorAll(
+            ".complaint-card"
+        );
+
 
     let visibleCount = 0;
 
-    cards.forEach(card => {
 
-        const cardStatus = card.dataset.status;
+    cards.forEach(
+        card => {
 
-        if (status === "all" || cardStatus === status) {
+            const cardStatus =
+                card.dataset.status;
 
-            card.style.display = "block";
 
-            visibleCount++;
+            if (
+                status === "all" ||
+                cardStatus === status
+            ) {
 
-        } else {
+                card.style.display =
+                    "block";
 
-            card.style.display = "none";
+                visibleCount++;
+
+            } else {
+
+                card.style.display =
+                    "none";
+
+            }
 
         }
-
-    });
+    );
 
 
     const emptyState =
-        document.getElementById("emptyComplaints");
+        document.getElementById(
+            "emptyComplaints"
+        );
 
-    if (visibleCount === 0) {
 
-        emptyState.style.display = "block";
+    if (emptyState) {
 
-    } else {
-
-        emptyState.style.display = "none";
+        emptyState.style.display =
+            visibleCount === 0
+                ? "block"
+                : "none";
 
     }
 
@@ -89,43 +300,77 @@ function filterComplaints(status) {
 
 function updateComplaintStats() {
 
-    const cards =
-        document.querySelectorAll(".complaint-card");
-
-    let open = 0;
-    let progress = 0;
-    let resolved = 0;
-
-    cards.forEach(card => {
-
-        const status = card.dataset.status;
-
-        if (status === "open") {
-            open++;
-        }
-
-        if (status === "progress") {
-            progress++;
-        }
-
-        if (status === "resolved") {
-            resolved++;
-        }
-
-    });
+    const total =
+        complaints.length;
 
 
-    document.getElementById("totalComplaints").textContent =
-        cards.length;
+    const open =
+        complaints.filter(
+            complaint =>
+                normalizeStatus(
+                    complaint.status
+                ) === "open"
+        ).length;
 
-    document.getElementById("openComplaints").textContent =
-        open;
 
-    document.getElementById("progressComplaints").textContent =
-        progress;
+    const progress =
+        complaints.filter(
+            complaint =>
+                normalizeStatus(
+                    complaint.status
+                ) === "progress"
+        ).length;
 
-    document.getElementById("resolvedComplaints").textContent =
-        resolved;
+
+    const resolved =
+        complaints.filter(
+            complaint =>
+                normalizeStatus(
+                    complaint.status
+                ) === "resolved"
+        ).length;
+
+
+    const totalElement =
+        document.getElementById(
+            "totalComplaints"
+        );
+
+    const openElement =
+        document.getElementById(
+            "openComplaints"
+        );
+
+    const progressElement =
+        document.getElementById(
+            "progressComplaints"
+        );
+
+    const resolvedElement =
+        document.getElementById(
+            "resolvedComplaints"
+        );
+
+
+    if (totalElement) {
+        totalElement.textContent =
+            total;
+    }
+
+    if (openElement) {
+        openElement.textContent =
+            open;
+    }
+
+    if (progressElement) {
+        progressElement.textContent =
+            progress;
+    }
+
+    if (resolvedElement) {
+        resolvedElement.textContent =
+            resolved;
+    }
 
 }
 
@@ -136,12 +381,14 @@ function updateComplaintStats() {
 
 function openComplaintModal() {
 
-    const modal =
-        document.getElementById("complaintModal");
+    document
+        .getElementById(
+            "complaintModal"
+        )
+        .classList.add("show");
 
-    modal.classList.add("show");
-
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow =
+        "hidden";
 
 }
 
@@ -152,12 +399,14 @@ function openComplaintModal() {
 
 function closeComplaintModal() {
 
-    const modal =
-        document.getElementById("complaintModal");
+    document
+        .getElementById(
+            "complaintModal"
+        )
+        .classList.remove("show");
 
-    modal.classList.remove("show");
-
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+        "";
 
 }
 
@@ -169,74 +418,119 @@ function closeComplaintModal() {
 function setupComplaintForm() {
 
     const form =
-        document.getElementById("complaintForm");
-
-    form.addEventListener("submit", function (event) {
-
-        event.preventDefault();
-
-
-        const category =
-            document.getElementById("complaintCategory").value;
-
-        const hostel =
-            document.getElementById("complaintHostel").value;
-
-        const subject =
-            document.getElementById("complaintSubject").value.trim();
-
-        const description =
-            document.getElementById("complaintDescription").value.trim();
-
-        const priority =
-            document.querySelector(
-                'input[name="priority"]:checked'
-            );
-
-
-        if (
-            !category ||
-            !hostel ||
-            !subject ||
-            !description ||
-            !priority
-        ) {
-
-            alert("Please fill all required fields.");
-
-            return;
-
-        }
-
-
-        const complaintId =
-            "CMP-" +
-            Math.floor(1000 + Math.random() * 9000);
-
-
-        alert(
-            "Complaint submitted successfully!\n\n" +
-            "Complaint ID: " + complaintId
+        document.getElementById(
+            "complaintForm"
         );
 
 
-        form.reset();
+    if (!form) {
+        return;
+    }
 
-        closeComplaintModal();
+
+    form.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
 
 
-        /*
-         * Temporary frontend behavior.
-         *
-         * Later this will become:
-         *
-         * POST /api/complaints
-         *
-         * and the complaint will be stored
-         * in MySQL through Spring Boot.
-         */
+            const category =
+                document.getElementById(
+                    "complaintCategory"
+                ).value;
 
-    });
+            const hostel =
+                document.getElementById(
+                    "complaintHostel"
+                ).value;
+
+            const subject =
+                document.getElementById(
+                    "complaintSubject"
+                ).value.trim();
+
+            const description =
+                document.getElementById(
+                    "complaintDescription"
+                ).value.trim();
+
+
+            const priority =
+                document.querySelector(
+                    'input[name="priority"]:checked'
+                );
+
+
+            if (
+                !category ||
+                !hostel ||
+                !subject ||
+                !description ||
+                !priority
+            ) {
+
+                alert(
+                    "Please fill all required fields."
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                await apiRequest(
+                    "/complaints",
+                    {
+                        method: "POST",
+
+                        body: JSON.stringify({
+
+                            hostelId:
+                                Number(hostel),
+
+                            subject:
+                                subject,
+
+                            description:
+                                description
+
+                        })
+
+                    }
+                );
+
+
+                alert(
+                    "Complaint submitted successfully!"
+                );
+
+
+                form.reset();
+
+                closeComplaintModal();
+
+
+                await loadComplaints();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Complaint submission failed:",
+                    error
+                );
+
+                alert(
+                    error.message
+                );
+
+            }
+
+        }
+    );
 
 }
 
@@ -247,117 +541,204 @@ function setupComplaintForm() {
 
 function viewComplaint(id) {
 
-    const cards =
-        document.querySelectorAll(".complaint-card");
-
-    let selectedCard = null;
-
-    cards.forEach(card => {
-
-        if (card.dataset.id === id) {
-
-            selectedCard = card;
-
-        }
-
-    });
+    const complaint =
+        complaints.find(
+            item =>
+                String(item.id) ===
+                String(id)
+        );
 
 
-    if (!selectedCard) {
+    if (!complaint) {
         return;
     }
 
 
-    const subject =
-        selectedCard.querySelector("h3").textContent.trim();
+    document.getElementById(
+        "detailId"
+    ).textContent =
+        complaint.id;
 
-    const hostel =
-        selectedCard.querySelector(
-            ".complaint-title-area p"
-        ).textContent.trim();
 
-    const statusElement =
-        selectedCard.querySelector(".status-badge");
+    document.getElementById(
+        "detailSubject"
+    ).textContent =
+        complaint.subject;
 
-    const status =
-        statusElement.textContent.trim();
 
-    const description =
-        selectedCard.querySelector(
-            ".complaint-description p"
-        ).textContent.trim();
+    document.getElementById(
+        "detailHostel"
+    ).textContent =
+        "Hostel #" +
+        complaint.hostelId;
 
-    const meta =
-        selectedCard.querySelectorAll(
-            ".complaint-meta span"
+
+    document.getElementById(
+        "detailDate"
+    ).textContent =
+        formatDate(
+            complaint.createdAt
         );
 
-    const date =
-        meta.length > 0
-            ? meta[0].textContent.replace("📅", "").trim()
-            : "";
 
-    const priority =
-        meta.length > 1
-            ? meta[1].textContent.replace("⚡", "").trim()
-            : "";
+    document.getElementById(
+        "detailPriority"
+    ).textContent =
+        getCategoryFromSubject(
+            complaint.subject
+        );
 
 
-    document.getElementById("detailId").textContent =
-        id;
-
-    document.getElementById("detailSubject").textContent =
-        subject;
-
-    document.getElementById("detailHostel").textContent =
-        hostel;
-
-    document.getElementById("detailDate").textContent =
-        date;
-
-    document.getElementById("detailPriority").textContent =
-        priority;
-
-    document.getElementById("detailDescription").textContent =
-        description;
+    document.getElementById(
+        "detailDescription"
+    ).textContent =
+        complaint.description;
 
 
     const detailStatus =
-        document.getElementById("detailStatus");
-
-    detailStatus.textContent = status;
-
-
-    detailStatus.className = "status-badge";
+        document.getElementById(
+            "detailStatus"
+        );
 
 
-    if (selectedCard.dataset.status === "open") {
+    const status =
+        normalizeStatus(
+            complaint.status
+        );
 
-        detailStatus.classList.add("status-open");
 
-    } else if (selectedCard.dataset.status === "progress") {
+    detailStatus.textContent =
+        getStatusText(status);
 
-        detailStatus.classList.add("status-progress");
 
-    } else {
+    detailStatus.className =
+        "status-badge " +
+        getStatusClass(status);
 
-        detailStatus.classList.add("status-resolved");
+
+    document.getElementById(
+        "detailCategory"
+    ).textContent =
+        getCategoryFromSubject(
+            complaint.subject
+        );
+
+
+    document
+        .getElementById(
+            "detailsModal"
+        )
+        .classList.add("show");
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =========================================
+   STATUS HELPERS
+========================================= */
+
+function normalizeStatus(status) {
+
+    if (!status) {
+        return "open";
+    }
+
+
+    const value =
+        status.toLowerCase();
+
+
+    if (
+        value === "in_progress" ||
+        value === "in-progress" ||
+        value === "progress"
+    ) {
+
+        return "progress";
 
     }
 
 
-    const category =
-        getCategoryFromSubject(subject);
+    if (value === "resolved") {
 
-    document.getElementById("detailCategory").textContent =
-        category;
+        return "resolved";
+
+    }
 
 
-    document
-        .getElementById("detailsModal")
-        .classList.add("show");
+    return "open";
 
-    document.body.style.overflow = "hidden";
+}
+
+
+function getStatusText(status) {
+
+    const map = {
+
+        open:
+            "Open",
+
+        progress:
+            "In Progress",
+
+        resolved:
+            "Resolved"
+
+    };
+
+
+    return map[status] ||
+        status;
+
+}
+
+
+function getStatusClass(status) {
+
+    const map = {
+
+        open:
+            "status-open",
+
+        progress:
+            "status-progress",
+
+        resolved:
+            "status-resolved"
+
+    };
+
+
+    return map[status] ||
+        "";
+
+}
+
+
+/* =========================================
+   FORMAT DATE
+========================================= */
+
+function formatDate(date) {
+
+    if (!date) {
+        return "-";
+    }
+
+
+    return new Date(date)
+        .toLocaleDateString(
+            "en-IN",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
 
 }
 
@@ -368,30 +749,62 @@ function viewComplaint(id) {
 
 function getCategoryFromSubject(subject) {
 
-    const text = subject.toLowerCase();
+    const text =
+        subject.toLowerCase();
+
 
     if (text.includes("water")) {
         return "Water Supply";
     }
 
-    if (text.includes("wifi") || text.includes("wi-fi")) {
+
+    if (
+        text.includes("wifi") ||
+        text.includes("wi-fi")
+    ) {
+
         return "Wi-Fi / Internet";
+
     }
+
 
     if (text.includes("clean")) {
         return "Cleaning";
     }
 
-    if (text.includes("light") ||
-        text.includes("electric")) {
+
+    if (
+        text.includes("light") ||
+        text.includes("electric")
+    ) {
+
         return "Electricity";
+
     }
+
 
     if (text.includes("food")) {
         return "Food";
     }
 
+
     return "Maintenance";
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
@@ -403,10 +816,13 @@ function getCategoryFromSubject(subject) {
 function closeDetailsModal() {
 
     document
-        .getElementById("detailsModal")
+        .getElementById(
+            "detailsModal"
+        )
         .classList.remove("show");
 
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+        "";
 
 }
 
@@ -418,10 +834,7 @@ function closeDetailsModal() {
 function showNotifications() {
 
     alert(
-        "Notifications\n\n" +
-        "• Your Wi-Fi complaint is being reviewed.\n" +
-        "• Your booking has been confirmed.\n" +
-        "• New hostel recommendation available."
+        "Notifications will be connected to the backend later."
     );
 
 }
@@ -433,12 +846,26 @@ function showNotifications() {
 
 function logout(event) {
 
-    event.preventDefault();
+    if (event) {
+        event.preventDefault();
+    }
+
 
     const confirmLogout =
-        confirm("Are you sure you want to logout?");
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
 
     if (confirmLogout) {
+
+        localStorage.removeItem(
+            "token"
+        );
+
+        localStorage.removeItem(
+            "user"
+        );
 
         window.location.href =
             "../login.html";
@@ -449,46 +876,62 @@ function logout(event) {
 
 
 /* =========================================
-   CLOSE MODALS WHEN CLICKING OUTSIDE
+   CLOSE MODALS
 ========================================= */
 
-window.addEventListener("click", function (event) {
+window.addEventListener(
+    "click",
+    function (event) {
 
-    const complaintModal =
-        document.getElementById("complaintModal");
+        const complaintModal =
+            document.getElementById(
+                "complaintModal"
+            );
 
-    const detailsModal =
-        document.getElementById("detailsModal");
+        const detailsModal =
+            document.getElementById(
+                "detailsModal"
+            );
 
 
-    if (event.target === complaintModal) {
+        if (
+            event.target ===
+            complaintModal
+        ) {
 
-        closeComplaintModal();
+            closeComplaintModal();
+
+        }
+
+
+        if (
+            event.target ===
+            detailsModal
+        ) {
+
+            closeDetailsModal();
+
+        }
 
     }
-
-
-    if (event.target === detailsModal) {
-
-        closeDetailsModal();
-
-    }
-
-});
+);
 
 
 /* =========================================
    ESC KEY
 ========================================= */
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener(
+    "keydown",
+    function (event) {
 
-    if (event.key === "Escape") {
+        if (event.key === "Escape") {
 
-        closeComplaintModal();
+            closeComplaintModal();
 
-        closeDetailsModal();
+            closeDetailsModal();
+
+        }
 
     }
-
-});
+);

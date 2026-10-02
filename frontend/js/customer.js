@@ -1,7 +1,50 @@
 /* =========================================================
    CUSTOMER DASHBOARD
 ========================================================= */
+/* =========================================================
+   LOAD CUSTOMER PROFILE
+========================================================= */
 
+async function loadCustomerProfile() {
+
+    try {
+
+        const user =
+            await apiRequest("/users/profile");
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(user)
+        );
+        const customerName =
+    document.getElementById("customerName");
+
+const welcomeName =
+    document.getElementById("welcomeName");
+
+if (customerName) {
+    customerName.textContent =
+        user.fullName;
+}
+
+if (welcomeName) {
+    welcomeName.textContent =
+        user.fullName.split(" ")[0];
+}
+
+        console.log("Customer profile:", user);
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load customer profile:",
+            error
+        );
+
+    }
+}
+
+loadCustomerProfile();
 
 /* =========================================================
    NOTIFICATIONS
@@ -77,9 +120,11 @@ logoutBtn.addEventListener(
              * Redirect to login
              */
 
-            window.location.href =
-                "../login.html";
+          localStorage.removeItem("token");
+localStorage.removeItem("user");
 
+window.location.href =
+    "../login.html";
         }
 
     }

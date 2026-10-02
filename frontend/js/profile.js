@@ -9,7 +9,9 @@ let originalValues = {};
    INITIALIZATION
 ========================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
+
+    await loadProfile();
 
     saveOriginalValues();
 
@@ -18,6 +20,61 @@ document.addEventListener("DOMContentLoaded", function () {
     setupPasswordForm();
 
 });
+
+
+/* =========================================
+   LOAD PROFILE FROM BACKEND
+========================================= */
+
+async function loadProfile() {
+
+    try {
+
+        const user =
+            await apiRequest("/users/profile");
+
+
+        console.log(
+            "Profile loaded:",
+            user
+        );
+
+
+        document.getElementById("fullName").value =
+            user.fullName || "";
+
+        document.getElementById("email").value =
+            user.email || "";
+
+        document.getElementById("phone").value =
+            user.phone || "";
+
+
+        const profileName =
+            document.getElementById("profileName");
+
+        if (profileName) {
+
+            profileName.textContent =
+                user.fullName || "Customer";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load profile:",
+            error
+        );
+
+        alert(
+            "Unable to load your profile. Please login again."
+        );
+
+    }
+
+}
 
 
 /* =========================================
@@ -139,7 +196,7 @@ function setupProfileForm() {
         document.getElementById("profileForm");
 
 
-    form.addEventListener("submit", function (event) {
+    form.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
@@ -156,35 +213,68 @@ function setupProfileForm() {
 
         if (!name || !email || !phone) {
 
-            alert("Please fill all required fields.");
+            alert(
+                "Please fill all required fields."
+            );
 
             return;
 
         }
 
 
-        originalValues.fullName = name;
-        originalValues.email = email;
-        originalValues.phone = phone;
+        try {
 
-        originalValues.dob =
-            document.getElementById("dob").value;
+            const updatedUser =
+                await apiRequest(
+                    "/users/profile",
+                    {
+                        method: "PUT",
 
-        originalValues.gender =
-            document.getElementById("gender").value;
+                        body: JSON.stringify({
 
-        originalValues.city =
-            document.getElementById("city").value;
+                            fullName: name,
+
+                            email: email,
+
+                            phone: phone
+
+                        })
+
+                    }
+                );
 
 
-        document.getElementById("profileName").textContent =
-            name;
+            originalValues.fullName =
+                updatedUser.fullName;
+
+            originalValues.email =
+                updatedUser.email;
+
+            originalValues.phone =
+                updatedUser.phone;
 
 
-        alert("Profile updated successfully!");
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                updatedUser.fullName;
 
 
-        disableEditing();
+            alert(
+                "Profile updated successfully!"
+            );
+
+
+            disableEditing();
+
+
+        } catch (error) {
+
+            alert(
+                error.message
+            );
+
+        }
 
     });
 
@@ -214,27 +304,34 @@ function changePhoto() {
 
         if (!file.type.startsWith("image/")) {
 
-            alert("Please select an image.");
+            alert(
+                "Please select an image."
+            );
 
             return;
 
         }
 
 
-        const reader = new FileReader();
+        const reader =
+            new FileReader();
 
 
         reader.onload = function (event) {
 
             const avatar =
-                document.getElementById("profileAvatar");
+                document.getElementById(
+                    "profileAvatar"
+                );
 
             avatar.style.backgroundImage =
                 `url(${event.target.result})`;
 
-            avatar.style.backgroundSize = "cover";
+            avatar.style.backgroundSize =
+                "cover";
 
-            avatar.style.backgroundPosition = "center";
+            avatar.style.backgroundPosition =
+                "center";
 
             avatar.textContent = "";
 
@@ -258,7 +355,8 @@ function openPasswordModal() {
         .getElementById("passwordModal")
         .classList.add("show");
 
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow =
+        "hidden";
 
 }
 
@@ -269,7 +367,8 @@ function closePasswordModal() {
         .getElementById("passwordModal")
         .classList.remove("show");
 
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+        "";
 
 }
 
@@ -281,65 +380,85 @@ function closePasswordModal() {
 function setupPasswordForm() {
 
     const form =
-        document.getElementById("passwordForm");
+        document.getElementById(
+            "passwordForm"
+        );
 
 
-    form.addEventListener("submit", function (event) {
+    form.addEventListener(
+        "submit",
+        function (event) {
 
-        event.preventDefault();
-
-
-        const currentPassword =
-            document.getElementById("currentPassword").value;
-
-        const newPassword =
-            document.getElementById("newPassword").value;
-
-        const confirmPassword =
-            document.getElementById("confirmPassword").value;
+            event.preventDefault();
 
 
-        if (!currentPassword ||
-            !newPassword ||
-            !confirmPassword) {
+            const currentPassword =
+                document.getElementById(
+                    "currentPassword"
+                ).value;
 
-            alert("Please fill all password fields.");
+            const newPassword =
+                document.getElementById(
+                    "newPassword"
+                ).value;
 
-            return;
+            const confirmPassword =
+                document.getElementById(
+                    "confirmPassword"
+                ).value;
 
-        }
+
+            if (
+                !currentPassword ||
+                !newPassword ||
+                !confirmPassword
+            ) {
+
+                alert(
+                    "Please fill all password fields."
+                );
+
+                return;
+
+            }
 
 
-        if (newPassword.length < 8) {
+            if (newPassword.length < 8) {
+
+                alert(
+                    "New password must contain at least 8 characters."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                newPassword !==
+                confirmPassword
+            ) {
+
+                alert(
+                    "New password and confirm password do not match."
+                );
+
+                return;
+
+            }
+
 
             alert(
-                "New password must contain at least 8 characters."
+                "Password update API will be connected later."
             );
 
-            return;
+
+            form.reset();
+
+            closePasswordModal();
 
         }
-
-
-        if (newPassword !== confirmPassword) {
-
-            alert(
-                "New password and confirm password do not match."
-            );
-
-            return;
-
-        }
-
-
-        alert("Password updated successfully!");
-
-
-        form.reset();
-
-        closePasswordModal();
-
-    });
+    );
 
 }
 
@@ -371,7 +490,7 @@ function deleteAccount() {
     if (secondConfirmation) {
 
         alert(
-            "Account deletion is currently disabled in this demo."
+            "Account deletion is currently disabled."
         );
 
     }
@@ -398,6 +517,10 @@ function logout(event) {
 
     if (confirmation) {
 
+        localStorage.removeItem("token");
+
+        localStorage.removeItem("user");
+
         window.location.href =
             "../login.html";
 
@@ -414,9 +537,7 @@ function showNotifications() {
 
     alert(
         "Notifications\n\n" +
-        "• Your Wi-Fi complaint is being reviewed.\n" +
-        "• Your booking has been confirmed.\n" +
-        "• New hostel recommendation available."
+        "Notifications will be connected to the backend later."
     );
 
 }
@@ -426,31 +547,39 @@ function showNotifications() {
    CLOSE MODAL ON OUTSIDE CLICK
 ========================================= */
 
-window.addEventListener("click", function (event) {
+window.addEventListener(
+    "click",
+    function (event) {
 
-    const modal =
-        document.getElementById("passwordModal");
+        const modal =
+            document.getElementById(
+                "passwordModal"
+            );
 
 
-    if (event.target === modal) {
+        if (event.target === modal) {
 
-        closePasswordModal();
+            closePasswordModal();
+
+        }
 
     }
-
-});
+);
 
 
 /* =========================================
    ESC KEY
 ========================================= */
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener(
+    "keydown",
+    function (event) {
 
-    if (event.key === "Escape") {
+        if (event.key === "Escape") {
 
-        closePasswordModal();
+            closePasswordModal();
+
+        }
 
     }
-
-});
+);

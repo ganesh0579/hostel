@@ -345,95 +345,126 @@ if (registerForm) {
    LOGIN
 ========================================================= */
 
-const loginForm =
-    document.getElementById(
-        "loginForm"
-    );
+/* =========================================================
+   LOGIN
+========================================================= */
 
+const loginForm =
+    document.getElementById("loginForm");
 
 if (loginForm) {
 
     loginForm.addEventListener(
         "submit",
-        function (event) {
+        async function (event) {
 
             event.preventDefault();
-
 
             const login =
                 document.getElementById(
                     "loginEmail"
                 ).value.trim();
 
-
             const password =
                 document.getElementById(
                     "loginPassword"
                 ).value;
-
 
             const message =
                 document.getElementById(
                     "loginMessage"
                 );
 
-
             if (login === "") {
-
                 showMessage(
                     message,
                     "Please enter your email or phone number.",
                     "error"
                 );
-
                 return;
-
             }
 
-
             if (password.length < 6) {
-
                 showMessage(
                     message,
                     "Please enter a valid password.",
                     "error"
                 );
-
                 return;
-
             }
 
+            try {
 
-            /*
-             * TEMPORARY FRONTEND ONLY
-             *
-             * Later:
-             *
-             * POST /api/auth/login
-             *
-             * Backend verifies:
-             *
-             * email/phone
-             * password
-             * role
-             *
-             * Then returns:
-             *
-             * JWT / session
-             */
+                showMessage(
+                    message,
+                    "Logging in...",
+                    "success"
+                );
 
+                const data = await apiRequest(
+                    "/users/login",
+                    {
+                        method: "POST",
 
-            showMessage(
-                message,
-                `Login validated as ${selectedRole}. Backend authentication will be connected next.`,
-                "success"
-            );
+                        body: JSON.stringify({
+                            email: login,
+                            password: password
+                        })
+                    }
+                );
 
+                // Save JWT
+                localStorage.setItem(
+                    "token",
+                    data.token
+                );
+
+                showMessage(
+                    message,
+                    "Login successful!",
+                    "success"
+                );
+
+                // Get logged-in user's profile
+                const user =
+                    await apiRequest(
+                        "/users/profile"
+                    );
+
+                // Save user information
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify(user)
+                );
+
+                // Redirect based on role
+                if (user.role === "ADMIN") {
+
+                    window.location.href =
+                        "admin/dashboard.html";
+
+                } else if (user.role === "OWNER") {
+
+                    window.location.href =
+                        "owner/dashboard.html";
+
+                } else {
+
+                    window.location.href =
+    "customer/dashboard.html";
+                }
+
+            } catch (error) {
+
+                showMessage(
+                    message,
+                    error.message,
+                    "error"
+                );
+            }
         }
     );
-
 }
-
 
 /* =========================================================
    MESSAGE FUNCTION

@@ -459,6 +459,462 @@ body {
     .owner-main {
         padding-left: 10px;
         padding-right: 10px;
+    }}
+/* =====================================================
+   OWNER DASHBOARD
+===================================================== */
+
+.owner-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.page-label {
+    display: block;
+    color: #e63946;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.owner-page-header h1 {
+    font-size: 30px;
+    margin-bottom: 6px;
+    color: #172033;
+}
+
+.owner-page-header p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.add-property-btn {
+    background: #e63946;
+    color: white;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.add-property-btn:hover {
+    background: #d92f3d;
+}
+
+
+/* =====================================================
+   STAT CARDS
+===================================================== */
+
+.owner-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.owner-stat-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 115px;
+    box-shadow: 0 2px 8px rgba(23, 32, 51, 0.04);
+}
+
+.owner-stat-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    flex-shrink: 0;
+}
+
+.owner-stat-icon.blue {
+    background: #e8f1ff;
+}
+
+.owner-stat-icon.green {
+    background: #e9f8ef;
+}
+
+.owner-stat-icon.orange {
+    background: #fff3df;
+}
+
+.owner-stat-icon.red {
+    background: #ffe9ec;
+}
+
+.owner-stat-card span {
+    display: block;
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.owner-stat-card strong {
+    display: block;
+    color: #172033;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.owner-stat-card small {
+    display: block;
+    color: #8a93a3;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.owner-section {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 22px;
+    margin-bottom: 25px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 19px;
+    color: #172033;
+    margin-bottom: 4px;
+}
+
+.section-header p {
+    color: #7b8494;
+    font-size: 13px;
+}
+
+.section-header a {
+    color: #e63946;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   PROPERTY GRID
+===================================================== */
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.property-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.property-image {
+    height: 170px;
+    position: relative;
+    overflow: hidden;
+}
+
+.property-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.property-status {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: #16a34a;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.property-content {
+    padding: 17px;
+}
+
+.property-content h3 {
+    font-size: 16px;
+    color: #172033;
+    margin-bottom: 7px;
+}
+
+.property-location {
+    color: #7b8494;
+    font-size: 12px;
+    margin-bottom: 14px;
+}
+
+.property-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    color: #5f6878;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.occupancy-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+
+.occupancy-header span {
+    color: #7b8494;
+}
+
+.occupancy-header strong {
+    color: #172033;
+}
+
+.progress {
+    width: 100%;
+    height: 6px;
+    background: #edf0f3;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress span {
+    display: block;
+    height: 100%;
+    background: #e63946;
+    border-radius: 10px;
+}
+
+.manage-btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #e63946;
+    border: 1px solid #e63946;
+    padding: 9px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+.manage-btn:hover {
+    background: #e63946;
+    color: white;
+}
+
+
+/* =====================================================
+   BOOKINGS + ACTIVITY
+===================================================== */
+
+.owner-two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.booking-request-list,
+.owner-activity {
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-request {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid #edf0f3;
+}
+
+.booking-request:last-child,
+.activity-row:last-child {
+    border-bottom: none;
+}
+
+.customer-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #172033;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.booking-customer {
+    flex: 1;
+    min-width: 0;
+}
+
+.booking-customer strong {
+    display: block;
+    font-size: 13px;
+    color: #172033;
+}
+
+.booking-customer span,
+.booking-customer small {
+    display: block;
+    color: #7b8494;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.request-status {
+    padding: 5px 9px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.request-status.pending {
+    background: #fff3df;
+    color: #b45309;
+}
+
+.request-status.approved {
+    background: #e9f8ef;
+    color: #15803d;
+}
+
+
+/* =====================================================
+   ACTIVITY
+===================================================== */
+
+.activity-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid #edf0f3;
+}
+
+.activity-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 700;
+}
+
+.activity-icon.green {
+    background: #e9f8ef;
+    color: #15803d;
+}
+
+.activity-icon.blue {
+    background: #e8f1ff;
+    color: #2563eb;
+}
+
+.activity-icon.orange {
+    background: #fff3df;
+    color: #b45309;
+}
+
+.activity-row > div:nth-child(2) {
+    flex: 1;
+}
+
+.activity-row strong {
+    display: block;
+    font-size: 12px;
+    color: #172033;
+}
+
+.activity-row p {
+    font-size: 11px;
+    color: #7b8494;
+    margin-top: 3px;
+}
+
+.activity-row small {
+    color: #9ca3af;
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   DASHBOARD RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .owner-stats {
+        grid-template-columns: repeat(2, 1fr);
     }
 
+    .property-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .owner-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .owner-two-column {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .owner-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .property-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .owner-page-header h1 {
+        font-size: 24px;
+    }
+
+}
 }

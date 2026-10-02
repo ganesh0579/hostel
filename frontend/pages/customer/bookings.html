@@ -1025,14 +1025,7 @@ function formatDate(date) {
 
 function getMyBookings() {
 
-    return getBookings().filter(
-
-        booking =>
-
-            booking.customerId ===
-            currentCustomer.id
-
-    );
+    return window.customerApiBookings || [];
 
 }
 
@@ -1696,59 +1689,55 @@ document
    CANCEL CUSTOMER BOOKING
 ===================================================== */
 
-function cancelCustomerBooking(
-    id
-) {
-
-    const booking =
-        findBooking(id);
-
-
-    if (!booking) {
-
-        return;
-
-    }
-
+async function cancelCustomerBooking(id) {
 
     const confirmed =
         confirm(
-
             `Cancel booking ${id}?`
-
         );
 
-
     if (!confirmed) {
-
         return;
-
     }
 
+    try {
 
-    updateBooking(
+        await apiRequest(
+            `/bookings/${id}/cancel`,
+            {
+                method: "PUT"
+            }
+        );
 
-        id,
+        alert(
+            "Booking request cancelled."
+        );
 
-        {
+        const bookings =
+            await apiRequest("/bookings/my");
 
-            status:
-                "cancelled"
+        window.customerApiBookings =
+            bookings.map(booking => ({
+                ...booking,
+                property: booking.hostelName,
+                location: "Bachupally, Hyderabad",
+                room: booking.roomNumber,
+                amount: booking.monthlyRent,
+                checkIn: booking.checkInDate,
+                checkOut: booking.checkOutDate,
+                status: booking.status.toLowerCase()
+            }));
 
-        }
+        renderBookings();
 
-    );
+    } catch (error) {
 
+        alert(
+            error.message
+        );
 
-    renderBookings();
-
-
-    alert(
-        "Booking request cancelled."
-    );
-
+    }
 }
-
 
 /* =====================================================
    REVIEW
@@ -1865,22 +1854,63 @@ if (logoutBtn) {
 ===================================================== */
 
 document.addEventListener(
-
     "DOMContentLoaded",
+    async function() {
 
-    function() {
+        try {
 
-        initializeBookingStorage();
+            const bookings =
+                await apiRequest("/bookings/my");
 
-        renderBookings();
+            console.log(
+                "Customer bookings:",
+                bookings
+            );
+          const enrichedBookings = await Promise.all(
+    bookings.map(async booking => {
+
+        const hostel =
+            await apiRequest(
+                `/hostels/${booking.hostelId}`
+            );
+
+        return {
+            ...booking,
+            property: booking.hostelName,
+            location:
+                hostel.address +
+                ", " +
+                hostel.city,
+            room: booking.roomNumber,
+            amount: booking.monthlyRent,
+            checkIn: booking.checkInDate,
+            checkOut: booking.checkOutDate,
+            status: booking.status.toLowerCase()
+        };
+
+    })
+);
+
+window.customerApiBookings =
+    enrichedBookings;
+            renderBookings();
+        } catch (error) {
+
+            console.error(
+                "Failed to load bookings:",
+                error
+            );
+
+        }
 
     }
-
 );
 
 </script>
-
+<script src="../../js/config.js"></script>
+<script src="../../js/api.js"></script>
 
 </body>
+
 
 </html>

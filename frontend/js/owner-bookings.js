@@ -87,7 +87,7 @@ function getPaymentName(payment) {
 function getFilteredBookings() {
 
     const bookings =
-        getBookings();
+    window.ownerApiBookings || [];
 
 
     const search =
@@ -861,8 +861,10 @@ function clearBookingFilters() {
 function viewBooking(id) {
 
     const booking =
-        findBooking(id);
-
+        (window.ownerApiBookings || [])
+            .find(
+                booking => String(booking.id) === String(id)
+            );
 
     if (!booking) {
 
@@ -1179,99 +1181,205 @@ function closeBookingDetails() {
    ACCEPT BOOKING
 ===================================================== */
 
-function acceptBooking(id) {
+async function acceptBooking(id) {
 
     const booking =
-        findBooking(id);
-
+        (window.ownerApiBookings || [])
+            .find(
+                booking => String(booking.id) === String(id)
+            );
 
     if (!booking) {
-
         return;
-
     }
-
 
     const confirmed =
         confirm(
             `Accept booking ${booking.id} for ${booking.customer}?`
         );
 
-
     if (!confirmed) {
-
         return;
+    }
+
+    try {
+
+        await apiRequest(
+            `/bookings/${id}/confirm`,
+            {
+                method: "PUT"
+            }
+        );
+
+        alert(
+            `Booking ${id} is now confirmed.`
+        );
+
+        const bookings =
+            await apiRequest("/bookings/owner");
+
+        window.ownerApiBookings =
+            bookings.map(booking => ({
+
+                id: booking.id,
+
+                customer:
+                    booking.customerName,
+
+                email: "",
+
+                phone: "",
+
+                property:
+                    booking.hostelName,
+
+                location: "",
+
+                room:
+                    booking.roomNumber,
+
+                roomType:
+                    booking.roomType,
+
+                checkIn:
+                    booking.checkInDate,
+
+                checkOut:
+                    booking.checkOutDate,
+
+                amount:
+                    booking.monthlyRent,
+
+                payment:
+                    "pending",
+
+                status:
+                    booking.status.toLowerCase(),
+
+                created:
+                    new Date().toISOString()
+
+            }));
+
+        closeBookingDetails();
+        renderBookings();
+
+    } catch (error) {
+
+        console.error(
+            "Accept booking error:",
+            error
+        );
+
+        alert(
+            "Unable to confirm booking: " +
+            error.message
+        );
 
     }
 
-
-    updateBooking(
-        id,
-        {
-            status: "confirmed"
-        }
-    );
-
-
-    closeBookingDetails();
-
-    renderBookings();
-
-
-    alert(
-        `Booking ${id} is now confirmed.`
-    );
-
 }
-
 
 /* =====================================================
    REJECT BOOKING
 ===================================================== */
 
-function rejectBooking(id) {
+async function rejectBooking(id) {
 
     const booking =
-        findBooking(id);
-
+        (window.ownerApiBookings || [])
+            .find(
+                booking => String(booking.id) === String(id)
+            );
 
     if (!booking) {
-
         return;
-
     }
-
 
     const confirmed =
         confirm(
             `Reject booking ${booking.id}?`
         );
 
-
     if (!confirmed) {
-
         return;
-
     }
 
+    try {
 
-    updateBooking(
-        id,
-        {
-            status: "cancelled",
-            payment: "refunded"
-        }
-    );
+        await apiRequest(
+            `/bookings/${id}/cancel`,
+            {
+                method: "PUT"
+            }
+        );
 
+        alert(
+            `Booking ${id} has been rejected.`
+        );
 
-    closeBookingDetails();
+        const bookings =
+            await apiRequest("/bookings/owner");
 
-    renderBookings();
+        window.ownerApiBookings =
+            bookings.map(booking => ({
 
+                id: booking.id,
 
-    alert(
-        `Booking ${id} has been rejected.`
-    );
+                customer:
+                    booking.customerName,
+
+                email: "",
+
+                phone: "",
+
+                property:
+                    booking.hostelName,
+
+                location: "",
+
+                room:
+                    booking.roomNumber,
+
+                roomType:
+                    booking.roomType,
+
+                checkIn:
+                    booking.checkInDate,
+
+                checkOut:
+                    booking.checkOutDate,
+
+                amount:
+                    booking.monthlyRent,
+
+                payment:
+                    "pending",
+
+                status:
+                    booking.status.toLowerCase(),
+
+                created:
+                    new Date().toISOString()
+
+            }));
+
+        closeBookingDetails();
+        renderBookings();
+
+    } catch (error) {
+
+        console.error(
+            "Reject booking error:",
+            error
+        );
+
+        alert(
+            "Unable to reject booking: " +
+            error.message
+        );
+
+    }
 
 }
 
@@ -1280,89 +1388,101 @@ function rejectBooking(id) {
    CANCEL
 ===================================================== */
 
-function cancelBooking(id) {
+async function cancelBooking(id) {
 
     const booking =
-        findBooking(id);
-
+        (window.ownerApiBookings || [])
+            .find(
+                booking => String(booking.id) === String(id)
+            );
 
     if (!booking) {
-
         return;
-
     }
-
 
     const confirmed =
         confirm(
             `Cancel booking ${booking.id}?`
         );
 
-
     if (!confirmed) {
-
         return;
-
     }
 
+    try {
 
-    updateBooking(
-        id,
-        {
-            status: "cancelled",
-            payment:
-                booking.payment === "paid"
-                    ? "refunded"
-                    : booking.payment
-        }
-    );
+        await apiRequest(
+            `/bookings/${id}/cancel`,
+            {
+                method: "PUT"
+            }
+        );
 
+        alert(
+            `Booking ${id} has been cancelled.`
+        );
 
-    renderBookings();
+        const bookings =
+            await apiRequest("/bookings/owner");
 
+        window.ownerApiBookings =
+            bookings.map(booking => ({
 
-    alert(
-        `Booking ${id} has been cancelled.`
-    );
+                id: booking.id,
 
-}
+                customer:
+                    booking.customerName,
 
+                email: "",
 
-/* =====================================================
-   NOTIFICATIONS
-===================================================== */
+                phone: "",
 
-function showNotifications() {
+                property:
+                    booking.hostelName,
 
-    const pending =
-        getBookings().filter(
-            b =>
-                b.status === "pending"
-        ).length;
+                location: "",
 
+                room:
+                    booking.roomNumber,
 
-    alert(
-        `Notifications\n\n` +
-        `• ${pending} pending booking request(s)\n` +
-        `• Check your booking management page`
-    );
+                roomType:
+                    booking.roomType,
 
-}
+                checkIn:
+                    booking.checkInDate,
 
+                checkOut:
+                    booking.checkOutDate,
 
-/* =====================================================
-   HELP
-===================================================== */
+                amount:
+                    booking.monthlyRent,
 
-function showHelp(event) {
+                payment:
+                    "pending",
 
-    event.preventDefault();
+                status:
+                    booking.status.toLowerCase(),
 
+                created:
+                    new Date().toISOString()
 
-    alert(
-        "HostelVision Owner Support\n\n" +
-        "Support module will be connected to Spring Boot later."
-    );
+            }));
+
+        renderBookings();
+
+    } catch (error) {
+
+        console.error(
+            "Cancel booking error:",
+            error
+        );
+
+        alert(
+            "Unable to cancel booking: " +
+            error.message
+        );
+
+    }
 
 }
 
@@ -1432,9 +1552,71 @@ document.addEventListener(
 
 document.addEventListener(
     "DOMContentLoaded",
-    function() {
+    async function() {
 
-        renderBookings();
+        try {
+
+            const bookings =
+                await apiRequest("/bookings/owner");
+
+            window.ownerApiBookings =
+                bookings.map(booking => ({
+
+                    id: booking.id,
+
+                    customer:
+                        booking.customerName,
+
+                    email: "",
+
+                    phone: "",
+
+                    property:
+                        booking.hostelName,
+
+                    location: "",
+
+                    room:
+                        booking.roomNumber,
+
+                    roomType:
+                        booking.roomType,
+
+                    checkIn:
+                        booking.checkInDate,
+
+                    checkOut:
+                        booking.checkOutDate,
+
+                    amount:
+                        booking.monthlyRent,
+
+                    payment:
+                        "pending",
+
+                    status:
+                        booking.status.toLowerCase(),
+
+                    created:
+                        new Date().toISOString()
+
+                }));
+
+            renderBookings();
+
+        } catch (error) {
+
+            console.error(
+                "Owner bookings error:",
+                error
+            );
+
+            alert(
+                "Unable to load bookings: " +
+                error.message
+            );
+
+        }
 
     }
 );

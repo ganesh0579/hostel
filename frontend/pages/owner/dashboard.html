@@ -277,9 +277,9 @@
                         Total Hostels
                     </span>
 
-                    <strong>
-                        3
-                    </strong>
+                    <strong id="totalHostels">
+    0
+</strong>
 
                     <small>
                         Active properties
@@ -301,10 +301,9 @@
                     <span>
                         Total Rooms
                     </span>
-
-                    <strong>
-                        48
-                    </strong>
+<strong id="totalRooms">
+    0
+</strong>
 
                     <small>
                         Across all properties
@@ -327,9 +326,9 @@
                         Booking Requests
                     </span>
 
-                    <strong>
-                        12
-                    </strong>
+                    <strong id="bookingRequests">
+    0
+</strong>
 
                     <small>
                         2 need attention
@@ -352,9 +351,9 @@
                         Monthly Revenue
                     </span>
 
-                    <strong>
-                        ₹2.84L
-                    </strong>
+                    <strong id="monthlyRevenue">
+    ₹0
+</strong>
 
                     <small>
                         Current month
@@ -668,8 +667,9 @@
                 </div>
 
 
-                <div class="booking-request-list">
-
+               <div
+    class="booking-request-list"
+    id="recentBookingRequests">
 
                     <div class="booking-request">
 
@@ -875,6 +875,8 @@
 </div>
 
 
+<script src="../../js/config.js"></script>
+<script src="../../js/api.js"></script>
 <script src="../../js/owner.js"></script>
 
 </body>

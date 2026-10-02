@@ -39,9 +39,9 @@ public class SecurityConfig {
         JwtAuthenticationFilter jwtAuthenticationFilter =
                 new JwtAuthenticationFilter(jwtService);
 
-        http
-            // Disable CSRF because we are using JWT
-            .csrf(csrf -> csrf.disable())
+       http
+    .csrf(csrf -> csrf.disable())
+    .cors(cors -> {})
 
             // Do not create server-side sessions
             .sessionManagement(session ->

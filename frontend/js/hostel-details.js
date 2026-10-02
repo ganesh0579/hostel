@@ -113,11 +113,18 @@ const bookButton =
     document.getElementById("bookButton");
 
 
-function openModal(room = "Double Sharing") {
+function openModal(
+    room = "Double Sharing",
+    roomId = "2"
+) {
 
     document.getElementById(
         "selectedRoom"
     ).value = room;
+
+    document.getElementById(
+        "selectedRoom"
+    ).dataset.roomId = roomId;
 
     modal.classList.add("show");
 
@@ -169,6 +176,7 @@ modal.addEventListener(
    ROOM REQUEST BUTTONS
 ========================================================= */
 
+
 document
     .querySelectorAll(".request-btn")
     .forEach(
@@ -181,7 +189,13 @@ document
                     const room =
                         this.dataset.room;
 
-                    openModal(room);
+                    const roomId =
+                        this.dataset.roomId;
+
+                    openModal(
+                        room,
+                        roomId
+                    );
 
                 }
             );
@@ -199,28 +213,29 @@ const requestForm =
 
 requestForm.addEventListener(
     "submit",
-    function (event) {
+    async function (event) {
 
         event.preventDefault();
-
 
         const name =
             document.getElementById(
                 "studentName"
             ).value.trim();
 
-
         const phone =
             document.getElementById(
                 "studentPhone"
             ).value.trim();
-
 
         const room =
             document.getElementById(
                 "selectedRoom"
             ).value;
 
+        const roomId =
+            document.getElementById(
+                "selectedRoom"
+            ).dataset.roomId;
 
         if (
             name === "" ||
@@ -232,43 +247,77 @@ requestForm.addEventListener(
             );
 
             return;
+        }
+
+        if (!roomId) {
+
+            alert(
+                "Please select a room."
+            );
+
+            return;
+        }
+
+        try {
+
+            const today =
+                new Date();
+
+            const checkInDate =
+                today.toISOString()
+                    .split("T")[0];
+
+            const checkOut =
+                new Date(today);
+
+            checkOut.setMonth(
+                checkOut.getMonth() + 6
+            );
+
+            const checkOutDate =
+                checkOut.toISOString()
+                    .split("T")[0];
+
+            await apiRequest(
+                "/bookings",
+                {
+                    method: "POST",
+
+                    body: JSON.stringify({
+
+                        roomId:
+                            Number(roomId),
+
+                        bedsBooked: 1,
+
+                        checkInDate:
+                            checkInDate,
+
+                        checkOutDate:
+                            checkOutDate
+
+                    })
+                }
+            );
+
+            alert(
+                "Booking request sent successfully!"
+            );
+
+            requestForm.reset();
+
+            closeRequestModal();
+
+        } catch (error) {
+
+            alert(
+                error.message
+            );
 
         }
 
-
-        /*
-         * TEMPORARY FRONTEND BEHAVIOUR
-         *
-         * Later:
-         *
-         * Form
-         *   ↓
-         * JavaScript
-         *   ↓
-         * POST /api/booking-requests
-         *   ↓
-         * Spring Boot
-         *   ↓
-         * MySQL
-         *
-         */
-
-
-        alert(
-            `Request sent successfully!\n\n` +
-            `Name: ${name}\n` +
-            `Room: ${room}\n\n` +
-            `The hostel owner will contact you.`
-        );
-
-
-        requestForm.reset();
-
-        closeRequestModal();
-
     }
 );
-
 
 /* =========================================================
    CONTACT OWNER
